@@ -1,5 +1,7 @@
 # The Global School of Skills (GSS)
 
+[![CI](https://github.com/raghavrecharge/GSS/actions/workflows/ci.yml/badge.svg)](https://github.com/raghavrecharge/GSS/actions/workflows/ci.yml)
+
 Vite + React website for The Global School of Skills (GSS), built on the Marrky theme and interaction system. It includes programme catalogues, detailed course information, university partners, specializations, and country/regional study pages.
 
 ## Run locally
