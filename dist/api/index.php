@@ -177,7 +177,7 @@ function handleAuth(PDO $pdo, array $resource): never {
                 ':hash' => hash('sha256', $token), ':expires' => gmdate('c', time() + 1800), ':id' => $record['id'],
             ]);
             $host = preg_replace('/[^a-z0-9.-]/i', '', (string)($_SERVER['HTTP_HOST'] ?? 'gss.geic.in'));
-            $link = 'https://' . $host . '/admin?setup=' . rawurlencode($token);
+            $link = 'https://' . $host . '/admin/login?setup=' . rawurlencode($token);
             @mail($email, 'Set your GSS administrator password', "Use this one-time link within 30 minutes:\n\n$link\n\nIf you did not request this, ignore this email.", "From: no-reply@$host\r\nContent-Type: text/plain; charset=UTF-8");
         }
         respond(200, ['message' => 'If this administrator is awaiting setup, a one-time link has been sent.']);

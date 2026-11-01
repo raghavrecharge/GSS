@@ -41,6 +41,17 @@ describe('site routes', () => {
     expect(document.title).toContain('About GSS')
   })
 
+  it('renders the dedicated GEIC-style administrator login and setup routes', async () => {
+    const fetchMock = vi.spyOn(globalThis, 'fetch').mockResolvedValue({ ok: false, headers: new Headers({ 'content-type': 'application/json' }), json: async () => ({ authenticated: false }) })
+    const { unmount } = render(<MemoryRouter initialEntries={['/admin/login']}><App /></MemoryRouter>)
+    expect(await screen.findByRole('heading', { name: 'Welcome back to GSS' })).toBeInTheDocument()
+    expect(screen.getByRole('button', { name: 'Log in' })).toBeInTheDocument()
+    unmount()
+    render(<MemoryRouter initialEntries={['/admin/login?setup=demo-token']}><App /></MemoryRouter>)
+    expect(await screen.findByRole('heading', { name: 'Create your GSS password' })).toBeInTheDocument()
+    fetchMock.mockRestore()
+  })
+
   it('renders the custom 404 page for unknown URLs', () => {
     render(<MemoryRouter initialEntries={['/not-a-real-page']}><App /></MemoryRouter>)
     expect(document.title).toContain('404')

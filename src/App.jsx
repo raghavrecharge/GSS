@@ -27,6 +27,7 @@ import AdminDashboard, { AdminActivity, AdminReports, AdminSettings } from './ad
 import CrmWorkspace from './admin/crm/CrmWorkspace.jsx'
 import CmsWorkspace from './admin/cms/index.jsx'
 import AdminAuthGate from './admin/auth/AdminAuthGate.jsx'
+import { CheckoutPage, CheckoutSuccessPage } from './components/Checkout.jsx'
 
 const routes = [
   ['/online-learning', homeDark],
@@ -198,6 +199,7 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
+      <Route path="/admin/login" element={<AdminAuthGate loginPage />} />
       <Route path="/admin" element={<AdminAuthGate><AdminShell><AdminDashboard /></AdminShell></AdminAuthGate>} />
       <Route path="/admin/activity" element={<AdminAuthGate><AdminShell><AdminActivity /></AdminShell></AdminAuthGate>} />
       <Route path="/admin/reports" element={<AdminAuthGate><AdminShell><AdminReports /></AdminShell></AdminAuthGate>} />
@@ -205,6 +207,8 @@ export default function App() {
       <Route path="/admin/crm/*" element={<AdminAuthGate><CrmAdminRoute /></AdminAuthGate>} />
       <Route path="/admin/cms/*" element={<AdminAuthGate><CmsAdminRoute /></AdminAuthGate>} />
       <Route path="/admin/*" element={<Navigate to="/admin" replace />} />
+      <Route path="/checkout/success" element={<SiteShell page={cataloguePage('Payment confirmation', 'Demo payment confirmation for GSS programme enrolment.')}><CheckoutSuccessPage /></SiteShell>} />
+      <Route path="/checkout/:courseSlug" element={<SiteShell page={cataloguePage('Secure checkout', 'Complete your GSS programme enrolment through the secure demo checkout.')}><CheckoutPage /></SiteShell>} />
       <Route path="/programmes" element={<SiteShell page={cataloguePage('Programmes', programmes.description)}><ProgrammesPage /></SiteShell>} />
       <Route path="/programmes/mba" element={<Navigate to="/programmes/masters-of-business-administration" replace />} />
       <Route path="/programmes/:courseSlug" element={<CourseRoute />} />
