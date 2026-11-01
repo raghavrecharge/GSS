@@ -1,8 +1,21 @@
 <?php
 declare(strict_types=1);
 
+ini_set('session.use_strict_mode', '1');
+ini_set('session.use_only_cookies', '1');
+session_name('gss_admin');
+session_set_cookie_params([
+    'lifetime' => 60 * 60 * 8,
+    'path' => '/',
+    'secure' => true,
+    'httponly' => true,
+    'samesite' => 'Strict',
+]);
+session_start();
+
 header('Content-Type: application/json; charset=utf-8');
 header('X-Content-Type-Options: nosniff');
+header('X-Frame-Options: DENY');
 header('Referrer-Policy: no-referrer');
 header('Cache-Control: no-store');
 
@@ -92,15 +105,138 @@ function validSlug(string $value): bool {
     return (bool)preg_match('/^[a-z0-9]+(?:-[a-z0-9]+)*$/', $value);
 }
 
-try {
-    if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'GET') {
-        respond(405, ['error' => 'Method not allowed.']);
+function jsonBody(): array {
+    $length = (int)($_SERVER['CONTENT_LENGTH'] ?? 0);
+    if ($length > 16384) respond(413, ['error' => 'Request is too large.']);
+    $body = json_decode((string)file_get_contents('php://input'), true);
+    if (!is_array($body)) respond(422, ['error' => 'A valid JSON request is required.']);
+    return $body;
+}
+
+function ensureAuthTables(PDO $pdo): void {
+    $driver = $pdo->getAttribute(PDO::ATTR_DRIVER_NAME);
+    $id = $driver === 'mysql' ? 'BIGINT UNSIGNED NOT NULL AUTO_INCREMENT PRIMARY KEY' : 'INTEGER PRIMARY KEY AUTOINCREMENT';
+    $timestamp = $driver === 'mysql' ? 'TIMESTAMP NOT NULL DEFAULT CURRENT_TIMESTAMP' : 'TEXT NOT NULL DEFAULT CURRENT_TIMESTAMP';
+    $pdo->exec("CREATE TABLE IF NOT EXISTS admin_users (
+        id $id, email VARCHAR(254) NOT NULL UNIQUE, role VARCHAR(30) NOT NULL DEFAULT 'administrator',
+        password_hash VARCHAR(255) NULL, reset_token_hash VARCHAR(64) NULL, reset_expires_at VARCHAR(40) NULL,
+        last_login_at VARCHAR(40) NULL, created_at $timestamp
+    )");
+    $pdo->exec("CREATE TABLE IF NOT EXISTS auth_attempts (
+        id $id, identity_hash VARCHAR(64) NOT NULL, attempted_at $timestamp
+    )");
+    $email = 'raghavsanoriya2012@gmail.com';
+    $statement = $driver === 'mysql'
+        ? $pdo->prepare('INSERT IGNORE INTO admin_users (email, role) VALUES (:email, "administrator")')
+        : $pdo->prepare('INSERT OR IGNORE INTO admin_users (email, role) VALUES (:email, "administrator")');
+    $statement->execute([':email' => $email]);
+}
+
+function authRateLimit(PDO $pdo, string $identity): void {
+    $hash = hash('sha256', strtolower($identity) . '|' . ($_SERVER['REMOTE_ADDR'] ?? 'unknown'));
+    if ($pdo->getAttribute(PDO::ATTR_DRIVER_NAME) === 'mysql') {
+        $pdo->prepare('DELETE FROM auth_attempts WHERE attempted_at < DATE_SUB(NOW(), INTERVAL 15 MINUTE)')->execute();
+    } else {
+        $pdo->prepare("DELETE FROM auth_attempts WHERE attempted_at < datetime('now', '-15 minutes')")->execute();
     }
+    $count = $pdo->prepare('SELECT COUNT(*) FROM auth_attempts WHERE identity_hash = :hash');
+    $count->execute([':hash' => $hash]);
+    if ((int)$count->fetchColumn() >= 10) respond(429, ['error' => 'Too many attempts. Try again later.']);
+    $pdo->prepare('INSERT INTO auth_attempts (identity_hash) VALUES (:hash)')->execute([':hash' => $hash]);
+}
+
+function authenticatedUser(PDO $pdo): ?array {
+    $id = filter_var($_SESSION['admin_user_id'] ?? null, FILTER_VALIDATE_INT);
+    if (!$id) return null;
+    $statement = $pdo->prepare('SELECT id, email, role FROM admin_users WHERE id = :id LIMIT 1');
+    $statement->execute([':id' => $id]);
+    return $statement->fetch() ?: null;
+}
+
+function handleAuth(PDO $pdo, array $resource): never {
+    ensureAuthTables($pdo);
+    $action = $resource[1] ?? 'session';
+    $method = $_SERVER['REQUEST_METHOD'] ?? 'GET';
+    if ($action === 'session' && $method === 'GET') {
+        $user = authenticatedUser($pdo);
+        if (!$user) respond(401, ['authenticated' => false]);
+        $_SESSION['csrf'] ??= bin2hex(random_bytes(24));
+        respond(200, ['authenticated' => true, 'user' => $user, 'csrfToken' => $_SESSION['csrf']]);
+    }
+    if ($action === 'request-setup' && $method === 'POST') {
+        $body = jsonBody();
+        $email = strtolower(trim((string)($body['email'] ?? '')));
+        if (!filter_var($email, FILTER_VALIDATE_EMAIL)) respond(422, ['error' => 'Enter a valid email address.']);
+        authRateLimit($pdo, $email);
+        $user = $pdo->prepare('SELECT id, password_hash FROM admin_users WHERE email = :email LIMIT 1');
+        $user->execute([':email' => $email]);
+        $record = $user->fetch();
+        if ($record && !$record['password_hash']) {
+            $token = bin2hex(random_bytes(32));
+            $pdo->prepare('UPDATE admin_users SET reset_token_hash = :hash, reset_expires_at = :expires WHERE id = :id')->execute([
+                ':hash' => hash('sha256', $token), ':expires' => gmdate('c', time() + 1800), ':id' => $record['id'],
+            ]);
+            $host = preg_replace('/[^a-z0-9.-]/i', '', (string)($_SERVER['HTTP_HOST'] ?? 'gss.geic.in'));
+            $link = 'https://' . $host . '/admin?setup=' . rawurlencode($token);
+            @mail($email, 'Set your GSS administrator password', "Use this one-time link within 30 minutes:\n\n$link\n\nIf you did not request this, ignore this email.", "From: no-reply@$host\r\nContent-Type: text/plain; charset=UTF-8");
+        }
+        respond(200, ['message' => 'If this administrator is awaiting setup, a one-time link has been sent.']);
+    }
+    if ($action === 'set-password' && $method === 'POST') {
+        $body = jsonBody();
+        $token = (string)($body['token'] ?? '');
+        $password = (string)($body['password'] ?? '');
+        if (!preg_match('/^[a-f0-9]{64}$/', $token)) respond(422, ['error' => 'The setup link is invalid.']);
+        if (strlen($password) < 12 || !preg_match('/[A-Z]/', $password) || !preg_match('/[a-z]/', $password) || !preg_match('/\d/', $password) || !preg_match('/[^A-Za-z0-9]/', $password)) {
+            respond(422, ['error' => 'Use at least 12 characters with upper- and lowercase letters, a number, and a symbol.']);
+        }
+        $statement = $pdo->prepare('SELECT id, email, role, reset_expires_at FROM admin_users WHERE reset_token_hash = :hash LIMIT 1');
+        $statement->execute([':hash' => hash('sha256', $token)]);
+        $user = $statement->fetch();
+        if (!$user || strtotime((string)$user['reset_expires_at']) < time()) respond(422, ['error' => 'The setup link is invalid or expired.']);
+        $hash = password_hash($password, defined('PASSWORD_ARGON2ID') ? PASSWORD_ARGON2ID : PASSWORD_BCRYPT);
+        $pdo->prepare('UPDATE admin_users SET password_hash = :password, reset_token_hash = NULL, reset_expires_at = NULL WHERE id = :id')->execute([':password' => $hash, ':id' => $user['id']]);
+        session_regenerate_id(true);
+        $_SESSION['admin_user_id'] = (int)$user['id'];
+        $_SESSION['csrf'] = bin2hex(random_bytes(24));
+        respond(200, ['authenticated' => true, 'user' => ['id' => $user['id'], 'email' => $user['email'], 'role' => $user['role']], 'csrfToken' => $_SESSION['csrf']]);
+    }
+    if ($action === 'login' && $method === 'POST') {
+        $body = jsonBody();
+        $email = strtolower(trim((string)($body['email'] ?? '')));
+        $password = (string)($body['password'] ?? '');
+        authRateLimit($pdo, $email);
+        $statement = $pdo->prepare('SELECT id, email, role, password_hash FROM admin_users WHERE email = :email LIMIT 1');
+        $statement->execute([':email' => $email]);
+        $user = $statement->fetch();
+        if (!$user || !$user['password_hash'] || !password_verify($password, $user['password_hash'])) respond(401, ['error' => 'Email or password is incorrect.']);
+        if (password_needs_rehash($user['password_hash'], defined('PASSWORD_ARGON2ID') ? PASSWORD_ARGON2ID : PASSWORD_BCRYPT)) {
+            $pdo->prepare('UPDATE admin_users SET password_hash = :password WHERE id = :id')->execute([':password' => password_hash($password, defined('PASSWORD_ARGON2ID') ? PASSWORD_ARGON2ID : PASSWORD_BCRYPT), ':id' => $user['id']]);
+        }
+        session_regenerate_id(true);
+        $_SESSION['admin_user_id'] = (int)$user['id'];
+        $_SESSION['csrf'] = bin2hex(random_bytes(24));
+        $pdo->prepare('UPDATE admin_users SET last_login_at = :time WHERE id = :id')->execute([':time' => gmdate('c'), ':id' => $user['id']]);
+        respond(200, ['authenticated' => true, 'user' => ['id' => $user['id'], 'email' => $user['email'], 'role' => $user['role']], 'csrfToken' => $_SESSION['csrf']]);
+    }
+    if ($action === 'logout' && $method === 'POST') {
+        if (!hash_equals((string)($_SESSION['csrf'] ?? ''), (string)($_SERVER['HTTP_X_CSRF_TOKEN'] ?? ''))) respond(403, ['error' => 'Invalid security token.']);
+        $_SESSION = [];
+        session_destroy();
+        respond(200, ['authenticated' => false]);
+    }
+    respond(404, ['error' => 'Authentication action not found.']);
+}
+
+try {
     $path = trim((string)parse_url($_SERVER['REQUEST_URI'] ?? '', PHP_URL_PATH), '/');
     $parts = array_values(array_filter(explode('/', $path)));
     $apiIndex = array_search('api', $parts, true);
     $resource = $apiIndex === false ? [] : array_slice($parts, $apiIndex + 1);
     $pdo = database();
+
+    if (($resource[0] ?? '') === 'auth') handleAuth($pdo, $resource);
+    if (($_SERVER['REQUEST_METHOD'] ?? 'GET') !== 'GET') respond(405, ['error' => 'Method not allowed.']);
 
     if (($resource[0] ?? '') === 'health') {
         respond(200, ['status' => 'ok', 'database' => 'connected', 'driver' => $pdo->getAttribute(PDO::ATTR_DRIVER_NAME), 'courses' => (int)$pdo->query('SELECT COUNT(*) FROM courses')->fetchColumn()]);

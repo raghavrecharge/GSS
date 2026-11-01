@@ -26,6 +26,7 @@ import AdminShell from './admin/AdminShell.jsx'
 import AdminDashboard, { AdminActivity, AdminReports, AdminSettings } from './admin/AdminDashboard.jsx'
 import CrmWorkspace from './admin/crm/CrmWorkspace.jsx'
 import CmsWorkspace from './admin/cms/index.jsx'
+import AdminAuthGate from './admin/auth/AdminAuthGate.jsx'
 
 const routes = [
   ['/online-learning', homeDark],
@@ -197,12 +198,12 @@ export default function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/admin" element={<AdminShell><AdminDashboard /></AdminShell>} />
-      <Route path="/admin/activity" element={<AdminShell><AdminActivity /></AdminShell>} />
-      <Route path="/admin/reports" element={<AdminShell><AdminReports /></AdminShell>} />
-      <Route path="/admin/settings" element={<AdminShell><AdminSettings /></AdminShell>} />
-      <Route path="/admin/crm/*" element={<CrmAdminRoute />} />
-      <Route path="/admin/cms/*" element={<CmsAdminRoute />} />
+      <Route path="/admin" element={<AdminAuthGate><AdminShell><AdminDashboard /></AdminShell></AdminAuthGate>} />
+      <Route path="/admin/activity" element={<AdminAuthGate><AdminShell><AdminActivity /></AdminShell></AdminAuthGate>} />
+      <Route path="/admin/reports" element={<AdminAuthGate><AdminShell><AdminReports /></AdminShell></AdminAuthGate>} />
+      <Route path="/admin/settings" element={<AdminAuthGate><AdminShell><AdminSettings /></AdminShell></AdminAuthGate>} />
+      <Route path="/admin/crm/*" element={<AdminAuthGate><CrmAdminRoute /></AdminAuthGate>} />
+      <Route path="/admin/cms/*" element={<AdminAuthGate><CmsAdminRoute /></AdminAuthGate>} />
       <Route path="/admin/*" element={<Navigate to="/admin" replace />} />
       <Route path="/programmes" element={<SiteShell page={cataloguePage('Programmes', programmes.description)}><ProgrammesPage /></SiteShell>} />
       <Route path="/programmes/mba" element={<Navigate to="/programmes/masters-of-business-administration" replace />} />
