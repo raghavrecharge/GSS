@@ -76,6 +76,7 @@ function database(): PDO {
 
     $count = (int)$pdo->query('SELECT COUNT(*) FROM courses')->fetchColumn();
     if ($count === 0) seed($pdo);
+    syncVersionedSeedRecords($pdo);
     return $pdo;
 }
 
@@ -98,6 +99,41 @@ function seed(PDO $pdo): void {
     } catch (Throwable $error) {
         $pdo->rollBack();
         throw $error;
+    }
+}
+
+function syncVersionedSeedRecords(PDO $pdo): void {
+    $seedFile = __DIR__ . DIRECTORY_SEPARATOR . 'courses.seed.json';
+    $records = json_decode((string)file_get_contents($seedFile), true, 512, JSON_THROW_ON_ERROR);
+    $find = $pdo->prepare('SELECT payload_json FROM courses WHERE slug = :slug LIMIT 1');
+    $insert = $pdo->prepare('INSERT INTO courses (slug, title, status, payload_json) VALUES (:slug, :title, "published", :payload)');
+    $update = $pdo->prepare('UPDATE courses SET title = :title, status = "published", payload_json = :payload, version = version + 1, updated_at = CURRENT_TIMESTAMP WHERE slug = :slug');
+    $audit = $pdo->prepare('INSERT INTO audit_log (event, course_slug, actor) VALUES ("catalogue_seed_synced", :slug, "deployment")');
+
+    foreach ($records as $record) {
+        if (!is_array($record) || empty($record['slug']) || empty($record['title']) || empty($record['seedRevision'])) continue;
+
+        $slug = (string)$record['slug'];
+        $find->execute([':slug' => $slug]);
+        $currentJson = $find->fetchColumn();
+        $current = is_string($currentJson) ? json_decode($currentJson, true) : null;
+
+        if (is_array($current) && ($current['seedRevision'] ?? null) === $record['seedRevision']) continue;
+
+        $payload = json_encode($record, JSON_UNESCAPED_SLASHES | JSON_UNESCAPED_UNICODE | JSON_THROW_ON_ERROR);
+        $pdo->beginTransaction();
+        try {
+            if ($currentJson === false) {
+                $insert->execute([':slug' => $slug, ':title' => (string)$record['title'], ':payload' => $payload]);
+            } else {
+                $update->execute([':slug' => $slug, ':title' => (string)$record['title'], ':payload' => $payload]);
+            }
+            $audit->execute([':slug' => $slug]);
+            $pdo->commit();
+        } catch (Throwable $error) {
+            $pdo->rollBack();
+            throw $error;
+        }
     }
 }
 
