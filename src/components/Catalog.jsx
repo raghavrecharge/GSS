@@ -7,6 +7,9 @@ import { checkoutUrl } from './checkoutUtils.js'
 export function CourseCard({ course, basePath = '/programmes' }) {
   const hasPreviousPrice = /^Was\s+/i.test(course.monthly || '')
   const detailUrl = `${basePath}/${course.slug}`
+  const [descriptionExpanded, setDescriptionExpanded] = useState(false)
+  const descriptionId = `course-description-${course.slug}`
+  const hasExpandableDescription = course.description.length > 140
   return (
     <article className="msbm-course-card wow fadeInUp2">
       <Link className="msbm-course-card__image" to={detailUrl} aria-label={`View ${course.title}`}>
@@ -16,7 +19,9 @@ export function CourseCard({ course, basePath = '/programmes' }) {
         {course.universitySlug
           ? <Link className="msbm-course-card__university" to={`/universities/${course.universitySlug}`}>{course.university}</Link>
           : <span className="msbm-course-card__university">{course.university}</span>}
-        <h3><Link to={detailUrl}>{course.title}</Link></h3><p>{course.description}</p>
+        <h3><Link to={detailUrl}>{course.title}</Link></h3>
+        <p id={descriptionId} className={hasExpandableDescription && !descriptionExpanded ? 'is-collapsed' : undefined}>{course.description}</p>
+        {hasExpandableDescription && <button className="msbm-course-card__description-toggle" type="button" aria-controls={descriptionId} aria-expanded={descriptionExpanded} onClick={() => setDescriptionExpanded((expanded) => !expanded)}>{descriptionExpanded ? 'View less' : 'View more'} <i className={`ph ${descriptionExpanded ? 'ph-caret-up' : 'ph-caret-down'}`} aria-hidden="true" /></button>}
         <dl className="msbm-course-card__facts">
           <div><dt><i className="ph ph-hourglass" /> Duration</dt><dd>{course.duration}</dd></div>
           <div><dt><i className="ph ph-desktop" /> Study mode</dt><dd>{course.mode}</dd></div>
@@ -241,7 +246,7 @@ function CourseOutcomes({ course }) {
 
 function LearningJourney({ course }) {
   const steps = course.gettingStarted || []
-  return <section className="msbm-learning-journey" id="getting-started"><div className="container ma-container-1"><div><span className="ma-sec-badge">How to get started</span><h2 className="ma-sec-title-1">Your application and study journey</h2>{course.gettingStartedIntro ? <p>{course.gettingStartedIntro}</p> : <PendingDetail label="Application steps" />}</div>{steps.length > 0 && <ol>{steps.map((step, index) => <li key={step}><span>{index + 1}</span><strong>{step}</strong></li>)}</ol>}</div></section>
+  return <section className="msbm-learning-journey" id="getting-started"><div className="container ma-container-1"><div><span className="ma-sec-badge">How to get started</span><h2 className="ma-sec-title-1">Your application and study journey</h2>{course.gettingStartedIntro ? <p>{course.gettingStartedIntro}</p> : <PendingDetail label="Application steps" />}</div>{steps.length > 0 && <ol>{steps.map((step, index) => { const item = typeof step === 'string' ? { title: step } : step; return <li key={`${index}-${item.title}`}><span>{index + 1}</span><div><strong>{item.title}</strong>{item.description && <p>{item.description}</p>}</div></li> })}</ol>}</div></section>
 }
 
 function EntryRequirements({ items }) {
@@ -275,8 +280,21 @@ function EmptyCatalogue() { return <div className="msbm-empty"><h2>Programme inf
 function MissingRecord() { return <div className="msbm-empty msbm-empty--page"><h1>We couldn’t find that catalogue page</h1><Link className="ma-pr-btn-1" to="/programmes"><span>Browse programmes</span></Link></div> }
 function PendingDetail({ label }) { return <p><strong>{label} pending source verification.</strong> Request the current official information before making an enrolment decision.</p> }
 function CountryAvailabilityNotice({ country }) { return <div className="msbm-empty"><h2>Local catalogue verification in progress</h2><p>No programme has yet been individually verified for availability and pricing in {country.name}. Contact an advisor for the current local catalogue.</p><Link className="ma-pr-btn-1" to="/contact"><span>Confirm local availability</span></Link></div> }
+const verifiedModuleDescriptions = {
+  'STRATEGIC MANAGEMENT': 'Develop critical-thinking skills to evaluate and implement strategic frameworks that support organisational growth and resilience.',
+  'STRATEGIC LEADERSHIP': 'Assess and implement leadership strategies that drive innovation and foster long-term organisational success in dynamic markets.',
+  'STRATEGIC HUMAN RESOURCE MANAGEMENT': 'Analyse human-resource strategies that align workforce management with organisational goals and enhance employee engagement.',
+  'STRATEGIC FINANCIAL MANAGEMENT': 'Apply financial tools to optimise investment decisions, manage risk and support long-term financial stability.',
+  'STRATEGIC MARKETING': 'Create marketing strategies that use market trends, customer insight and innovative approaches to achieve competitive advantage.',
+  'ADVANCED BUSINESS RESEARCH METHODS': 'Use advanced research methodologies to address complex business problems and support evidence-based decision-making.',
+  'BUSINESS MANAGEMENT': 'Build a comprehensive understanding of planning, organising, leading and controlling organisational resources in dynamic business environments.',
+  'ORGANISATIONAL THEORY': 'Explore the frameworks that shape organisational design and examine how structure, culture and systems affect performance.',
+  'ORGANISATIONAL BEHAVIOUR': 'Examine the psychological and social factors that influence individuals and groups, including leadership, communication and conflict resolution.',
+  'INNOVATION AND ENTREPRENEURSHIP': 'Explore idea generation, market analysis and business-development frameworks for launching and managing innovative ventures.',
+  'THESIS IN EXECUTIVE MASTER OF BUSINESS ADMINISTRATION': 'Conduct in-depth research on a strategic business topic and apply advanced management concepts to a real organisational challenge.',
+}
 function normaliseModule(module) {
   if (Array.isArray(module)) return { title: module[0], description: module[1], meta: module[2], lessons: module[3] || [] }
   const counts = [module.lectures ? `${module.lectures} lecture${module.lectures === 1 ? '' : 's'}` : '', module.quizzes ? `${module.quizzes} quiz${module.quizzes === 1 ? '' : 'zes'}` : ''].filter(Boolean).join(' · ')
-  return { ...module, meta: module.meta || counts, lessons: module.lessons || [] }
+  return { ...module, description: module.description || module.summary || verifiedModuleDescriptions[module.title], meta: module.meta || counts, lessons: module.lessons || [] }
 }

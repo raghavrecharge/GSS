@@ -110,6 +110,21 @@ describe('site routes', () => {
     expect(screen.getByRole('heading', { name: 'Programme experience and support' })).toBeInTheDocument()
   })
 
+  it('renders the full source-backed Executive MBA detail page', () => {
+    const executiveMba = findCourse('executive-master-of-business-administration-4')
+    expect(executiveMba.modules).toHaveLength(12)
+    expect(executiveMba.sourceLessonCount).toBeGreaterThan(100)
+    expect(executiveMba.outcomes).toHaveLength(10)
+    expect(executiveMba.gettingStarted).toHaveLength(7)
+    render(<MemoryRouter initialEntries={['/programmes/executive-master-of-business-administration-4']}><App /></MemoryRouter>)
+    expect(screen.getByRole('heading', { name: 'Executive Master Of Business Administration', level: 1 })).toBeInTheDocument()
+    expect(screen.getAllByText('Strategic Human Resource Management').length).toBeGreaterThan(0)
+    expect(screen.getAllByText(/TOEFL: iBT 58\+/i).length).toBeGreaterThan(0)
+    expect(screen.getByText('31,000,000+')).toBeInTheDocument()
+    expect(screen.getAllByText('Receive your degree').length).toBeGreaterThan(0)
+    expect(screen.getByText(/Very simple and helpful/i)).toBeInTheDocument()
+  })
+
   it('renders the detailed university information architecture', () => {
     render(<MemoryRouter initialEntries={['/universities/azteca-university']}><App /></MemoryRouter>)
     expect(screen.getByRole('heading', { name: 'Azteca University' })).toBeInTheDocument()

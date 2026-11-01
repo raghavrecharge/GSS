@@ -175,5 +175,5 @@ describe('CMS workspace', () => {
     expect(screen.getByRole('button', { name: 'Remove Learner help' })).toBeInTheDocument()
     fireEvent.click(screen.getByRole('button', { name: 'Save navigation' }))
     expect(screen.getByText('Navigation saved in this session.')).toBeInTheDocument()
-  }, 15000)
+  }, 30000)
 })

@@ -27,6 +27,18 @@ describe('programme checkout', () => {
     expect(screen.getByRole('link', { name: /Buy now/i })).toHaveAttribute('href', checkoutUrl(course))
   })
 
+  it('expands and collapses long course-card descriptions', () => {
+    render(<MemoryRouter><CourseCard course={course} /></MemoryRouter>)
+    const toggle = screen.getByRole('button', { name: 'View more' })
+    const description = document.getElementById(`course-description-${course.slug}`)
+
+    expect(toggle).toHaveAttribute('aria-expanded', 'false')
+    expect(description).toHaveClass('is-collapsed')
+    fireEvent.click(toggle)
+    expect(screen.getByRole('button', { name: 'View less' })).toHaveAttribute('aria-expanded', 'true')
+    expect(description).not.toHaveClass('is-collapsed')
+  })
+
   it('shows Stripe and Razorpay with inline validation', async () => {
     renderCheckout()
     expect(screen.getByRole('radio', { name: /Stripe/i })).toBeChecked()
