@@ -42,3 +42,7 @@ Legacy `.html` and source programme URLs redirect to the corresponding clean Rea
 - Primary blue: `#15519D`
 - Accent orange: `#FFAD01`
 - Shared GSS logo assets live in `public/assets/img/`
+
+## Production deployment
+
+Run `npm run build` and publish the contents of `dist/` to the web root. The bundled `.htaccess` provides the Apache fallback required for React Router deep links.
