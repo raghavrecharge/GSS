@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "export:courses": "node scripts/export-course-database.mjs",
+    "build": "vite build && npm run export:courses",
     "preview": "vite preview",
     "lint": "eslint .",
     "test": "vitest run",

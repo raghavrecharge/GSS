@@ -1,6 +1,7 @@
 import { useDeferredValue, useMemo, useState } from 'react'
 import { Link, useNavigate, useParams } from 'react-router-dom'
 import { categories, countries, courses, findCountry, findCourse, findLocation, findUniversity, getCountryCourses, getCountryRegions, getLocationCourses, specializations, universities } from '../data/msbmCatalog.js'
+import { useCourseCatalogue } from '../data/courseApi.js'
 
 export function CourseCard({ course, basePath = '/programmes' }) {
   const hasPreviousPrice = /^Was\s+/i.test(course.monthly || '')
@@ -51,7 +52,8 @@ export function PageIntro({ eyebrow, title, description, parent = 'Home' }) {
 }
 
 export function ProgrammesPage() {
-  return <><PageIntro eyebrow="Programmes" title="Find the right programme for your ambition" description="Browse flexible degree programmes, executive education, diplomas and professional courses." /><BrowseLinks /><section className="msbm-catalog-section"><div className="container ma-container-1"><CourseGrid /></div></section></>
+  const { courses: catalogueCourses, source } = useCourseCatalogue()
+  return <><PageIntro eyebrow="Programmes" title="Find the right programme for your ambition" description="Browse flexible degree programmes, executive education, diplomas and professional courses." /><BrowseLinks /><section className="msbm-catalog-section"><div className="container ma-container-1" data-catalogue-source={source}><CourseGrid items={catalogueCourses} /></div></section></>
 }
 
 function BrowseLinks() {

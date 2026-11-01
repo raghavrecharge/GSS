@@ -19,6 +19,17 @@ fi
 mkdir -p "$deploy_root"
 chmod 0755 "$deploy_root"
 
+# The SQLite catalogue is deliberately stored outside the public document root.
+# Existing databases are retained across deployments; the API seeds a new one
+# from the committed catalogue on its first request.
+data_root="/home2/geicic3c/gss-data"
+if [[ "$data_root" != "/home2/geicic3c/gss-data" ]]; then
+    echo "Refusing unsafe data root: $data_root" >&2
+    exit 64
+fi
+mkdir -p "$data_root"
+chmod 0750 "$data_root"
+
 # Copy the immutable Vite build without touching unrelated hosting paths.
 tar -cf - -C "$repository_root/dist" . | tar -xf - -C "$deploy_root"
 
@@ -26,5 +37,7 @@ curl --fail --silent --show-error --max-time 30 --output /dev/null \
     "https://gss.geic.in/"
 curl --fail --silent --show-error --max-time 30 --output /dev/null \
     "https://gss.geic.in/programmes/masters-of-business-administration"
+curl --fail --silent --show-error --max-time 30 \
+    "https://gss.geic.in/api/health" | grep --quiet '"database":"connected"'
 
 echo "GSS deployment completed from $(git rev-parse HEAD)."

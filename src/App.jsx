@@ -1,4 +1,4 @@
-import { Navigate, Route, Routes, useLocation, useParams } from 'react-router-dom'
+import { Navigate, Route, Routes, useLocation, useNavigate, useParams } from 'react-router-dom'
 import SiteShell from './components/SiteShell.jsx'
 import ContentRenderer from './components/ContentRenderer.jsx'
 import { CategoriesPage, CategoryPage, CountriesPage, CountryPage, CoursePage, FeaturedStudyLevels, LocationPage, PopularCourses, ProgrammesPage, SpecializationsPage, SpecializationPage, UniversitiesPage, UniversityPage } from './components/Catalog.jsx'
@@ -17,10 +17,15 @@ import {
   stories,
   tuition,
 } from './content/msbmContent.js'
-import { categories, findCountry, findCourse, findCourseBySourceSlug, findLocation, findUniversity, getCountryCourse, getLocationCourse, specializations } from './data/msbmCatalog.js'
+import { categories, findCountry, findCourseBySourceSlug, findLocation, findUniversity, getCountryCourse, getLocationCourse, specializations } from './data/msbmCatalog.js'
+import { useCourseRecord } from './data/courseApi.js'
 import contentPages from './data/msbmContentPages.json'
 import SourceContentPage from './components/SourceContentPage.jsx'
 import AcademicPathways from './components/AcademicPathways.jsx'
+import AdminShell from './admin/AdminShell.jsx'
+import AdminDashboard, { AdminActivity, AdminReports, AdminSettings } from './admin/AdminDashboard.jsx'
+import CrmWorkspace from './admin/crm/CrmWorkspace.jsx'
+import CmsWorkspace from './admin/cms/index.jsx'
 
 const routes = [
   ['/online-learning', homeDark],
@@ -67,9 +72,10 @@ const cataloguePage = (title, description) => ({ ...programmes, title: `${title}
 
 function CourseRoute() {
   const { courseSlug } = useParams()
-  const course = findCourse(courseSlug)
+  const { course, loading } = useCourseRecord(courseSlug)
+  if (loading && !course) return <SiteShell page={programmes}><main className="msbm-course-loading" aria-busy="true">Loading programme information…</main></SiteShell>
   if (!course) return <Navigate to="/404" replace />
-  return <SiteShell page={cataloguePage(course.title, course.description)}><CoursePage /></SiteShell>
+  return <SiteShell page={cataloguePage(course.title, course.description)}><CoursePage courseOverride={course} /></SiteShell>
 }
 
 function SourceProgrammeRoute() {
@@ -156,10 +162,48 @@ function SourceContentRoute() {
   return <SiteShell page={page}><SourceContentPage page={contentPage} /></SiteShell>
 }
 
+const crmAdminPaths = {
+  overview: '/admin/crm', leads: '/admin/crm/leads', contacts: '/admin/crm/contacts',
+  communications: '/admin/crm/communications', applications: '/admin/crm/applications',
+  intakes: '/admin/crm/intakes', students: '/admin/crm/students', tasks: '/admin/crm/tasks',
+  reports: '/admin/crm/reports',
+}
+const cmsAdminPaths = {
+  overview: '/admin/cms', pages: '/admin/cms/pages', programmes: '/admin/cms/programmes',
+  universities: '/admin/cms/universities', countries: '/admin/cms/countries',
+  taxonomies: '/admin/cms/taxonomies', testimonials: '/admin/cms/testimonials',
+  faqs: '/admin/cms/faqs', forms: '/admin/cms/forms', blocks: '/admin/cms/blocks',
+  media: '/admin/cms/media', navigation: '/admin/cms/navigation',
+  publishing: '/admin/cms/publishing', settings: '/admin/cms/settings',
+}
+
+function CrmAdminRoute() {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const section = Object.entries(crmAdminPaths).find(([, path]) => path === location.pathname)?.[0]
+  if (!section) return <Navigate to="/admin/crm" replace />
+  return <AdminShell><CrmWorkspace section={section} showNavigation={false} onNavigate={(next) => navigate(crmAdminPaths[next] || '/admin/crm')} /></AdminShell>
+}
+
+function CmsAdminRoute() {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const view = Object.entries(cmsAdminPaths).find(([, path]) => path === location.pathname)?.[0]
+  if (!view) return <Navigate to="/admin/cms" replace />
+  return <AdminShell><CmsWorkspace view={view} hideNavigation onNavigate={(next) => navigate(cmsAdminPaths[next] || '/admin/cms')} /></AdminShell>
+}
+
 export default function App() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
+      <Route path="/admin" element={<AdminShell><AdminDashboard /></AdminShell>} />
+      <Route path="/admin/activity" element={<AdminShell><AdminActivity /></AdminShell>} />
+      <Route path="/admin/reports" element={<AdminShell><AdminReports /></AdminShell>} />
+      <Route path="/admin/settings" element={<AdminShell><AdminSettings /></AdminShell>} />
+      <Route path="/admin/crm/*" element={<CrmAdminRoute />} />
+      <Route path="/admin/cms/*" element={<CmsAdminRoute />} />
+      <Route path="/admin/*" element={<Navigate to="/admin" replace />} />
       <Route path="/programmes" element={<SiteShell page={cataloguePage('Programmes', programmes.description)}><ProgrammesPage /></SiteShell>} />
       <Route path="/programmes/mba" element={<Navigate to="/programmes/masters-of-business-administration" replace />} />
       <Route path="/programmes/:courseSlug" element={<CourseRoute />} />
