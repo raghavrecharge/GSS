@@ -1,0 +1,121 @@
+:root {
+  --mindu-ink: #050517;
+  --mindu-purple: #6c5ce7;
+  --mindu-accent: #ffcf59;
+  --mindu-surface: #f5f4ff;
+}
+
+html { scroll-behavior: smooth; }
+body { overflow-x: hidden; }
+button, a, input, textarea, select { font: inherit; }
+a:focus-visible, button:focus-visible, input:focus-visible, textarea:focus-visible, select:focus-visible {
+  outline: 3px solid var(--mindu-accent);
+  outline-offset: 3px;
+}
+.skip-link { position: fixed; left: 16px; top: -80px; z-index: 10000; padding: 12px 18px; background: #fff; color: var(--mindu-ink); border-radius: 8px; }
+.skip-link:focus { top: 16px; }
+
+.react-header { position: absolute; inset: 0 0 auto; z-index: 1000; color: #fff; transition: background .25s ease, box-shadow .25s ease; }
+.react-header.is-sticky { position: fixed; background: var(--mindu-ink); box-shadow: 0 10px 30px rgb(5 5 23 / 16%); animation: headerIn .25s ease; }
+.react-header__inner { min-height: 92px; display: flex; align-items: center; gap: 28px; }
+.react-header__logo { flex: 0 0 auto; }
+.react-header__logo img { width: 86px; display: block; }
+.react-nav { display: flex; justify-content: center; align-items: stretch; gap: 32px; margin-left: auto; }
+.react-nav__item { position: relative; display: flex; align-items: center; min-height: 92px; }
+.react-nav__item > a { color: inherit; font-weight: 600; }
+.react-nav__item > a.is-active, .react-nav__item > a:hover { color: var(--mindu-accent); }
+.react-nav__dropdown { position: absolute; left: -24px; top: calc(100% - 8px); width: 220px; padding: 14px 0; background: #fff; border-radius: 10px; box-shadow: 0 18px 50px rgb(5 5 23 / 18%); opacity: 0; visibility: hidden; transform: translateY(10px); transition: .2s ease; }
+.react-nav__item:hover .react-nav__dropdown, .react-nav__item:focus-within .react-nav__dropdown { opacity: 1; visibility: visible; transform: translateY(0); }
+.react-nav__dropdown a { display: block; padding: 9px 22px; color: #343449; font-weight: 500; }
+.react-nav__dropdown a:hover { color: var(--mindu-purple); background: #f7f6ff; }
+.react-header__actions { margin-left: auto; display: flex; align-items: center; gap: 12px; }
+.react-dashboard-link { padding: 10px 14px; border: 1px solid rgb(255 255 255 / 35%); border-radius: 8px; color: #fff; font-weight: 600; }
+.react-dashboard-link:hover { border-color: var(--mindu-accent); color: var(--mindu-accent); }
+.icon-button { width: 44px; height: 44px; display: inline-grid; place-items: center; border: 0; border-radius: 50%; background: transparent; color: inherit; }
+.icon-button:hover { background: rgb(255 255 255 / 12%); }
+.react-login { min-height: 48px; display: inline-flex; align-items: center; gap: 8px; }
+.menu-button { display: none; font-size: 20px; }
+
+.mobile-drawer { position: fixed; inset: 0; z-index: 3000; pointer-events: none; visibility: hidden; }
+.mobile-drawer.is-open { pointer-events: auto; visibility: visible; }
+.mobile-drawer__backdrop { position: absolute; inset: 0; border: 0; background: rgb(5 5 23 / 60%); opacity: 0; transition: .25s ease; }
+.mobile-drawer.is-open .mobile-drawer__backdrop { opacity: 1; }
+.mobile-drawer__panel { position: absolute; right: 0; top: 0; height: 100%; width: min(390px, 90vw); overflow-y: auto; background: #fff; padding: 28px; transform: translateX(100%); transition: transform .3s ease; color: var(--mindu-ink); }
+.mobile-drawer.is-open .mobile-drawer__panel { transform: translateX(0); }
+.mobile-drawer__top { display: flex; align-items: center; justify-content: space-between; padding-bottom: 24px; border-bottom: 1px solid #eceaf6; }
+.mobile-drawer__top img { width: 90px; }
+.mobile-nav__group { border-bottom: 1px solid #eceaf6; }
+.mobile-nav__row { display: flex; align-items: center; }
+.mobile-nav__row > a { flex: 1; padding: 16px 0; color: var(--mindu-ink); font-weight: 700; }
+.mobile-nav__row button { width: 44px; height: 44px; border: 0; background: #f5f4ff; border-radius: 8px; }
+.mobile-nav__subnav { padding: 0 0 12px 16px; }
+.mobile-nav__subnav a { display: block; padding: 8px 0; color: #5e5e70; }
+.mobile-drawer__contact { margin-top: 34px; display: grid; gap: 8px; }
+.mobile-drawer__contact h3 { margin-bottom: 4px; font-size: 22px; }
+.mobile-drawer__contact a { color: var(--mindu-purple); }
+
+.react-theme-page { min-height: 70vh; }
+.react-theme-page > :first-child { position: relative; }
+.react-theme-page img { max-width: 100%; }
+.react-theme-page .wow { visibility: visible !important; animation-name: none !important; }
+.react-theme-page a[href^="/"] { cursor: pointer; }
+.page-state { min-height: 65vh; display: grid; place-content: center; justify-items: center; gap: 16px; padding: 150px 24px 80px; text-align: center; }
+.page-loader { width: 48px; height: 48px; border: 4px solid #e7e4ff; border-top-color: var(--mindu-purple); border-radius: 50%; animation: spin .8s linear infinite; }
+
+.react-footer { position: relative; padding: 110px 0 28px; background: var(--mindu-ink); color: #a9a8b6; }
+.react-footer__logo { display: inline-block; margin-bottom: 26px; }
+.react-footer__logo img { width: 96px; }
+.react-footer p { max-width: 360px; color: #a9a8b6; line-height: 1.8; }
+.react-footer h3 { color: #fff; font-size: 22px; margin-bottom: 22px; }
+.react-footer .col-xl-2 > a { display: block; width: max-content; margin: 0 0 13px; color: #a9a8b6; }
+.react-footer a:hover { color: var(--mindu-accent); }
+.react-footer__social { display: flex; gap: 10px; margin-top: 26px; }
+.react-footer__social a { width: 42px; height: 42px; display: grid; place-items: center; border: 1px solid #343447; border-radius: 50%; color: #fff; }
+.react-footer__form { display: flex; max-width: 430px; margin-top: 18px; border-bottom: 1px solid #565466; }
+.react-footer__form input { flex: 1; min-width: 0; padding: 14px 0; border: 0; background: transparent; color: #fff; }
+.react-footer__form input::placeholder { color: #8e8d9a; }
+.react-footer__form button { width: 52px; border: 0; background: transparent; color: var(--mindu-accent); }
+.react-footer__bottom { display: flex; justify-content: space-between; gap: 24px; margin-top: 70px; padding-top: 26px; border-top: 1px solid #252536; font-size: 14px; }
+.react-footer__bottom div { display: flex; gap: 24px; }
+.react-footer__bottom a { color: #a9a8b6; }
+
+.react-search { position: fixed; inset: 0; z-index: 4000; display: grid; place-items: start center; padding-top: min(18vh, 150px); }
+.react-search__backdrop { position: absolute; inset: 0; border: 0; background: rgb(5 5 23 / 72%); backdrop-filter: blur(5px); }
+.react-search__panel { position: relative; width: min(850px, calc(100% - 32px)); padding: 32px 40px 48px; border-radius: 18px; background: #fff; box-shadow: 0 30px 100px rgb(0 0 0 / 28%); }
+.react-search__top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 36px; }
+.react-search__top img { width: 92px; }
+.react-search form label { display: block; color: var(--mindu-ink); font-size: clamp(24px, 4vw, 42px); font-weight: 700; margin-bottom: 20px; }
+.react-search form > div { display: flex; border-bottom: 2px solid var(--mindu-ink); }
+.react-search input { flex: 1; min-width: 0; padding: 14px 0; border: 0; font-size: 18px; }
+.react-search form button { width: 54px; border: 0; background: transparent; font-size: 20px; }
+.react-back-to-top { position: fixed; right: 24px; bottom: 24px; z-index: 900; width: 48px; height: 48px; border: 0; border-radius: 50%; background: var(--mindu-purple); color: #fff; box-shadow: 0 12px 28px rgb(108 92 231 / 35%); opacity: 0; visibility: hidden; transform: translateY(12px); transition: .2s ease; }
+.react-back-to-top.is-visible { opacity: 1; visibility: visible; transform: translateY(0); }
+
+.dashboard-react-shell { min-height: 100vh; }
+.dashboard-site-link { position: fixed; z-index: 9999; left: 18px; bottom: 18px; display: inline-flex; align-items: center; gap: 8px; min-height: 42px; padding: 0 14px; border: 0; border-radius: 9px; background: #17162e; color: #fff; box-shadow: 0 8px 24px rgb(0 0 0 / 24%); font-weight: 600; }
+.dashboard-site-link:hover { background: #635bff; }
+.dashboard-state { min-height: 100vh; display: grid; place-content: center; justify-items: center; gap: 16px; padding: 40px; text-align: center; background: #f7f7fb; }
+.dashboard-state button { min-height: 44px; padding: 0 18px; border: 0; border-radius: 8px; background: #635bff; color: #fff; }
+.dashboard-source .app-sidebar-menu-item.open > .app-sidebar-submenu { display: block; }
+body.conca-react { background: #f7f7fb; }
+body.conca-react .skip-link, body.conca-react > .react-back-to-top { display: none; }
+
+@keyframes spin { to { transform: rotate(360deg); } }
+@keyframes headerIn { from { transform: translateY(-100%); } }
+
+@media (max-width: 1199px) {
+  .react-nav { display: none; }
+  .menu-button { display: inline-grid; }
+}
+@media (max-width: 767px) {
+  .react-header__inner { min-height: 76px; }
+  .react-header__logo img { width: 78px; }
+  .react-login { display: none; }
+  .react-dashboard-link { display: none; }
+  .react-footer { padding-top: 78px; }
+  .react-footer__bottom { flex-direction: column; margin-top: 50px; }
+  .react-search__panel { padding: 24px 22px 36px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { scroll-behavior: auto !important; animation-duration: .01ms !important; animation-iteration-count: 1 !important; transition-duration: .01ms !important; }
+}

@@ -1,0 +1,1979 @@
+{
+  "schemaVersion": 1,
+  "batch": "b",
+  "catalogueIndexes": {
+    "start": 23,
+    "end": 45
+  },
+  "generatedAt": "2026-11-01T22:34:08.653Z",
+  "recordCount": 23,
+  "observedFreshCount": 0,
+  "retainedSnapshotCount": 1,
+  "blockedCount": 22,
+  "records": [
+    {
+      "catalogueIndex": 23,
+      "slug": "master-of-business-administration-in-project-management",
+      "sourceUrl": "https://msbm.org.uk/programme/master-of-business-administration-in-project-management",
+      "capturedAt": null,
+      "status": "blocked",
+      "complete": false,
+      "courseDetails": null,
+      "outcomes": [],
+      "progression": {
+        "status": "blocked",
+        "text": "",
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response."
+      },
+      "modules": [],
+      "recordedCatalogue": {
+        "path": "src/data/msbmVerifiedCatalog.json",
+        "index": 23,
+        "title": "Master of Business Administration In Project Management (MBAPM)",
+        "duration": "18 Months",
+        "mode": "Blended",
+        "fee": "£ 2,700",
+        "monthly": "£ 150/mo",
+        "partner": "European Institute Of Management And Technology",
+        "moduleCount": 12,
+        "lessonCount": 83,
+        "entryRequirementCount": 1,
+        "scope": "previously recorded global catalogue facts; not a fresh source capture"
+      },
+      "sourceEvidence": {
+        "captureAttempted": true,
+        "captureMethod": "Playwright Chromium",
+        "httpStatus": 403,
+        "pageTitle": "Just a moment...",
+        "headingsChecked": [],
+        "sourceItems": 0,
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response.",
+        "checkedAt": "2026-11-01T22:34:08.653Z"
+      }
+    },
+    {
+      "catalogueIndex": 24,
+      "slug": "masters-degree-in-continuing-education-in-project-management",
+      "sourceUrl": "https://msbm.org.uk/programme/masters-degree-in-continuing-education-in-project-management",
+      "capturedAt": null,
+      "status": "blocked",
+      "complete": false,
+      "courseDetails": null,
+      "outcomes": [],
+      "progression": {
+        "status": "blocked",
+        "text": "",
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response."
+      },
+      "modules": [],
+      "recordedCatalogue": {
+        "path": "src/data/msbmVerifiedCatalog.json",
+        "index": 24,
+        "title": "Masters Degree in Continuing Education in Project Management",
+        "duration": "24 Months",
+        "mode": "Blended",
+        "fee": "£ 3,600",
+        "monthly": "£ 150/mo",
+        "partner": "UCAM Catholic University Of Murcia",
+        "moduleCount": 12,
+        "lessonCount": 136,
+        "entryRequirementCount": 1,
+        "scope": "previously recorded global catalogue facts; not a fresh source capture"
+      },
+      "sourceEvidence": {
+        "captureAttempted": false,
+        "captureMethod": "Playwright Chromium",
+        "httpStatus": null,
+        "pageTitle": null,
+        "headingsChecked": [],
+        "sourceItems": 0,
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response.",
+        "checkedAt": "2026-11-01T22:34:08.653Z"
+      }
+    },
+    {
+      "catalogueIndex": 25,
+      "slug": "master-of-business-administration-in-financial-management-6",
+      "sourceUrl": "https://msbm.org.uk/programme/master-of-business-administration-in-financial-management-6",
+      "capturedAt": null,
+      "status": "blocked",
+      "complete": false,
+      "courseDetails": null,
+      "outcomes": [],
+      "progression": {
+        "status": "blocked",
+        "text": "",
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response."
+      },
+      "modules": [],
+      "recordedCatalogue": {
+        "path": "src/data/msbmVerifiedCatalog.json",
+        "index": 25,
+        "title": "Master Of Business Administration In Financial Management",
+        "duration": "18 Months",
+        "mode": "Blended",
+        "fee": "£ 3,150",
+        "monthly": "£ 175/mo",
+        "partner": "Azteca University",
+        "moduleCount": 12,
+        "lessonCount": 125,
+        "entryRequirementCount": 7,
+        "scope": "previously recorded global catalogue facts; not a fresh source capture"
+      },
+      "sourceEvidence": {
+        "captureAttempted": false,
+        "captureMethod": "Playwright Chromium",
+        "httpStatus": null,
+        "pageTitle": null,
+        "headingsChecked": [],
+        "sourceItems": 0,
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response.",
+        "checkedAt": "2026-11-01T22:34:08.653Z"
+      }
+    },
+    {
+      "catalogueIndex": 26,
+      "slug": "msc-in-health-sciences",
+      "sourceUrl": "https://msbm.org.uk/programme/msc-in-health-sciences",
+      "capturedAt": null,
+      "status": "blocked",
+      "complete": false,
+      "courseDetails": null,
+      "outcomes": [],
+      "progression": {
+        "status": "blocked",
+        "text": "",
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response."
+      },
+      "modules": [],
+      "recordedCatalogue": {
+        "path": "src/data/msbmVerifiedCatalog.json",
+        "index": 26,
+        "title": "MSc In Health Sciences",
+        "duration": "18 Months",
+        "mode": "Online",
+        "fee": "£ 3,150",
+        "monthly": "£ 175/mo",
+        "partner": "Azteca University",
+        "moduleCount": 11,
+        "lessonCount": 0,
+        "entryRequirementCount": 7,
+        "scope": "previously recorded global catalogue facts; not a fresh source capture"
+      },
+      "sourceEvidence": {
+        "captureAttempted": false,
+        "captureMethod": "Playwright Chromium",
+        "httpStatus": null,
+        "pageTitle": null,
+        "headingsChecked": [],
+        "sourceItems": 0,
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response.",
+        "checkedAt": "2026-11-01T22:34:08.653Z"
+      }
+    },
+    {
+      "catalogueIndex": 27,
+      "slug": "executive-master-of-business-administration-in-supply-chain-management",
+      "sourceUrl": "https://msbm.org.uk/programme/executive-master-of-business-administration-in-supply-chain-management",
+      "capturedAt": null,
+      "status": "blocked",
+      "complete": false,
+      "courseDetails": null,
+      "outcomes": [],
+      "progression": {
+        "status": "blocked",
+        "text": "",
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response."
+      },
+      "modules": [],
+      "recordedCatalogue": {
+        "path": "src/data/msbmVerifiedCatalog.json",
+        "index": 27,
+        "title": "Executive Master Of Business Administration In Supply Chain Management",
+        "duration": "18 Months",
+        "mode": "Blended",
+        "fee": "£ 3,150",
+        "monthly": "£ 175/mo",
+        "partner": "Azteca University",
+        "moduleCount": 12,
+        "lessonCount": 114,
+        "entryRequirementCount": 7,
+        "scope": "previously recorded global catalogue facts; not a fresh source capture"
+      },
+      "sourceEvidence": {
+        "captureAttempted": false,
+        "captureMethod": "Playwright Chromium",
+        "httpStatus": null,
+        "pageTitle": null,
+        "headingsChecked": [],
+        "sourceItems": 0,
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response.",
+        "checkedAt": "2026-11-01T22:34:08.653Z"
+      }
+    },
+    {
+      "catalogueIndex": 28,
+      "slug": "executive-master-of-business-administration-4",
+      "sourceUrl": "https://msbm.org.uk/programme/executive-master-of-business-administration-4",
+      "capturedAt": "2026-11-01T18:19:22.477Z",
+      "status": "retained_snapshot_requires_independent_review",
+      "complete": false,
+      "courseDetails": "The Executive MBA connects strategy, leadership, finance, marketing and research with organisational design, workplace behaviour and entrepreneurship. Learners apply these subjects to resource decisions, team leadership and business growth.",
+      "outcomes": [
+        "Evaluate strategic options as markets and organisational priorities change.",
+        "Choose leadership methods that support innovation and coordinated teams.",
+        "Relate workforce policies to engagement and business objectives.",
+        "Use financial planning when allocating resources and assessing investment.",
+        "Build marketing decisions around market conditions and customer insight.",
+        "Investigate business problems through structured research and data.",
+        "Apply management principles to organisational performance.",
+        "Evaluate organisational structures and operating processes.",
+        "Assess how workplace behaviour affects motivation and collaboration.",
+        "Develop commercially viable ideas and entrepreneurial responses."
+      ],
+      "progression": {
+        "status": "source_absent",
+        "text": "",
+        "reason": "The supplied exact-source snapshot contains a University Progression heading without substantive body content. Its existing candidate absence entry fails the current contract because source item counts/citations still include the heading; independent inspection metadata is incomplete.",
+        "resolved": false
+      },
+      "modules": [
+        {
+          "title": "ASSIGNMENT & STUDY GUIDELINES",
+          "summary": "",
+          "lectures": 8,
+          "quizzes": 0,
+          "lessons": [
+            {
+              "title": "Navigating the MSBM Study Portal",
+              "description": "Watch this video to gain further insight.",
+              "type": "Video"
+            },
+            {
+              "title": "Course Structure and Guidelines",
+              "description": "Watch this video to gain further insight.",
+              "type": "Video"
+            },
+            {
+              "title": "Interacting with Lectures/Learning Components",
+              "description": "Watch this video to gain further insight.",
+              "type": "Video"
+            },
+            {
+              "title": "VIDEO - How to Avoid Plagiarism in Your Writing",
+              "description": "Watch this video to gain further insight.",
+              "type": "Video"
+            },
+            {
+              "title": "Harvard Referencing Style Guide",
+              "description": "Watch this video to gain further insight.",
+              "type": "Video"
+            },
+            {
+              "title": "How to Summarise - Assignment Guide",
+              "description": "Downloadable material to advance your understanding of this module.",
+              "type": "Download"
+            },
+            {
+              "title": "Summarising, Paraphrasing, Quotation for your Assignment",
+              "description": "Downloadable material to advance your understanding of this module.",
+              "type": "Download"
+            },
+            {
+              "title": "Official Title Page",
+              "description": "Downloadable material to advance your understanding of this module.",
+              "type": "Download"
+            }
+          ]
+        },
+        {
+          "title": "STRATEGIC MANAGEMENT",
+          "summary": "Develop critical thinking skills to evaluate and implement strategic frameworks that ensure organizational growth and resilience.",
+          "lectures": 18,
+          "quizzes": 1,
+          "lessons": [
+            {
+              "title": "CASE STUDY - Strategic Management Approach by TESCO",
+              "description": "Watch this video to gain further insight.",
+              "type": "Video"
+            },
+            {
+              "title": "Analysing Business Environment and its Impact on Strategic Decision Making",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "Understanding the External Business Environment Dynamics",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Understanding The Internal Business Environment Dynamics",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "CASE STUDY - Staying ahead in a competitive environment",
+              "description": "Downloadable material to advance your understanding of this module.",
+              "type": "Download"
+            },
+            {
+              "title": "CASE STUDY - McDonald's strategic partnership for innovation as competitive advantage",
+              "description": "Watch this video to gain further insight.",
+              "type": "Video"
+            },
+            {
+              "title": "Understanding Market Situational Analysis and Organisational Position Measurement",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Analysing The Effects Of Exiting Plans On Organisation",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "Understanding Mandatory Competency & Competitive Advantage of An Organisation",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Understanding The Relationship Between Corporate, Business & Operational Strategies",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Understanding Strategic Models & Tools",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Analysing and deciding on the strategic options",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "Developing Appropriate Vision, Mission & Strategic Goals For An Organisation",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Developing An Agreed Strategy Plan For New Action Plan",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Proposing an Effective Structure For Building Efficient Relationships With Stakeholders",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "CASE STUDY - Ethics and CSR at Honda",
+              "description": "Downloadable material to advance your understanding of this module.",
+              "type": "Download"
+            },
+            {
+              "title": "Understanding organisational strategic change management",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Implementing Strategic Plan",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Strategic Management",
+              "description": "Put your knowledge to the test with this quiz. Read each question carefully and choose the response that you feel is correct.",
+              "type": "Quiz"
+            }
+          ]
+        },
+        {
+          "title": "STRATEGIC LEADERSHIP",
+          "summary": "Assess and implement leadership strategies that drive innovation and foster long-term organizational success in dynamic markets.",
+          "lectures": 4,
+          "quizzes": 1,
+          "lessons": [
+            {
+              "title": "Understanding the Principles, Concepts, and Approaches to Leadership",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Understanding Leadership Influences: Individual, Team and The Organisation",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Leadership and organisational performance",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Ethical Decision Making And Organisational Value",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Strategic Leadership",
+              "description": "Put your knowledge to the test with this quiz. Read each question carefully and choose the response that you feel is correct.",
+              "type": "Quiz"
+            }
+          ]
+        },
+        {
+          "title": "STRATEGIC HUMAN RESOURCE MANAGEMENT",
+          "summary": "Analyze HR strategies to align workforce management with organizational goals and enhance employee engagement.",
+          "lectures": 20,
+          "quizzes": 1,
+          "lessons": [
+            {
+              "title": "VIDEO - Human Resource Management Today - An Overview",
+              "description": "Watch this video to gain further insight.",
+              "type": "Video"
+            },
+            {
+              "title": "Understanding the role of human resource management",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Role of Human Resource Management Strategy in an Organisation",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Contributions of HRM",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Business Dynamics Concerning The Human Resource Strategy",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Case Study - Real-time, authentic employee voice feedback",
+              "description": "Watch this video to gain further insight.",
+              "type": "Video"
+            },
+            {
+              "title": "Determining Human Resource Requirements",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Fundamentals Of Human Resource Plan",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Legal And Ethical Requirements Of Human Resource Policies",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Human Resource Management And Organisational Strategy, Structure And Culture",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Effective Monitoring Of Human Resource Management Activities",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "People Development and Human Resource Management",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Case Study - Answering the Phone (Training and Development)",
+              "description": "Downloadable material to advance your understanding of this module.",
+              "type": "Download"
+            },
+            {
+              "title": "Developing Human Resource Management, Recruitment and Selection",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Case Study: Solution for Recruiting Hard-to-Fill Positions",
+              "description": "Watch this video to gain further insight.",
+              "type": "Video"
+            },
+            {
+              "title": "Employee Retention Concepts, Tools and Strategies",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Organisational Theory Underpinning Human Resource Management",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Leadership Practices In An Organisational Context",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Strategic Leadership And Organisational Development",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Exploring Purpose Of Leadership And Evaluating Human Resource Strategy",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Strategic Human Resource Management",
+              "description": "Put your knowledge to the test with this quiz. Read each question carefully and choose the response that you feel is correct.",
+              "type": "Quiz"
+            }
+          ]
+        },
+        {
+          "title": "STRATEGIC FINANCIAL MANAGEMENT",
+          "summary": "Apply financial tools to optimize investment decisions, manage risks, and achieve long-term financial stability.",
+          "lectures": 12,
+          "quizzes": 1,
+          "lessons": [
+            {
+              "title": "Understanding cost system and its classification",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "Concepts and Tools of Cost Accounting",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "CASE STUDY - Activity based costing in Xu Ji Electric Co. Ltd",
+              "description": "Downloadable material to advance your understanding of this module.",
+              "type": "Download"
+            },
+            {
+              "title": "Understanding the Concept and Classification of Sources of Funds",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "CASE STUDY - Global Fund Raising Strategies",
+              "description": "Watch this video to gain further insight.",
+              "type": "Video"
+            },
+            {
+              "title": "Understanding The Financial Performance Analysis",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "CASE STUDY - Financial Analysis Reporting",
+              "description": "Downloadable material to advance your understanding of this module.",
+              "type": "Download"
+            },
+            {
+              "title": "Understanding the Financial Ratios and its Various Types",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Understanding The Budgetary Concepts and Approaches",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "CASE STUDY - How Maritz Accomplished a 40% IT Budget Reduction",
+              "description": "Watch this video to gain further insight.",
+              "type": "Video"
+            },
+            {
+              "title": "Understanding the Working Capital Management",
+              "description": "This lecture explore the cycle to convert your capital and generate profits.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Understanding the Investment Appraisal Techniques",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Strategic Financial Management",
+              "description": "Put your knowledge to the test with this quiz. Read each question carefully and choose the response that you feel is correct.",
+              "type": "Quiz"
+            }
+          ]
+        },
+        {
+          "title": "STRATEGIC MARKETING",
+          "summary": "Create marketing strategies that leverage market trends, customer insights, and innovative approaches to achieve competitive advantage.",
+          "lectures": 18,
+          "quizzes": 1,
+          "lessons": [
+            {
+              "title": "CASE STUDY - Strategic Management Approach by TESCO",
+              "description": "Watch this video to gain further insight.",
+              "type": "Video"
+            },
+            {
+              "title": "Analysing Business Environment and its Impact on Strategic Decision Making",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "Understanding the External Business Environment Dynamics",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Understanding The Internal Business Environment Dynamics",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "CASE STUDY - Staying ahead in a competitive environment",
+              "description": "Downloadable material to advance your understanding of this module.",
+              "type": "Download"
+            },
+            {
+              "title": "CASE STUDY - McDonald's strategic partnership for innovation as competitive advantage",
+              "description": "Watch this video to gain further insight.",
+              "type": "Video"
+            },
+            {
+              "title": "Understanding Market Situational Analysis and Organisational Position Measurement",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Analysing The Effects Of Exiting Plans On Organisation",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "Understanding Mandatory Competency & Competitive Advantage of An Organisation",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Understanding The Relationship Between Corporate, Business & Operational Strategies",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Understanding Strategic Models & Tools",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Analysing and deciding on the strategic options",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "Developing Appropriate Vision, Mission & Strategic Goals For An Organisation",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Developing An Agreed Strategy Plan For New Action Plan",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Proposing an Effective Structure For Building Efficient Relationships With Stakeholders",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "CASE STUDY - Ethics and CSR at Honda",
+              "description": "Downloadable material to advance your understanding of this module.",
+              "type": "Download"
+            },
+            {
+              "title": "Understanding organisational strategic change management",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Implementing Strategic Plan",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Strategic Management",
+              "description": "Put your knowledge to the test with this quiz. Read each question carefully and choose the response that you feel is correct.",
+              "type": "Quiz"
+            }
+          ]
+        },
+        {
+          "title": "ADVANCED BUSINESS RESEARCH METHODS",
+          "summary": "Utilize advanced research methodologies to address complex business problems and support evidence-based decision-making.",
+          "lectures": 14,
+          "quizzes": 1,
+          "lessons": [
+            {
+              "title": "Research Philosophies and Principles",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "VIDEO - Overview of the Research Onion",
+              "description": "Watch this video to gain further insight.",
+              "type": "Video"
+            },
+            {
+              "title": "Selecting a Research Topic",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "Searching and Reviewing Literature",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "VIDEO - How to write a Literature Review",
+              "description": "Watch this video to gain further insight.",
+              "type": "Video"
+            },
+            {
+              "title": "Developing conceptual Framework",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "PDF - How to create a Conceptual Framework",
+              "description": "Downloadable material to advance your understanding of this module.",
+              "type": "Download"
+            },
+            {
+              "title": "Research Strategy and Design",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "Research Methods I",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Research Methods II",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "PDF - How Observation is Used As a Research Method",
+              "description": "Downloadable material to advance your understanding of this module.",
+              "type": "Download"
+            },
+            {
+              "title": "Research Methods: Data Analysis",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Research Proposal and Writing Up",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "Research Ethics",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Advanced Business Research Methods",
+              "description": "Put your knowledge to the test with this quiz. Read each question carefully and choose the response that you feel is correct.",
+              "type": "Quiz"
+            }
+          ]
+        },
+        {
+          "title": "BUSINESS MANAGEMENT",
+          "summary": "This module provides a comprehensive understanding of fundamental business management practices. It covers planning, organizing, leading, and controlling organizational resources to achieve goals effectively. Students will learn to adapt strategies in dynamic business environments.",
+          "lectures": 5,
+          "quizzes": 1,
+          "lessons": [
+            {
+              "title": "Understanding Entrepreneurship and Business Structure",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Understanding Business Functions 1",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Understanding Business Functions 2",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Understanding Business Environment and Relationships",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "Planning for and Operating a Business",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "Business Management",
+              "description": "Put your knowledge to the test with this quiz. Read each question carefully and choose the response that you feel is correct.",
+              "type": "Quiz"
+            }
+          ]
+        },
+        {
+          "title": "ORGANISATIONAL THEORY",
+          "summary": "This module explores the frameworks and theories that shape organizational design and dynamics. It examines how structure, culture, and systems impact organizational performance. Students will gain insights into aligning organizational strategies with changing environments.",
+          "lectures": 5,
+          "quizzes": 1,
+          "lessons": [
+            {
+              "title": "Organisational Frameworks and Perspectives",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "Organisational Structure and Design",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "Corporate Work Environment",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "Organisational Power and Politics Framework",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "Organisational Behaviour Culture & Values",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "Organizational Theory",
+              "description": "Put your knowledge to the test with this quiz. Read each question carefully and choose the response that you feel is correct.",
+              "type": "Quiz"
+            }
+          ]
+        },
+        {
+          "title": "ORGANISATIONAL BEHAVIOUR",
+          "summary": "This module delves into the psychological and social factors influencing individual and group behavior in organizations. Topics include leadership, communication, and conflict resolution. Students will learn strategies to enhance employee engagement and organizational culture.",
+          "lectures": 5,
+          "quizzes": 1,
+          "lessons": [
+            {
+              "title": "Understanding Leadership Processes",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Understanding Organisational Structure",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Dynamics of Teams and Groups in an Organisation",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Organisational Context and Contemporary Organisational Behaviour",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Dynamics of Individual Behaviour in an Organisation",
+              "description": "Self-paced pre-recorded learning content on this topic.",
+              "type": "Lecture"
+            },
+            {
+              "title": "Organizational Behaviour",
+              "description": "Put your knowledge to the test with this quiz. Read each question carefully and choose the response that you feel is correct.",
+              "type": "Quiz"
+            }
+          ]
+        },
+        {
+          "title": "INNOVATION AND ENTREPRENEURSHIP",
+          "summary": "This module focuses on the role of innovation and entrepreneurship in business growth and transformation. Students will explore frameworks for idea generation, market analysis, and business development. The course equips students to launch and manage innovative ventures.",
+          "lectures": 5,
+          "quizzes": 1,
+          "lessons": [
+            {
+              "title": "International Entrepreneurial Opportunities",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "Nature and Importance of Entrepreneurship",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "Creating and Starting the Venture",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "Innovation Management",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "Generating and Implementing Business Ideas",
+              "description": "",
+              "type": "Lecture"
+            },
+            {
+              "title": "Innovation and Entrepreneurship",
+              "description": "Put your knowledge to the test with this quiz. Read each question carefully and choose the response that you feel is correct.",
+              "type": "Quiz"
+            }
+          ]
+        },
+        {
+          "title": "THESIS IN EXECUTIVE MASTER OF BUSINESS ADMINISTRATION",
+          "summary": "The thesis in EMBA allows students to conduct in-depth research on a strategic business topic, demonstrating their ability to apply advanced management concepts and frameworks to real-world organizational challenges.",
+          "lectures": 0,
+          "quizzes": 0,
+          "lessons": []
+        }
+      ],
+      "recordedCatalogue": {
+        "path": "src/data/msbmVerifiedCatalog.json",
+        "index": 28,
+        "title": "Executive Master Of Business Administration",
+        "duration": "18 Months",
+        "mode": "Blended",
+        "fee": "£ 3,150",
+        "monthly": "£ 175/mo",
+        "partner": "Azteca University",
+        "moduleCount": 12,
+        "lessonCount": 124,
+        "entryRequirementCount": 9,
+        "scope": "previously recorded global catalogue facts; not a fresh source capture"
+      },
+      "sourceEvidence": {
+        "captureAttempted": false,
+        "captureMethod": "supplied-snapshot",
+        "retainedCandidatePath": "artifacts/course-rag/candidates/executive-master-of-business-administration-4.json",
+        "snapshot": {
+          "id": "snapshot-8f445e127b27a831fa1a178078cbf3ae3c4e5f543e59ffa48b11ebf23f4ef71e",
+          "courseSlug": "executive-master-of-business-administration-4",
+          "url": "https://msbm.org.uk/programme/executive-master-of-business-administration-4",
+          "finalUrl": "https://msbm.org.uk/programme/executive-master-of-business-administration-4",
+          "retrievedAt": "2026-11-01T18:19:22.477Z",
+          "status": 200,
+          "title": "Executive Master Of Business Administration | Metropolitan School of Business & Management UK",
+          "scope": "global",
+          "contentHash": "8f445e127b27a831fa1a178078cbf3ae3c4e5f543e59ffa48b11ebf23f4ef71e",
+          "extractorVersion": "course-rag-1.0.0",
+          "actions": [],
+          "captureMethod": "supplied-snapshot",
+          "blocked": false,
+          "truncated": false,
+          "textCharacters": 98293
+        },
+        "contentRevision": "f25a0e6571d93d0a7e3a3503070f7e7e32547a3b023b805d6bfc8c1f1273eb67",
+        "evidenceDigest": "3a97464d6997da08545dc55c75aa7b66dcad5d865dd06c2827b948a89add6a88",
+        "headingsChecked": [
+          "identity",
+          "programmeDetails",
+          "courseDetails",
+          "learningOutcomes",
+          "accreditation",
+          "modules",
+          "universityProgression",
+          "entryRequirements",
+          "workshops",
+          "visa",
+          "tuition",
+          "about",
+          "library",
+          "gettingStarted",
+          "certificate",
+          "testimonials"
+        ],
+        "sectionCounts": {
+          "identity": {
+            "status": "observed",
+            "evidenceIds": [
+              "chunk-a36e4b73e3211d5a826ea048"
+            ],
+            "sourceItems": 5,
+            "totalExtractedItems": 5,
+            "checkedSelectors": [
+              "h1"
+            ]
+          },
+          "programmeDetails": {
+            "status": "observed",
+            "evidenceIds": [
+              "chunk-600fa519aff8d41141c4f645"
+            ],
+            "sourceItems": 3,
+            "totalExtractedItems": 3,
+            "checkedSelectors": [
+              "#details",
+              "[data-course-section=\"programmeDetails\"]"
+            ]
+          },
+          "courseDetails": {
+            "status": "observed",
+            "evidenceIds": [
+              "chunk-3a5fcb378de5ab7cb12dfd8e",
+              "chunk-32fa7fa56d0a582141807040"
+            ],
+            "sourceItems": 13,
+            "totalExtractedItems": 13,
+            "checkedSelectors": [
+              "#course-details",
+              "[data-course-section=\"courseDetails\"]"
+            ]
+          },
+          "learningOutcomes": {
+            "status": "observed",
+            "evidenceIds": [
+              "chunk-c495bdfe15ad80c0166efb2e"
+            ],
+            "sourceItems": 10,
+            "totalExtractedItems": 10,
+            "checkedSelectors": [
+              "#course-details ul",
+              "#learning-outcomes",
+              "[data-course-section=\"learningOutcomes\"]"
+            ]
+          },
+          "accreditation": {
+            "status": "observed",
+            "evidenceIds": [
+              "chunk-ddabe97d8ea04036a44b34e0"
+            ],
+            "sourceItems": 2,
+            "totalExtractedItems": 2,
+            "checkedSelectors": [
+              "#accreditation",
+              "[data-course-section=\"accreditation\"]"
+            ]
+          },
+          "modules": {
+            "status": "observed",
+            "evidenceIds": [
+              "chunk-54f80821c437a9d964ebdb8c",
+              "chunk-cccec0d4b758493abd787fcc",
+              "chunk-595777887299a15c024c8098",
+              "chunk-c646c8581e4e2e3f20ce0343",
+              "chunk-bbdca80205a5cfcfb66410bb",
+              "chunk-721dd0d2359e8fbcc461c01e",
+              "chunk-a9677369f71e5d57fff41741",
+              "chunk-861e23101cc021341d2e5be5",
+              "chunk-7d30f000bc72a4e04535a50d",
+              "chunk-c078d0d818bf6d4e1730cb5e",
+              "chunk-5bc6035dd5234ff60d8872ee",
+              "chunk-11ee19e0c7eecfefdce89c27",
+              "chunk-fc655cc3f7a02dbeb075b0b7",
+              "chunk-6f1545a851f1bfd7c1009a49",
+              "chunk-1e96b6c11e824fc910a6459c",
+              "chunk-f8e6c1ff6ed243d0cbc376a6"
+            ],
+            "sourceItems": 142,
+            "totalExtractedItems": 142,
+            "checkedSelectors": [
+              "#modules",
+              "[data-course-section=\"modules\"]"
+            ]
+          },
+          "universityProgression": {
+            "status": "source_absent",
+            "evidenceIds": [
+              "chunk-f77dc02dcef76333f57c300d"
+            ],
+            "sourceItems": 1,
+            "totalExtractedItems": 1,
+            "checkedSelectors": [
+              "#university",
+              "[data-course-section=\"universityProgression\"]"
+            ],
+            "reason": "The inspected source section contains only a heading and no published details."
+          },
+          "entryRequirements": {
+            "status": "observed",
+            "evidenceIds": [
+              "chunk-bef308caa31b066f38afb77a"
+            ],
+            "sourceItems": 8,
+            "totalExtractedItems": 8,
+            "checkedSelectors": [
+              "#entry",
+              "[data-course-section=\"entryRequirements\"]"
+            ]
+          },
+          "workshops": {
+            "status": "observed",
+            "evidenceIds": [
+              "chunk-a1b6f0576f3f00f9a23b196a"
+            ],
+            "sourceItems": 2,
+            "totalExtractedItems": 2,
+            "checkedSelectors": [
+              "#workshop",
+              "[data-course-section=\"workshops\"]"
+            ]
+          },
+          "visa": {
+            "status": "observed",
+            "evidenceIds": [
+              "chunk-01b309e4907112f301358a8c"
+            ],
+            "sourceItems": 2,
+            "totalExtractedItems": 2,
+            "checkedSelectors": [
+              "#visa",
+              "[data-course-section=\"visa\"]"
+            ]
+          },
+          "tuition": {
+            "status": "observed",
+            "evidenceIds": [
+              "chunk-d041330b89f1947cd5a25d15"
+            ],
+            "sourceItems": 16,
+            "totalExtractedItems": 16,
+            "checkedSelectors": [
+              "#tuition-class",
+              "#tuition",
+              "[data-course-section=\"tuition\"]"
+            ]
+          },
+          "about": {
+            "status": "observed",
+            "evidenceIds": [
+              "chunk-0412d930adb6f153caf184db"
+            ],
+            "sourceItems": 20,
+            "totalExtractedItems": 20,
+            "checkedSelectors": [
+              "#about-msbm-class",
+              "#about",
+              "[data-course-section=\"about\"]"
+            ]
+          },
+          "library": {
+            "status": "observed",
+            "evidenceIds": [
+              "chunk-69bf137f69497e0c3d2416c8"
+            ],
+            "sourceItems": 3,
+            "totalExtractedItems": 3,
+            "checkedSelectors": [
+              "#library-tab",
+              "#library-class",
+              "#library",
+              "[data-course-section=\"library\"]"
+            ]
+          },
+          "gettingStarted": {
+            "status": "observed",
+            "evidenceIds": [
+              "chunk-eeab33dfdea944b0e897a30a"
+            ],
+            "sourceItems": 18,
+            "totalExtractedItems": 18,
+            "checkedSelectors": [
+              "#get-started",
+              "#getting-started",
+              "[data-course-section=\"gettingStarted\"]"
+            ]
+          },
+          "certificate": {
+            "status": "observed",
+            "evidenceIds": [
+              "chunk-3574ee92adec3520e1017e13"
+            ],
+            "sourceItems": 8,
+            "totalExtractedItems": 8,
+            "checkedSelectors": [
+              "#certificate-sect-tab",
+              "#certificate-sect-class",
+              "#certificate",
+              "[data-course-section=\"certificate\"]"
+            ]
+          },
+          "testimonials": {
+            "status": "observed",
+            "evidenceIds": [
+              "chunk-dded593a9a33b07b6b7c6a55"
+            ],
+            "sourceItems": 19,
+            "totalExtractedItems": 19,
+            "checkedSelectors": [
+              "#testimonial",
+              ".review-section",
+              ".msbm-review-container",
+              "[data-course-section=\"testimonials\"]"
+            ]
+          }
+        },
+        "moduleCount": 12,
+        "lessonCount": 124,
+        "lessonDescriptionCount": 98,
+        "approvalStatus": "not approved",
+        "limitations": [
+          "Retained capture is not a new live retrieval.",
+          "Current independent approval is absent.",
+          "University Progression absence metadata needs correction and independent review."
+        ]
+      },
+      "about": {
+        "scope": "shared promotional content observed on this exact source page",
+        "summary": "The page describes blended study and advertises assignment-based assessment, instalments, graduation opportunities and a dual-award pathway. Scholarship and accreditation statements are source promotional claims requiring current admissions confirmation.",
+        "advantages": [
+          "Assignment-based modules",
+          "Instalment payment options",
+          "Campus graduation opportunity",
+          "MBA and international postgraduate diploma pathway"
+        ]
+      },
+      "library": {
+        "scope": "observed on this exact source page",
+        "summary": "The page advertises complimentary access to an online collection containing more than 31 million articles and journals.",
+        "metric": 31000000
+      },
+      "gettingStarted": [
+        {
+          "title": "Create an account",
+          "description": "Register through the school enquiry and learning platform."
+        },
+        {
+          "title": "Provide documents",
+          "description": "Upload requested academic credentials to the student portal."
+        },
+        {
+          "title": "Receive an offer",
+          "description": "Admissions reviews eligibility and issues a conditional offer."
+        },
+        {
+          "title": "Pay tuition",
+          "description": "Complete payment within the period set out in the offer."
+        },
+        {
+          "title": "Attend learning sessions",
+          "description": "Use portal lectures and participate in live webinars."
+        },
+        {
+          "title": "Complete assessments",
+          "description": "Submit assignments and complete applicable quizzes."
+        },
+        {
+          "title": "Receive the award",
+          "description": "Complete the programme requirements before receiving final award documents."
+        }
+      ],
+      "certificate": {
+        "scope": "observed on this exact source page",
+        "summary": "The source presents a school-and-partner degree certificate, practical business study and a route designed for learners who continue working. The exact awarding names require confirmation before enrolment."
+      },
+      "testimonials": {
+        "scope": "shared executive-education feedback; not verified as Executive MBA graduate outcomes",
+        "count": 6,
+        "summary": "The source includes six named review entries discussing practical relevance, online access and clarity of teaching.",
+        "reviewsRepublished": false
+      }
+    },
+    {
+      "catalogueIndex": 29,
+      "slug": "master-of-business-administration-in-banking-and-insurance",
+      "sourceUrl": "https://msbm.org.uk/programme/master-of-business-administration-in-banking-and-insurance",
+      "capturedAt": null,
+      "status": "blocked",
+      "complete": false,
+      "courseDetails": null,
+      "outcomes": [],
+      "progression": {
+        "status": "blocked",
+        "text": "",
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response."
+      },
+      "modules": [],
+      "recordedCatalogue": {
+        "path": "src/data/msbmVerifiedCatalog.json",
+        "index": 29,
+        "title": "Master Of Business Administration In Banking And Insurance",
+        "duration": "18 Months",
+        "mode": "Blended",
+        "fee": "£ 3,150",
+        "monthly": "£ 175/mo",
+        "partner": "Azteca University",
+        "moduleCount": 12,
+        "lessonCount": 124,
+        "entryRequirementCount": 7,
+        "scope": "previously recorded global catalogue facts; not a fresh source capture"
+      },
+      "sourceEvidence": {
+        "captureAttempted": false,
+        "captureMethod": "Playwright Chromium",
+        "httpStatus": null,
+        "pageTitle": null,
+        "headingsChecked": [],
+        "sourceItems": 0,
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response.",
+        "checkedAt": "2026-11-01T22:34:08.653Z"
+      }
+    },
+    {
+      "catalogueIndex": 30,
+      "slug": "executive-master-of-business-administration-in-financial-management",
+      "sourceUrl": "https://msbm.org.uk/programme/executive-master-of-business-administration-in-financial-management",
+      "capturedAt": null,
+      "status": "blocked",
+      "complete": false,
+      "courseDetails": null,
+      "outcomes": [],
+      "progression": {
+        "status": "blocked",
+        "text": "",
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response."
+      },
+      "modules": [],
+      "recordedCatalogue": {
+        "path": "src/data/msbmVerifiedCatalog.json",
+        "index": 30,
+        "title": "Executive Master Of Business Administration In Financial Management",
+        "duration": "18 Months",
+        "mode": "Blended",
+        "fee": "£ 3,150",
+        "monthly": "£ 175/mo",
+        "partner": "Azteca University",
+        "moduleCount": 12,
+        "lessonCount": 125,
+        "entryRequirementCount": 7,
+        "scope": "previously recorded global catalogue facts; not a fresh source capture"
+      },
+      "sourceEvidence": {
+        "captureAttempted": false,
+        "captureMethod": "Playwright Chromium",
+        "httpStatus": null,
+        "pageTitle": null,
+        "headingsChecked": [],
+        "sourceItems": 0,
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response.",
+        "checkedAt": "2026-11-01T22:34:08.653Z"
+      }
+    },
+    {
+      "catalogueIndex": 31,
+      "slug": "master-of-business-administration-in-human-resource-management-mba-hrm",
+      "sourceUrl": "https://msbm.org.uk/programme/master-of-business-administration-in-human-resource-management-mba-hrm",
+      "capturedAt": null,
+      "status": "blocked",
+      "complete": false,
+      "courseDetails": null,
+      "outcomes": [],
+      "progression": {
+        "status": "blocked",
+        "text": "",
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response."
+      },
+      "modules": [],
+      "recordedCatalogue": {
+        "path": "src/data/msbmVerifiedCatalog.json",
+        "index": 31,
+        "title": "Master of Business Administration In Human Resource Management (MBA - HRM)",
+        "duration": "18 Months",
+        "mode": "Blended",
+        "fee": "£ 3,150",
+        "monthly": "£ 175/mo",
+        "partner": "Azteca University",
+        "moduleCount": 8,
+        "lessonCount": 88,
+        "entryRequirementCount": 1,
+        "scope": "previously recorded global catalogue facts; not a fresh source capture"
+      },
+      "sourceEvidence": {
+        "captureAttempted": false,
+        "captureMethod": "Playwright Chromium",
+        "httpStatus": null,
+        "pageTitle": null,
+        "headingsChecked": [],
+        "sourceItems": 0,
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response.",
+        "checkedAt": "2026-11-01T22:34:08.653Z"
+      }
+    },
+    {
+      "catalogueIndex": 32,
+      "slug": "executive-master-of-business-administration-in-banking-and-insurance",
+      "sourceUrl": "https://msbm.org.uk/programme/executive-master-of-business-administration-in-banking-and-insurance",
+      "capturedAt": null,
+      "status": "blocked",
+      "complete": false,
+      "courseDetails": null,
+      "outcomes": [],
+      "progression": {
+        "status": "blocked",
+        "text": "",
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response."
+      },
+      "modules": [],
+      "recordedCatalogue": {
+        "path": "src/data/msbmVerifiedCatalog.json",
+        "index": 32,
+        "title": "Executive Master Of Business Administration In Banking And Insurance",
+        "duration": "18 Months",
+        "mode": "Blended",
+        "fee": "£ 3,150",
+        "monthly": "£ 175/mo",
+        "partner": "Azteca University",
+        "moduleCount": 12,
+        "lessonCount": 124,
+        "entryRequirementCount": 7,
+        "scope": "previously recorded global catalogue facts; not a fresh source capture"
+      },
+      "sourceEvidence": {
+        "captureAttempted": false,
+        "captureMethod": "Playwright Chromium",
+        "httpStatus": null,
+        "pageTitle": null,
+        "headingsChecked": [],
+        "sourceItems": 0,
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response.",
+        "checkedAt": "2026-11-01T22:34:08.653Z"
+      }
+    },
+    {
+      "catalogueIndex": 33,
+      "slug": "master-of-sciences-in-information-technology-msc-it",
+      "sourceUrl": "https://msbm.org.uk/programme/master-of-sciences-in-information-technology-msc-it",
+      "capturedAt": null,
+      "status": "blocked",
+      "complete": false,
+      "courseDetails": null,
+      "outcomes": [],
+      "progression": {
+        "status": "blocked",
+        "text": "",
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response."
+      },
+      "modules": [],
+      "recordedCatalogue": {
+        "path": "src/data/msbmVerifiedCatalog.json",
+        "index": 33,
+        "title": "Master Of Sciences In Information Technology",
+        "duration": "18 Months",
+        "mode": "Blended",
+        "fee": "£ 3,150",
+        "monthly": "£ 175/mo",
+        "partner": "Azteca University",
+        "moduleCount": 12,
+        "lessonCount": 0,
+        "entryRequirementCount": 7,
+        "scope": "previously recorded global catalogue facts; not a fresh source capture"
+      },
+      "sourceEvidence": {
+        "captureAttempted": false,
+        "captureMethod": "Playwright Chromium",
+        "httpStatus": null,
+        "pageTitle": null,
+        "headingsChecked": [],
+        "sourceItems": 0,
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response.",
+        "checkedAt": "2026-11-01T22:34:08.653Z"
+      }
+    },
+    {
+      "catalogueIndex": 34,
+      "slug": "master-of-business-administration-in-international-business-management",
+      "sourceUrl": "https://msbm.org.uk/programme/master-of-business-administration-in-international-business-management",
+      "capturedAt": null,
+      "status": "blocked",
+      "complete": false,
+      "courseDetails": null,
+      "outcomes": [],
+      "progression": {
+        "status": "blocked",
+        "text": "",
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response."
+      },
+      "modules": [],
+      "recordedCatalogue": {
+        "path": "src/data/msbmVerifiedCatalog.json",
+        "index": 34,
+        "title": "Master Of Business Administration In International Business Management MBA - IBM",
+        "duration": "18 Months",
+        "mode": "Blended",
+        "fee": "£ 3,150",
+        "monthly": "£ 175/mo",
+        "partner": "Azteca University",
+        "moduleCount": 12,
+        "lessonCount": 122,
+        "entryRequirementCount": 7,
+        "scope": "previously recorded global catalogue facts; not a fresh source capture"
+      },
+      "sourceEvidence": {
+        "captureAttempted": false,
+        "captureMethod": "Playwright Chromium",
+        "httpStatus": null,
+        "pageTitle": null,
+        "headingsChecked": [],
+        "sourceItems": 0,
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response.",
+        "checkedAt": "2026-11-01T22:34:08.653Z"
+      }
+    },
+    {
+      "catalogueIndex": 35,
+      "slug": "master-of-business-administration-in-marketing-management",
+      "sourceUrl": "https://msbm.org.uk/programme/master-of-business-administration-in-marketing-management",
+      "capturedAt": null,
+      "status": "blocked",
+      "complete": false,
+      "courseDetails": null,
+      "outcomes": [],
+      "progression": {
+        "status": "blocked",
+        "text": "",
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response."
+      },
+      "modules": [],
+      "recordedCatalogue": {
+        "path": "src/data/msbmVerifiedCatalog.json",
+        "index": 35,
+        "title": "Master Of Business Administration In Marketing Management",
+        "duration": "18 Months",
+        "mode": "Blended",
+        "fee": "£ 3,150",
+        "monthly": "£ 175/mo",
+        "partner": "Azteca University",
+        "moduleCount": 12,
+        "lessonCount": 131,
+        "entryRequirementCount": 7,
+        "scope": "previously recorded global catalogue facts; not a fresh source capture"
+      },
+      "sourceEvidence": {
+        "captureAttempted": false,
+        "captureMethod": "Playwright Chromium",
+        "httpStatus": null,
+        "pageTitle": null,
+        "headingsChecked": [],
+        "sourceItems": 0,
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response.",
+        "checkedAt": "2026-11-01T22:34:08.653Z"
+      }
+    },
+    {
+      "catalogueIndex": 36,
+      "slug": "master-of-business-administration-in-risk-management-mbarm",
+      "sourceUrl": "https://msbm.org.uk/programme/master-of-business-administration-in-risk-management-mbarm",
+      "capturedAt": null,
+      "status": "blocked",
+      "complete": false,
+      "courseDetails": null,
+      "outcomes": [],
+      "progression": {
+        "status": "blocked",
+        "text": "",
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response."
+      },
+      "modules": [],
+      "recordedCatalogue": {
+        "path": "src/data/msbmVerifiedCatalog.json",
+        "index": 36,
+        "title": "Master of Business Administration In Risk Management (MBARM)",
+        "duration": "18 Months",
+        "mode": "Blended",
+        "fee": "£ 2,700",
+        "monthly": "£ 150/mo",
+        "partner": "European Institute Of Management And Technology",
+        "moduleCount": 13,
+        "lessonCount": 80,
+        "entryRequirementCount": 1,
+        "scope": "previously recorded global catalogue facts; not a fresh source capture"
+      },
+      "sourceEvidence": {
+        "captureAttempted": false,
+        "captureMethod": "Playwright Chromium",
+        "httpStatus": null,
+        "pageTitle": null,
+        "headingsChecked": [],
+        "sourceItems": 0,
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response.",
+        "checkedAt": "2026-11-01T22:34:08.653Z"
+      }
+    },
+    {
+      "catalogueIndex": 37,
+      "slug": "master-of-business-administration-3",
+      "sourceUrl": "https://msbm.org.uk/programme/master-of-business-administration-3",
+      "capturedAt": null,
+      "status": "blocked",
+      "complete": false,
+      "courseDetails": null,
+      "outcomes": [],
+      "progression": {
+        "status": "blocked",
+        "text": "",
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response."
+      },
+      "modules": [],
+      "recordedCatalogue": {
+        "path": "src/data/msbmVerifiedCatalog.json",
+        "index": 37,
+        "title": "Masters of Business Administration",
+        "duration": "18 Months",
+        "mode": "Blended",
+        "fee": "£ 2,700",
+        "monthly": "£ 150/mo",
+        "partner": "European Institute Of Management And Technology",
+        "moduleCount": 15,
+        "lessonCount": 116,
+        "entryRequirementCount": 7,
+        "scope": "previously recorded global catalogue facts; not a fresh source capture"
+      },
+      "sourceEvidence": {
+        "captureAttempted": false,
+        "captureMethod": "Playwright Chromium",
+        "httpStatus": null,
+        "pageTitle": null,
+        "headingsChecked": [],
+        "sourceItems": 0,
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response.",
+        "checkedAt": "2026-11-01T22:34:08.653Z"
+      }
+    },
+    {
+      "catalogueIndex": 38,
+      "slug": "master-of-business-administration-in-supply-chain-management",
+      "sourceUrl": "https://msbm.org.uk/programme/master-of-business-administration-in-supply-chain-management",
+      "capturedAt": null,
+      "status": "blocked",
+      "complete": false,
+      "courseDetails": null,
+      "outcomes": [],
+      "progression": {
+        "status": "blocked",
+        "text": "",
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response."
+      },
+      "modules": [],
+      "recordedCatalogue": {
+        "path": "src/data/msbmVerifiedCatalog.json",
+        "index": 38,
+        "title": "Master Of Business Administration In Supply Chain Management",
+        "duration": "18 Months",
+        "mode": "Blended",
+        "fee": "£ 3,150",
+        "monthly": "£ 175/mo",
+        "partner": "Azteca University",
+        "moduleCount": 12,
+        "lessonCount": 100,
+        "entryRequirementCount": 7,
+        "scope": "previously recorded global catalogue facts; not a fresh source capture"
+      },
+      "sourceEvidence": {
+        "captureAttempted": false,
+        "captureMethod": "Playwright Chromium",
+        "httpStatus": null,
+        "pageTitle": null,
+        "headingsChecked": [],
+        "sourceItems": 0,
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response.",
+        "checkedAt": "2026-11-01T22:34:08.653Z"
+      }
+    },
+    {
+      "catalogueIndex": 39,
+      "slug": "mba-in-entrepreneurship-and-innovation-1",
+      "sourceUrl": "https://msbm.org.uk/programme/mba-in-entrepreneurship-and-innovation-1",
+      "capturedAt": null,
+      "status": "blocked",
+      "complete": false,
+      "courseDetails": null,
+      "outcomes": [],
+      "progression": {
+        "status": "blocked",
+        "text": "",
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response."
+      },
+      "modules": [],
+      "recordedCatalogue": {
+        "path": "src/data/msbmVerifiedCatalog.json",
+        "index": 39,
+        "title": "MBA In Entrepreneurship And Innovation",
+        "duration": "18 Months",
+        "mode": "Online",
+        "fee": "£ 2,700",
+        "monthly": "£ 150/mo",
+        "partner": "European Institute Of Management And Technology",
+        "moduleCount": 17,
+        "lessonCount": 98,
+        "entryRequirementCount": 7,
+        "scope": "previously recorded global catalogue facts; not a fresh source capture"
+      },
+      "sourceEvidence": {
+        "captureAttempted": false,
+        "captureMethod": "Playwright Chromium",
+        "httpStatus": null,
+        "pageTitle": null,
+        "headingsChecked": [],
+        "sourceItems": 0,
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response.",
+        "checkedAt": "2026-11-01T22:34:08.653Z"
+      }
+    },
+    {
+      "catalogueIndex": 40,
+      "slug": "masters-degree-in-continuing-education-in-international-business-management",
+      "sourceUrl": "https://msbm.org.uk/programme/masters-degree-in-continuing-education-in-international-business-management",
+      "capturedAt": null,
+      "status": "blocked",
+      "complete": false,
+      "courseDetails": null,
+      "outcomes": [],
+      "progression": {
+        "status": "blocked",
+        "text": "",
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response."
+      },
+      "modules": [],
+      "recordedCatalogue": {
+        "path": "src/data/msbmVerifiedCatalog.json",
+        "index": 40,
+        "title": "Masters Degree In Continuing Education In International Business Management",
+        "duration": "24 Months",
+        "mode": "Blended",
+        "fee": "£ 3,600",
+        "monthly": "£ 150/mo",
+        "partner": "UCAM Catholic University Of Murcia",
+        "moduleCount": 12,
+        "lessonCount": 127,
+        "entryRequirementCount": 1,
+        "scope": "previously recorded global catalogue facts; not a fresh source capture"
+      },
+      "sourceEvidence": {
+        "captureAttempted": false,
+        "captureMethod": "Playwright Chromium",
+        "httpStatus": null,
+        "pageTitle": null,
+        "headingsChecked": [],
+        "sourceItems": 0,
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response.",
+        "checkedAt": "2026-11-01T22:34:08.653Z"
+      }
+    },
+    {
+      "catalogueIndex": 41,
+      "slug": "executive-master-of-business-administration-in-hotel-management",
+      "sourceUrl": "https://msbm.org.uk/programme/executive-master-of-business-administration-in-hotel-management",
+      "capturedAt": null,
+      "status": "blocked",
+      "complete": false,
+      "courseDetails": null,
+      "outcomes": [],
+      "progression": {
+        "status": "blocked",
+        "text": "",
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response."
+      },
+      "modules": [],
+      "recordedCatalogue": {
+        "path": "src/data/msbmVerifiedCatalog.json",
+        "index": 41,
+        "title": "Executive Master Of Business Administration In Hotel Management",
+        "duration": "18 Months",
+        "mode": "Blended",
+        "fee": "£ 3,150",
+        "monthly": "£ 175/mo",
+        "partner": "Azteca University",
+        "moduleCount": 12,
+        "lessonCount": 117,
+        "entryRequirementCount": 7,
+        "scope": "previously recorded global catalogue facts; not a fresh source capture"
+      },
+      "sourceEvidence": {
+        "captureAttempted": false,
+        "captureMethod": "Playwright Chromium",
+        "httpStatus": null,
+        "pageTitle": null,
+        "headingsChecked": [],
+        "sourceItems": 0,
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response.",
+        "checkedAt": "2026-11-01T22:34:08.653Z"
+      }
+    },
+    {
+      "catalogueIndex": 42,
+      "slug": "masters-degree-in-continuing-education-in-marketing-mba-mktg",
+      "sourceUrl": "https://msbm.org.uk/programme/masters-degree-in-continuing-education-in-marketing-mba-mktg",
+      "capturedAt": null,
+      "status": "blocked",
+      "complete": false,
+      "courseDetails": null,
+      "outcomes": [],
+      "progression": {
+        "status": "blocked",
+        "text": "",
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response."
+      },
+      "modules": [],
+      "recordedCatalogue": {
+        "path": "src/data/msbmVerifiedCatalog.json",
+        "index": 42,
+        "title": "Masters Degree in Continuing Education in Marketing",
+        "duration": "24 Months",
+        "mode": "Blended",
+        "fee": "£ 3,600",
+        "monthly": "£ 150/mo",
+        "partner": "UCAM Catholic University Of Murcia",
+        "moduleCount": 12,
+        "lessonCount": 91,
+        "entryRequirementCount": 1,
+        "scope": "previously recorded global catalogue facts; not a fresh source capture"
+      },
+      "sourceEvidence": {
+        "captureAttempted": false,
+        "captureMethod": "Playwright Chromium",
+        "httpStatus": null,
+        "pageTitle": null,
+        "headingsChecked": [],
+        "sourceItems": 0,
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response.",
+        "checkedAt": "2026-11-01T22:34:08.653Z"
+      }
+    },
+    {
+      "catalogueIndex": 43,
+      "slug": "executive-master-of-business-administration-in-marketing-management",
+      "sourceUrl": "https://msbm.org.uk/programme/executive-master-of-business-administration-in-marketing-management",
+      "capturedAt": null,
+      "status": "blocked",
+      "complete": false,
+      "courseDetails": null,
+      "outcomes": [],
+      "progression": {
+        "status": "blocked",
+        "text": "",
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response."
+      },
+      "modules": [],
+      "recordedCatalogue": {
+        "path": "src/data/msbmVerifiedCatalog.json",
+        "index": 43,
+        "title": "Executive Master Of Business Administration In Marketing Management",
+        "duration": "18 Months",
+        "mode": "Blended",
+        "fee": "£ 3,150",
+        "monthly": "£ 175/mo",
+        "partner": "Azteca University",
+        "moduleCount": 12,
+        "lessonCount": 131,
+        "entryRequirementCount": 7,
+        "scope": "previously recorded global catalogue facts; not a fresh source capture"
+      },
+      "sourceEvidence": {
+        "captureAttempted": false,
+        "captureMethod": "Playwright Chromium",
+        "httpStatus": null,
+        "pageTitle": null,
+        "headingsChecked": [],
+        "sourceItems": 0,
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response.",
+        "checkedAt": "2026-11-01T22:34:08.653Z"
+      }
+    },
+    {
+      "catalogueIndex": 44,
+      "slug": "master-of-business-administration-in-hospitality-management",
+      "sourceUrl": "https://msbm.org.uk/programme/master-of-business-administration-in-hospitality-management",
+      "capturedAt": null,
+      "status": "blocked",
+      "complete": false,
+      "courseDetails": null,
+      "outcomes": [],
+      "progression": {
+        "status": "blocked",
+        "text": "",
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response."
+      },
+      "modules": [],
+      "recordedCatalogue": {
+        "path": "src/data/msbmVerifiedCatalog.json",
+        "index": 44,
+        "title": "Master Of Business Administration In Hospitality Management",
+        "duration": "18 Months",
+        "mode": "Blended",
+        "fee": "£ 3,150",
+        "monthly": "£ 175/mo",
+        "partner": "Azteca University",
+        "moduleCount": 12,
+        "lessonCount": 121,
+        "entryRequirementCount": 7,
+        "scope": "previously recorded global catalogue facts; not a fresh source capture"
+      },
+      "sourceEvidence": {
+        "captureAttempted": false,
+        "captureMethod": "Playwright Chromium",
+        "httpStatus": null,
+        "pageTitle": null,
+        "headingsChecked": [],
+        "sourceItems": 0,
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response.",
+        "checkedAt": "2026-11-01T22:34:08.653Z"
+      }
+    },
+    {
+      "catalogueIndex": 45,
+      "slug": "msc-in-public-health",
+      "sourceUrl": "https://msbm.org.uk/programme/msc-in-public-health",
+      "capturedAt": null,
+      "status": "blocked",
+      "complete": false,
+      "courseDetails": null,
+      "outcomes": [],
+      "progression": {
+        "status": "blocked",
+        "text": "",
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response."
+      },
+      "modules": [],
+      "recordedCatalogue": {
+        "path": "src/data/msbmVerifiedCatalog.json",
+        "index": 45,
+        "title": "MSc In Public Health",
+        "duration": "18 Months",
+        "mode": "Online",
+        "fee": "£ 3,150",
+        "monthly": "£ 175/mo",
+        "partner": "Azteca University",
+        "moduleCount": 11,
+        "lessonCount": 69,
+        "entryRequirementCount": 7,
+        "scope": "previously recorded global catalogue facts; not a fresh source capture"
+      },
+      "sourceEvidence": {
+        "captureAttempted": false,
+        "captureMethod": "Playwright Chromium",
+        "httpStatus": null,
+        "pageTitle": null,
+        "headingsChecked": [],
+        "sourceItems": 0,
+        "reason": "Fresh browser retrieval was stopped after the first assigned programme returned HTTP 403 with the page title “Just a moment...”. Remaining pages were not requested in this run to respect the source access-control response.",
+        "checkedAt": "2026-11-01T22:34:08.653Z"
+      }
+    }
+  ]
+}

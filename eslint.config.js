@@ -1,20 +1,10 @@
-import js from '@eslint/js'
-import globals from 'globals'
-import reactHooks from 'eslint-plugin-react-hooks'
-import reactRefresh from 'eslint-plugin-react-refresh'
+import js from '../Anima-react/node_modules/@eslint/js/src/index.js'
+import globals from '../Anima-react/node_modules/globals/index.js'
+import reactHooks from '../Anima-react/node_modules/eslint-plugin-react-hooks/index.js'
+import reactRefresh from '../Anima-react/node_modules/eslint-plugin-react-refresh/index.js'
 
 export default [
-  { ignores: ['dist', 'src/content/generated/**'] },
-  js.configs.recommended,
-  reactHooks.configs.flat.recommended,
-  {
-    files: ['scripts/**/*.cjs'],
-    languageOptions: {
-      ecmaVersion: 2022,
-      globals: { ...globals.node, ...globals.browser },
-      parserOptions: { sourceType: 'commonjs' },
-    },
-  },
+  { ignores: ['dist', 'public', 'node_modules'] },
   {
     files: ['**/*.{js,jsx}'],
     languageOptions: {
@@ -22,8 +12,10 @@ export default [
       globals: globals.browser,
       parserOptions: { ecmaFeatures: { jsx: true }, sourceType: 'module' },
     },
-    plugins: { 'react-refresh': reactRefresh },
+    plugins: { 'react-hooks': reactHooks, 'react-refresh': reactRefresh },
     rules: {
+      ...js.configs.recommended.rules,
+      ...reactHooks.configs.recommended.rules,
       'no-unused-vars': ['error', { varsIgnorePattern: '^[A-Z_]' }],
       'react-refresh/only-export-components': ['warn', { allowConstantExport: true }],
     },

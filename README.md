@@ -1,48 +1,32 @@
-# The Global School of Skills (GSS)
+# Mindu React
 
-[![CI](https://github.com/raghavrecharge/GSS/actions/workflows/ci.yml/badge.svg)](https://github.com/raghavrecharge/GSS/actions/workflows/ci.yml)
-
-Vite + React website for The Global School of Skills (GSS), built on the Marrky theme and interaction system. It includes programme catalogues, detailed course information, university partners, specializations, and country/regional study pages.
+React/Vite conversion of the complete Mindu education HTML theme. The app uses reusable React navigation, footer, search, mobile menu, route handling and interaction components while preserving every original theme page and bundled asset.
 
 ## Run locally
 
-```powershell
+```bash
 npm install
 npm run dev
 ```
 
-## Verification
+## Production build
 
-```powershell
-npm run lint
-npm test
+```bash
 npm run build
+npm run preview
 ```
 
-The production output is generated in `dist/`.
+Client-side routes map all original `.html` pages to clean URLs. The original page markup is retained under `public/source` as the migration source, while React owns the application shell, navigation, routing and interactions.
 
-## Routes
+The connected Conca learning/admin dashboard is available at `/dashboard`. Its 112 screens are mapped under `/dashboard/<original-file-name>` and reuse the same React navigation layer, with a persistent “View website” return action.
 
-- `/`, `/online-learning`, `/for-business`
-- `/about`, `/accreditation`, `/tuition`
-- `/programmes`, `/programmes/:courseSlug`
-- `/categories`, `/categories/:categorySlug`
-- `/specializations`, `/specializations/:specializationSlug`
-- `/universities`, `/universities/:universitySlug`
-- `/countries`, `/countries/:countrySlug`
-- `/locations/:locationSlug`
-- `/learning`, `/student-stories`
-- `/insights`, `/insights/online-learning`
-- `/contact`, `/404`
+## GSS data and administration
 
-Legacy `.html` and source programme URLs redirect to the corresponding clean React route. Unknown routes render the custom 404 page.
+- `/courses` serves the shared database-backed programme catalogue with static fallback.
+- `/countries` exposes country and regional programme discovery.
+- All imported institutional paths, including `/about-msbm`, render inside the Mindu theme.
+- `/dashboard/login` authenticates administrators; programme create/edit/list screens use protected API mutations.
+- `/dashboard/applications` provides the encrypted applicant review queue.
+- `/checkout?course=<slug>` submits a minimized, consent-gated programme application.
 
-## Brand system
-
-- Primary blue: `#15519D`
-- Accent orange: `#FFAD01`
-- Shared GSS logo assets live in `public/assets/img/`
-
-## Production deployment
-
-Run `npm run build` and publish the contents of `dist/` to the web root. The bundled `.htaccess` provides the Apache fallback required for React Router deep links.
+Production PHP and privacy configuration is documented in [DEPLOYMENT.md](./DEPLOYMENT.md). Migration evidence and phase gates are recorded in [MIGRATION.md](./MIGRATION.md).

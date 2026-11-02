@@ -1,3 +1,0 @@
-*.sh text eol=lf
-.cpanel.yml text eol=lf
-.htaccess text eol=lf
