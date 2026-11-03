@@ -1,4 +1,5 @@
 import verifiedCatalog from './msbmVerifiedCatalog.json'
+import programmeIndex from './msbmProgrammeIndex.json'
 import officialCountryCatalog from './msbmCountries.json'
 import officialRegionCatalog from './msbmRegions.json'
 
@@ -247,8 +248,36 @@ const universitySlugForPartner = (partner = '') => {
   if (partner.includes('Azteca University')) return 'azteca-university'
   if (partner.includes('UCAM')) return 'ucam'
   if (partner.includes('Euro American Institute')) return 'euro-american-institute'
+  if (partner.includes('Rushford')) return 'rushford-business-school'
+  if (partner.includes('Girne')) return 'girne-american-university'
+  if (partner.includes('Anglia Ruskin')) return 'anglia-ruskin-university'
+  if (partner.includes('Buckingham')) return 'university-of-buckingham'
   return null
 }
+
+const categoryLevels = {
+  'doctorate-degree': 'Doctorate Degree',
+  'masters-degree': 'Master’s Degree',
+  'semp-online-sep-upgradeable': 'SEMP Online',
+  'postgraduate-diploma-regulated': 'Postgraduate Diploma',
+  'international-postgraduate-diploma-endorsed': 'International Postgraduate Diploma',
+  'bachelors-degree': 'Bachelor’s Degree',
+  'diploma-regulated': 'Diploma',
+  'international-higher-diploma-endorsed': 'International Higher Diploma',
+  'advanced-professional-certificate': 'Advanced Professional Certificate',
+  'professional-certificate': 'Professional Certificate',
+  'free-online-course': 'Free Online Course',
+}
+const levelForCategory = (categorySlug) => categoryLevels[categorySlug] || 'Master’s Degree'
+
+// Light records for every public-catalogue programme outside the curated verified set.
+// Full detail (curriculum, entry requirements, accreditation…) lives in
+// public/data/programmes/<slug>.json and is loaded on demand by courseApi.js.
+const indexCourses = programmeIndex.map((course) => ({
+  ...course,
+  level: course.level || levelForCategory(course.categorySlug),
+  detailPath: `/data/programmes/${course.slug}.json`,
+}))
 
 const verifiedCourses = verifiedCatalog.map((source, index) => {
   const officialSlug = sourceSlug(source.sourceUrl)
@@ -277,7 +306,7 @@ const verifiedCourses = verifiedCatalog.map((source, index) => {
     monthly: source.monthly || local?.monthly || '',
     paymentMonths: source.paymentSchedule || local?.paymentMonths || source.duration,
     administrativeFee: source.adminFee || local?.administrativeFee,
-    level: source.categorySlug === 'doctorate-degree' ? 'Doctorate Degree' : 'Master’s Degree',
+    level: levelForCategory(source.categorySlug),
     categorySlug: source.categorySlug,
     university,
     universitySlug: universitySlugForPartner(university),
@@ -329,8 +358,10 @@ function normaliseUniversity(course) {
 }
 
 const verifiedCourseSlugs = new Set(verifiedCourses.map((course) => course.slug))
+const sourceBackedCourses = [...verifiedCourses, ...indexCourses.filter((course) => !verifiedCourseSlugs.has(course.slug))]
+const sourceBackedSlugs = new Set(sourceBackedCourses.map((course) => course.slug))
 
-export const courses = [...verifiedCourses, ...localCourseSeeds.filter((course) => !verifiedCourseSlugs.has(course.slug))]
+export const courses = [...sourceBackedCourses, ...localCourseSeeds.filter((course) => !sourceBackedSlugs.has(course.slug))]
   .map(normaliseUniversity)
   .map((course) => ({
     ...course,

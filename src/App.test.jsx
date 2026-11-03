@@ -2,7 +2,9 @@ import { cleanup, fireEvent, render, screen } from '@testing-library/react'
 import { MemoryRouter } from 'react-router-dom'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import App from './App.jsx'
-import { countries, findCourse, findLocation, getCompleteCourses, getCountryCourse, getCountryRegions, locations } from './data/msbmCatalog.js'
+import { readFile } from 'node:fs/promises'
+import { cwd } from 'node:process'
+import { categories, countries, findCourse, findLocation, getCompleteCourses, getCountryCourse, getCountryRegions, locations } from './data/msbmCatalog.js'
 
 vi.mock('gsap', () => ({ default: { registerPlugin: vi.fn(), context: () => ({ revert: vi.fn() }), utils: { toArray: () => [] }, to: vi.fn(), fromTo: vi.fn() } }))
 vi.mock('gsap/ScrollTrigger', () => ({ ScrollTrigger: { refresh: vi.fn() } }))
@@ -135,7 +137,9 @@ describe('site routes', () => {
 
   it('keeps source-backed detail separate from explicitly labelled indicative data', () => {
     const allCourses = getCompleteCourses()
-    const verifiedDegrees = allCourses.filter((course) => course.sourceUrl?.startsWith('https://msbm.org.uk/programme/'))
+    const sourceBacked = allCourses.filter((course) => course.sourceUrl?.startsWith('https://msbm.org.uk/programme/'))
+    expect(sourceBacked).toHaveLength(960)
+    const verifiedDegrees = sourceBacked.filter((course) => !course.detailPath)
     expect(verifiedDegrees).toHaveLength(69)
     verifiedDegrees.forEach((course) => {
       expect(course.longDescription, `${course.slug} is missing an overview`).toBeTruthy()
@@ -152,6 +156,27 @@ describe('site routes', () => {
     const mba = findCourse('masters-of-business-administration')
     expect(mba.modules).toHaveLength(15)
     expect(mba.sourceLessonCount).toBeGreaterThan(100)
+  })
+
+  it('indexes every public-catalogue programme with an on-demand detail file', async () => {
+    const indexed = getCompleteCourses().filter((course) => course.detailPath)
+    expect(indexed).toHaveLength(891)
+    const categorySlugs = new Set(categories.map((category) => category.slug))
+    const slugs = new Set()
+    indexed.forEach((course) => {
+      expect(slugs.has(course.slug), `${course.slug} is duplicated`).toBe(false)
+      slugs.add(course.slug)
+      expect(categorySlugs.has(course.categorySlug), `${course.slug} has an unknown category`).toBe(true)
+      expect(course.title && course.fee && course.duration && course.level && course.image, `${course.slug} is missing card data`).toBeTruthy()
+      expect(course.modulesIndicative, `${course.slug} must not infer modules`).toBe(false)
+      expect(JSON.stringify(course)).not.toMatch(/MSBM/)
+    })
+    const sample = indexed.find((course) => course.categorySlug === 'professional-certificate')
+    const detail = JSON.parse(await readFile(`${cwd()}/public/data/programmes/${sample.slug}.json`, 'utf8'))
+    expect(detail.slug).toBe(sample.slug)
+    expect(detail.longDescription).toBeTruthy()
+    expect(detail.modules.length).toBeGreaterThan(0)
+    expect(detail.entry.length).toBeGreaterThan(0)
   })
 
   it('renders all verified marketing programme sections and anchors', () => {
@@ -187,7 +212,7 @@ describe('site routes', () => {
     expect(portugalMba.locallyVerified).toBe(false)
     render(<MemoryRouter initialEntries={['/countries/portugal']}><App /></MemoryRouter>)
     expect(screen.getByRole('heading', { name: /learners in Portugal/i })).toBeInTheDocument()
-    expect(screen.getByText('69')).toBeInTheDocument()
+    expect(screen.getByText('960')).toBeInTheDocument()
     expect(screen.getAllByText('Confirm local fee').length).toBeGreaterThan(0)
   })
 

@@ -194,6 +194,15 @@ body.search-open {
 .msbm-catalog-section { padding: 110px 0; background: #f4f4f0; }
 .msbm-catalog-section--popular { background: #fff; }
 .msbm-course-grid { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 22px; align-items: start; }
+.msbm-course-grid__more { display: flex; flex-direction: column; align-items: center; gap: 14px; margin-top: 36px; text-align: center; }
+.msbm-course-grid__more p { margin: 0; color: #5b6472; font-size: 15px; }
+.msbm-course-grid__more .ma-pr-btn-2 { display: inline-flex; align-items: center; gap: 8px; }
+.msbm-catalogue-filters { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) auto; gap: 18px; align-items: end; margin-bottom: 30px; padding: 22px 24px; border-radius: 20px; background: #fff; box-shadow: 0 12px 45px rgba(16, 22, 36, .06); }
+.msbm-catalogue-filters label { display: block; margin-bottom: 8px; font-size: 13px; font-weight: 600; letter-spacing: .02em; text-transform: uppercase; color: #15519D; }
+.msbm-catalogue-filters input, .msbm-catalogue-filters select { width: 100%; min-height: 50px; padding: 0 16px; border: 1px solid #dfe4ec; border-radius: 12px; background: #f8fafc; font: inherit; font-size: 15px; color: #1a2230; }
+.msbm-catalogue-filters input:focus, .msbm-catalogue-filters select:focus { outline: 2px solid #15519D; outline-offset: 1px; border-color: #15519D; background: #fff; }
+.msbm-catalogue-filters p { margin: 0 0 14px; white-space: nowrap; font-weight: 600; color: #1a2230; }
+@media (max-width: 991px) { .msbm-catalogue-filters { grid-template-columns: 1fr; } .msbm-catalogue-filters p { margin: 0; } }
 .msbm-course-card { display: flex; min-width: 0; flex-direction: column; overflow: hidden; border-radius: 20px; background: #fff; box-shadow: 0 12px 45px rgba(16, 22, 36, .06); transition: transform .3s ease, box-shadow .3s ease; }
 .msbm-course-card:hover { transform: translateY(-7px); box-shadow: 0 20px 55px rgba(16, 22, 36, .12); }
 .msbm-course-card__image { position: relative; display: block; height: 178px; overflow: hidden; }

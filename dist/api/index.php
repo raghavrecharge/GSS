@@ -81,6 +81,8 @@ function database(): PDO {
 }
 
 function seed(PDO $pdo): void {
+    // The full catalogue seed (~960 programmes with curricula) is decoded once, on first run only.
+    ini_set('memory_limit', '512M');
     $seedFile = __DIR__ . DIRECTORY_SEPARATOR . 'courses.seed.json';
     $records = json_decode((string)file_get_contents($seedFile), true, 512, JSON_THROW_ON_ERROR);
     $insert = $pdo->prepare('INSERT INTO courses (slug, title, status, payload_json) VALUES (:slug, :title, "published", :payload)');
@@ -103,7 +105,10 @@ function seed(PDO $pdo): void {
 }
 
 function syncVersionedSeedRecords(PDO $pdo): void {
-    $seedFile = __DIR__ . DIRECTORY_SEPARATOR . 'courses.seed.json';
+    // Only records carrying a seedRevision are re-synced on deployment. The build exports them to a
+    // small dedicated file so this per-request check never decodes the full catalogue seed.
+    $seedFile = __DIR__ . DIRECTORY_SEPARATOR . 'courses.versioned.seed.json';
+    if (!is_file($seedFile)) return;
     $records = json_decode((string)file_get_contents($seedFile), true, 512, JSON_THROW_ON_ERROR);
     $find = $pdo->prepare('SELECT payload_json FROM courses WHERE slug = :slug LIMIT 1');
     $insert = $pdo->prepare('INSERT INTO courses (slug, title, status, payload_json) VALUES (:slug, :title, "published", :payload)');
@@ -281,8 +286,15 @@ try {
         respond(404, ['error' => 'Resource not found.']);
     }
     if (!isset($resource[1])) {
+        // The listing returns card-level summaries only; /api/courses/{slug} returns the full record.
+        $summaryKeys = array_flip(['slug', 'title', 'description', 'duration', 'mode', 'fee', 'monthly', 'discountedFee', 'level',
+            'categorySlug', 'subjects', 'university', 'universitySlug', 'image', 'sourceUrl', 'sourceVerified', 'sourceCoverage',
+            'detailPath', 'sku', 'paymentMonths', 'administrativeFee', 'cpdHours', 'credits', 'featured']);
         $rows = $pdo->query('SELECT payload_json FROM courses WHERE status = "published" ORDER BY title')->fetchAll();
-        respond(200, ['data' => array_map(static fn(array $row): array => json_decode($row['payload_json'], true, 512, JSON_THROW_ON_ERROR), $rows)]);
+        respond(200, ['data' => array_map(
+            static fn(array $row): array => array_intersect_key(json_decode($row['payload_json'], true, 512, JSON_THROW_ON_ERROR), $summaryKeys),
+            $rows,
+        )]);
     }
     $slug = (string)$resource[1];
     if (!validSlug($slug)) respond(400, ['error' => 'Invalid course slug.']);
