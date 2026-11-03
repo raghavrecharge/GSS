@@ -168,7 +168,7 @@ const crmAdminPaths = {
   overview: '/admin/crm', leads: '/admin/crm/leads', contacts: '/admin/crm/contacts',
   communications: '/admin/crm/communications', applications: '/admin/crm/applications',
   intakes: '/admin/crm/intakes', students: '/admin/crm/students', tasks: '/admin/crm/tasks',
-  reports: '/admin/crm/reports',
+  programmes: '/admin/crm/programmes', reports: '/admin/crm/reports',
 }
 const cmsAdminPaths = {
   overview: '/admin/cms', pages: '/admin/cms/pages', programmes: '/admin/cms/programmes',
@@ -177,6 +177,7 @@ const cmsAdminPaths = {
   faqs: '/admin/cms/faqs', forms: '/admin/cms/forms', blocks: '/admin/cms/blocks',
   media: '/admin/cms/media', navigation: '/admin/cms/navigation',
   publishing: '/admin/cms/publishing', settings: '/admin/cms/settings',
+  'course-review': '/admin/cms/course-review',
 }
 
 function CrmAdminRoute() {

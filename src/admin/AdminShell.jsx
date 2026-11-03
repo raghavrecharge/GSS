@@ -16,11 +16,13 @@ const sections = [
     { to: '/admin/crm/communications', label: 'Communications', icon: 'mail' },
     { to: '/admin/crm/intakes', label: 'Intakes', icon: 'calendar' },
     { to: '/admin/crm/reports', label: 'Admissions reports', icon: 'chart' },
+    { to: '/admin/crm/programmes', label: 'Programme relationships', icon: 'book' },
   ] },
   { label: 'Content', links: [
     { to: '/admin/cms', label: 'CMS dashboard', icon: 'layout', end: true },
     { to: '/admin/cms/pages', label: 'Pages', icon: 'page' },
     { to: '/admin/cms/programmes', label: 'Programmes', icon: 'book' },
+    { to: '/admin/cms/course-review', label: 'Course evidence review', icon: 'check' },
     { to: '/admin/cms/media', label: 'Media', icon: 'image' },
     { to: '/admin/cms/navigation', label: 'Navigation', icon: 'menu' },
     { to: '/admin/cms/universities', label: 'Universities', icon: 'student' },

@@ -19,8 +19,12 @@ export function createPages() {
 }
 
 export function createProgrammes() {
-  return courses.map((course, index) => ({
-    ...course, id: `programme-${index}`, kind: 'programme', path: `/programmes/${course.slug}`,
+  return courses.map((course, index) => toProgrammeDraft(course, `programme-${index}`))
+}
+
+export function toProgrammeDraft(course, id = `programme-${course.slug}`) {
+  return {
+    ...course, id, kind: 'programme', path: `/programmes/${course.slug}`,
     content: course.longDescription || course.description || '', seoTitle: course.title,
     status: 'Published', updated: date,
     modulesText: (course.modules || []).map(module => Array.isArray(module) ? module.filter(Boolean).join(' — ') : [module.title, module.summary, module.lectures ? `${module.lectures} lectures` : '', module.quizzes ? `${module.quizzes} quizzes` : '', ...(module.lessons || []).map(lesson => typeof lesson === 'string' ? lesson : lesson.title || lesson.name || '')].filter(Boolean).join('\n')).join('\n\n'),
@@ -36,8 +40,9 @@ export function createProgrammes() {
     credentialRecords: (course.certificateDetails || []).map(([icon, title, text], itemIndex) => ({ id: `credential-${itemIndex}`, icon, title, text })),
     testimonialRecords: (course.testimonials || []).map(([name, quote], itemIndex) => ({ id: `testimonial-${itemIndex}`, name, quote })),
     faqRecords: (course.faqs || []).map((item, itemIndex) => ({ id: `faq-${itemIndex}`, question: item.question || item[0] || '', answer: item.answer || item[1] || '' })),
-    gettingStartedText: (course.gettingStarted || []).join('\n'), subjectsText: (course.subjects || []).join('\n'), seoDescription: course.description || '', customSections: [],
-  }))
+    gettingStartedRecords: (course.gettingStarted || []).map((step, index) => ({ id: `step-${index}`, title: typeof step === 'string' ? step : step.title || '', description: typeof step === 'string' ? '' : step.description || '' })),
+    gettingStartedText: (course.gettingStarted || []).map(step => typeof step === 'string' ? step : [step.title, step.description].filter(Boolean).join(' — ')).join('\n'), subjectsText: (course.subjects || []).join('\n'), seoDescription: course.description || '', customSections: course.customSections || [],
+  }
 }
 
 export const initialMedia = [

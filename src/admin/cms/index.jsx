@@ -4,14 +4,16 @@ import { collectionDefinitions, createCollections, initialForms, initialSettings
 import { CollectionManager, FormsManager, PublishingManager, SettingsManager } from './CmsOperations.jsx'
 import { recordWorkspaceActivity } from '../services/workspaceState.js'
 import { CustomSectionsEditor, ProgrammeStructureEditor, ProgrammeStructurePreview } from './StructuredFields.jsx'
-import { validateStructuredDraft } from './structuredData.js'
+import { serialiseModules, validateStructuredDraft } from './structuredData.js'
 import NavigationManager from './NavigationManager.jsx'
+import CourseEvidenceReview from './CourseEvidenceReview.jsx'
 import { additionalNavigation } from './cmsNavigationData.js'
 import './cms.css'
 
 const sections = [
   ['overview', 'Overview', 'squares-four'], ['pages', 'Pages', 'files'],
   ['programmes', 'Programmes', 'graduation-cap'], ['media', 'Media library', 'images'],
+  ['course-review', 'Course evidence review', 'seal-check'],
   ['navigation', 'Navigation', 'list-bullets'],
   ['universities', 'Universities & partners', 'buildings'], ['countries', 'Countries & locations', 'globe'],
   ['taxonomies', 'Categories & specialisations', 'tag'], ['testimonials', 'Testimonials', 'quotes'],
@@ -36,7 +38,7 @@ function ContentEditor({ record, existingPaths, onSave, onClose }) {
     element.showModal()
     return () => element.close()
   }, [])
-  const change = (field, value) => { setDraft(current => ({ ...current, [field]: value })); setErrors(current => ({ ...current, [field]: undefined })); setDiscard(false) }
+  const change = (field, value) => { setDraft(current => ({ ...current, [field]: value, ...(field === 'gettingStartedRecords' ? { gettingStartedText: value.map(step => [step.title, step.description].filter(Boolean).join(' — ')).join('\n') } : {}) })); setErrors(current => ({ ...current, [field]: undefined })); setDiscard(false) }
   const close = () => dirty ? setDiscard(true) : onClose()
   const save = (event) => {
     event.preventDefault()
@@ -45,9 +47,10 @@ function ContentEditor({ record, existingPaths, onSave, onClose }) {
     if (!/^\/(?!\/)[a-zA-Z0-9/_-]*$/.test(draft.path)) nextErrors.path = 'Use a local path, such as /about or /programmes/my-course.'
     else if (existingPaths.includes(draft.path)) nextErrors.path = 'Another content item already uses this page path.'
     if (!draft.content.trim()) nextErrors.content = 'Add the main page content.'
-    if (draft.description.length > 320) nextErrors.description = 'Keep the description within 320 characters.'
+    if (!programme && draft.description.length > 320) nextErrors.description = 'Keep the description within 320 characters.'
     const structuredError = validateStructuredDraft(draft)
     if (structuredError) nextErrors.structured = structuredError
+    if (programme && draft.ragReview && dirty && draft.status === 'Published') nextErrors.structured = 'Changed source-verified content must return to Draft or Review before a new independent verification.'
     if (draft.ctaPath && !/^\/(?!\/)[a-zA-Z0-9/_#-]*$/.test(draft.ctaPath)) nextErrors.structured = 'Use a local destination for the call to action.'
     if (programme && draft.image && !/^\/assets\/[a-zA-Z0-9/_.-]+$/.test(draft.image)) nextErrors.structured = 'Use an existing local asset path for the programme image.'
     setErrors(nextErrors)
@@ -57,8 +60,10 @@ function ContentEditor({ record, existingPaths, onSave, onClose }) {
     }
     const lines = text => String(text || '').split('\n').map(item => item.trim()).filter(Boolean)
     onSave({ ...draft, title: draft.title.trim(), updated: new Date().toISOString().slice(0, 10), ...(programme ? {
-      longDescription: draft.content, accreditation: draft.accreditationText, entry: lines(draft.entryText), outcomes: lines(draft.outcomesText), subjects: lines(draft.subjectsText), gettingStarted: lines(draft.gettingStartedText),
-      modules: (draft.moduleRecords || []).map(module => ({ title: module.title, summary: module.summary, meta: module.meta, lectures: Number(module.lectures) || 0, quizzes: Number(module.quizzes) || 0, lessons: module.lessons.map(({ title, type }) => ({ title, type })) })),
+      longDescription: draft.content, accreditation: draft.accreditationText, entry: lines(draft.entryText), outcomes: lines(draft.outcomesText), subjects: lines(draft.subjectsText), gettingStarted: (draft.gettingStartedRecords || []).map(({ title, description }) => description ? { title, description } : title),
+      modules: serialiseModules(draft.moduleRecords),
+      ...(dirty && draft.sourceVerified ? { sourceVerified: false, sourceCoverage: 'partial' } : {}),
+      ...(dirty && draft.ragReview ? { ragReview: { ...draft.ragReview, decision: 'Revision required after editorial changes' } } : {}),
       advantages: (draft.advantageRecords || []).map(({ icon, title, text }) => [icon, title, text]), certificateDetails: (draft.credentialRecords || []).map(({ icon, title, text }) => [icon, title, text]), testimonials: (draft.testimonialRecords || []).map(({ name, quote }) => [name, quote]), faqs: (draft.faqRecords || []).map(({ question, answer }) => ({ question, answer })),
     } : {}) })
   }
@@ -73,7 +78,7 @@ function ContentEditor({ record, existingPaths, onSave, onClose }) {
     <form onSubmit={save} noValidate>
       <div className="cms-editor__header"><div><span className="cms-eyebrow">{programme ? 'Programme editor' : 'Page editor'}</span><h2 id={`${fieldId}-dialog-title`}>{record.title || 'New page'}</h2></div><button className="cms-icon-button" type="button" onClick={close} aria-label="Close editor"><Icon name="x" /></button></div>
       <div className="cms-editor__toolbar"><span className="cms-demo-label">Preview workspace · changes stay in this session</span><button className="cms-button cms-button--quiet" type="button" aria-pressed={preview} onClick={() => setPreview(value => !value)}><Icon name={preview ? 'pencil-simple' : 'eye'} />{preview ? 'Continue editing' : 'Preview content'}</button></div>
-      {preview ? <article className="cms-content-preview"><span className="cms-eyebrow">Content preview</span><h2>{draft.title || 'Untitled page'}</h2><p className="cms-content-preview__intro">{draft.description}</p><div>{draft.content.split('\n').map((paragraph, index) => <p key={index}>{paragraph || '\u00a0'}</p>)}</div>{programme && <><h3>Programme information</h3><dl><div><dt>Awarding institution</dt><dd>{draft.university || 'Not set'}</dd></div><div><dt>Duration</dt><dd>{draft.duration || 'Not set'}</dd></div><div><dt>Tuition</dt><dd>{draft.fee || 'Not set'}</dd></div></dl><h3>Modules</h3><p className="cms-preserve-lines">{draft.modulesText || 'No modules added.'}</p><h3>Entry requirements</h3><p className="cms-preserve-lines">{draft.entryText || 'No entry requirements added.'}</p></>}</article> : <div className="cms-editor__body"><div className="cms-editor__main"><h3>Content</h3><div className="cms-form-grid">{input('title', 'Title', { required: true, wide: true })}{input('path', 'Page path', { required: true, wide: true })}{input('description', 'Short description', { multiline: true, rows: 3, wide: true, maxLength: 321 })}{input('content', 'Main content', { multiline: true, rows: 9, required: true, wide: true })}</div>{programme && <><h3>Programme details</h3><div className="cms-form-grid">{input('university', 'Awarding institution', { wide: true })}{input('duration', 'Duration')}{input('mode', 'Study mode')}{input('fee', 'Tuition fee')}{input('monthly', 'Monthly payment')}{input('modulesText', 'Modules · one per line', { multiline: true, rows: 7, wide: true })}{input('entryText', 'Entry requirements', { multiline: true, wide: true })}{input('accreditationText', 'Accreditation', { multiline: true, wide: true })}</div></>}<h3>Search appearance</h3>{input('seoTitle', 'SEO title', { maxLength: 120 })}</div><aside className="cms-editor__aside"><h3>Publishing</h3><label className="cms-field" htmlFor={`${fieldId}-status`}><span>Editorial status</span><select id={`${fieldId}-status`} value={draft.status} onChange={event => change('status', event.target.value)}><option>Draft</option><option>Review</option><option>Published</option></select></label><p className="cms-muted">Changing this status updates the preview workspace. It does not publish to the live website.</p><dl className="cms-metadata"><div><dt>Content type</dt><dd>{programme ? 'Programme' : 'Website page'}</dd></div><div><dt>Last updated</dt><dd>{record.updated}</dd></div></dl></aside></div>}
+      {preview ? <article className="cms-content-preview"><span className="cms-eyebrow">Content preview</span><h2>{draft.title || 'Untitled page'}</h2><p className="cms-content-preview__intro">{draft.description}</p><div>{draft.content.split('\n').map((paragraph, index) => <p key={index}>{paragraph || '\u00a0'}</p>)}</div>{programme && <><h3>Programme information</h3><dl><div><dt>Awarding institution</dt><dd>{draft.university || 'Not set'}</dd></div><div><dt>Duration</dt><dd>{draft.duration || 'Not set'}</dd></div><div><dt>Tuition</dt><dd>{draft.fee || 'Not set'}</dd></div></dl><h3>Modules</h3><p className="cms-preserve-lines">{draft.modulesText || 'No modules added.'}</p><h3>Entry requirements</h3><p className="cms-preserve-lines">{draft.entryText || 'No entry requirements added.'}</p></>}</article> : <div className="cms-editor__body"><div className="cms-editor__main"><h3>Content</h3><div className="cms-form-grid">{input('title', 'Title', { required: true, wide: true })}{input('path', 'Page path', { required: true, wide: true })}{input('description', 'Short description', { multiline: true, rows: 3, wide: true, maxLength: programme ? 30000 : 321 })}{input('content', 'Main content', { multiline: true, rows: 9, required: true, wide: true })}</div>{programme && <><h3>Programme details</h3><div className="cms-form-grid">{input('university', 'Awarding institution', { wide: true })}{input('duration', 'Duration')}{input('mode', 'Study mode')}{input('fee', 'Tuition fee')}{input('monthly', 'Monthly payment')}{input('modulesText', 'Modules · one per line', { multiline: true, rows: 7, wide: true })}{input('entryText', 'Entry requirements', { multiline: true, wide: true })}{input('accreditationText', 'Accreditation', { multiline: true, wide: true })}</div></>}<h3>Search appearance</h3>{input('seoTitle', 'SEO title', { maxLength: 120 })}</div><aside className="cms-editor__aside"><h3>Publishing</h3><label className="cms-field" htmlFor={`${fieldId}-status`}><span>Editorial status</span><select id={`${fieldId}-status`} value={draft.status} onChange={event => change('status', event.target.value)}><option>Draft</option><option>Review</option><option>Published</option></select></label><p className="cms-muted">Changing this status updates the preview workspace. It does not publish to the live website.</p><dl className="cms-metadata"><div><dt>Content type</dt><dd>{programme ? 'Programme' : 'Website page'}</dd></div><div><dt>Last updated</dt><dd>{record.updated}</dd></div></dl></aside></div>}
       {programme && <section className={preview ? 'cms-content-preview' : 'cms-editor__main'} aria-label="Additional programme information"><h3>Full programme information</h3>{preview ? [['courseDetails', 'Course details'], ['outcomesText', 'Learning outcomes'], ['progression', 'University progression'], ['workshops', 'Workshops'], ['visa', 'Visa requirements'], ['library', 'Library'], ['certificate', 'Certificate'], ['tuitionNotes', 'Tuition notes']].filter(([key]) => draft[key]).map(([key, label]) => <div key={key}><h3>{label}</h3><p className="cms-preserve-lines">{draft[key]}</p></div>) : <div className="cms-form-grid">{[['courseDetails', 'Course details'], ['outcomesText', 'Learning outcomes · one per line'], ['progression', 'University progression'], ['workshops', 'Workshops'], ['visa', 'Visa requirements'], ['library', 'Library resources'], ['tuitionNotes', 'Tuition and additional fee notes']].map(([key, label]) => <div key={key} className="cms-field--wide">{input(key, label, { multiline: true, rows: 4, wide: true })}</div>)}</div>}</section>}
       {programme && !preview && <ProgrammeStructureEditor draft={draft} onChange={change} />}
       {programme && preview && <ProgrammeStructurePreview draft={draft} />}
@@ -150,6 +155,7 @@ export default function CmsWorkspace({ initialView = 'overview', view: controlle
     {activeView === 'overview' && <Overview pages={pages} programmes={programmes} media={media} onView={navigate} onEdit={setEditor} />}
     {activeView === 'pages' && <ContentList records={pages} title="Website pages" description="Page content, editorial status and search appearance." onEdit={setEditor} onNew={newPage} />}
     {activeView === 'programmes' && <ContentList records={programmes} title="Programmes" description="Your existing GSS catalogue, ready for structured editorial updates." onEdit={setEditor} />}
+    {activeView === 'course-review' && <CourseEvidenceReview onStage={record => { const previous = programmes.find(item => item.slug === record.slug); save({ ...record, id: previous?.id || record.id, status: 'Draft' }) }} />}
     {activeView === 'media' && <MediaLibrary media={media} onUpdate={item => setMedia(current => current.map(asset => asset.id === item.id ? item : asset))} />}
     {activeView === 'navigation' && <NavigationEditor items={navigation} onChange={setNavigation} />}
     {operationView}

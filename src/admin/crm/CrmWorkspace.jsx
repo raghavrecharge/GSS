@@ -3,11 +3,14 @@ import { admissionsOwners, applicationStages, displayDate, initialApplications, 
 import { Contacts, Communications, Intakes, Reports } from './CrmOperations.jsx'
 import { initialConversations, initialIntakes } from './operationsData.js'
 import { recordWorkspaceActivity } from '../services/workspaceState.js'
+import { resolveProgramme } from '../services/programmeLinks.js'
+import ProgrammeRelations from './ProgrammeRelations.jsx'
 import './crm.css'
 
 const sections = [
   ['overview', 'Overview'], ['leads', 'Leads'], ['applications', 'Applications'], ['students', 'Students'], ['tasks', 'Tasks & follow-ups'],
   ['contacts', 'Contacts'], ['communications', 'Conversations'], ['intakes', 'Intakes & enrolment'], ['reports', 'Reports'],
+  ['programmes', 'Programme relationships'],
 ]
 
 function Status({ value }) {
@@ -60,6 +63,7 @@ function LeadForm({ onCreate, onCancel }) {
 function LeadDetail({ lead, onUpdate, onClose }) {
   const [note, setNote] = useState('')
   const panel = useRef(null)
+  const programme = resolveProgramme(lead)
   useEffect(() => { panel.current?.focus() }, [])
   function addNote(event) {
     event.preventDefault()
@@ -71,6 +75,7 @@ function LeadDetail({ lead, onUpdate, onClose }) {
   return <aside ref={panel} tabIndex={-1} className="gss-crm-card gss-crm-detail" aria-label={`Enquiry details for ${lead.name}`}>
     <div className="gss-crm-card-heading"><div><span className="gss-crm-eyebrow">{lead.id}</span><h3>{lead.name}</h3></div><button className="gss-crm-icon-button" type="button" aria-label="Close enquiry details" onClick={onClose}><span aria-hidden="true">×</span></button></div>
     <p className="gss-crm-detail-email">{lead.email}</p>
+    {programme ? <p><a className="gss-crm-text-button" href={`/programmes/${programme.slug}`} target="_blank" rel="noreferrer">Open programme details ↗</a><br /><small>Catalogue ID: {programme.slug}</small></p> : <p className="gss-crm-muted">Programme link needs reconciliation with the current catalogue.</p>}
     <dl className="gss-crm-definition"><div><dt>Programme</dt><dd>{lead.programme}</dd></div><div><dt>Country</dt><dd>{lead.country}</dd></div><div><dt>Source</dt><dd>{lead.source}</dd></div><div><dt>Received</dt><dd>{displayDate(lead.created)}</dd></div></dl>
     <Field label="Enquiry status" id="crm-detail-status"><select id="crm-detail-status" value={lead.status} onChange={event => onUpdate({ ...lead, status: event.target.value }, `Status changed to ${event.target.value}`)}>{leadStatuses.map(value => <option key={value}>{value}</option>)}</select></Field>
     <Field label="Assigned team" id="crm-detail-owner"><select id="crm-detail-owner" value={lead.owner} onChange={event => onUpdate({ ...lead, owner: event.target.value }, `Assigned to ${event.target.value}`)}>{admissionsOwners.map(value => <option key={value}>{value}</option>)}</select></Field>
@@ -90,7 +95,7 @@ function Leads({ leads, setLeads, announce }) {
   const visibleLeads = leads.filter(lead => (status === 'All statuses' || lead.status === status) && (source === 'All sources' || lead.source === source) && `${lead.name} ${lead.email} ${lead.programme} ${lead.country} ${lead.id}`.toLowerCase().includes(search.trim().toLowerCase()))
   function createLead(values) {
     const id = `GSS-L${crypto.randomUUID().slice(0, 8).toUpperCase()}`
-    const lead = { ...values, id, status: 'New enquiry', created: localDate(), notes: [], activities: [{ id: crypto.randomUUID(), text: 'Enquiry created', date: localDate() }] }
+    const lead = { ...values, courseSlug: resolveProgramme(values)?.slug || null, id, status: 'New enquiry', created: localDate(), notes: [], activities: [{ id: crypto.randomUUID(), text: 'Enquiry created', date: localDate() }] }
     setLeads(current => [lead, ...current])
     setSelectedId(id)
     setCreating(false)
@@ -186,7 +191,7 @@ export default function CrmWorkspace({ section, showNavigation = true, onNavigat
     setStudents(current => current.some(student => student.name === application.name && student.programme === application.programme) ? current : [...current, {
       id: `GSS-S${crypto.randomUUID().slice(0, 8).toUpperCase()}`, name: application.name,
       email: relatedLead?.email || 'Email not recorded', country: relatedLead?.country || 'Country not recorded',
-      programme: application.programme, intake: application.intake, status: 'Active', advisor: 'Student support',
+      programme: application.programme, courseSlug: resolveProgramme(application)?.slug || null, intake: application.intake, status: 'Active', advisor: 'Student support',
     }])
     if (relatedLead) setLeads(current => current.map(lead => lead.id === relatedLead.id ? { ...lead, status: 'Enrolled', owner: 'Student support' } : lead))
   }
@@ -210,5 +215,6 @@ export default function CrmWorkspace({ section, showNavigation = true, onNavigat
     {activeSection === 'communications' && <Communications leads={leads} conversations={conversations} setConversations={setConversations} announce={announce} />}
     {activeSection === 'intakes' && <Intakes intakes={intakes} setIntakes={setIntakes} applications={applications} setApplications={setApplications} reviews={reviews} setReviews={setReviews} onEnrolment={enrolStudent} announce={announce} />}
     {activeSection === 'reports' && <Reports leads={leads} applications={applications} tasks={tasks} conversations={conversations} />}
+    {activeSection === 'programmes' && <ProgrammeRelations leads={leads} applications={applications} students={students} />}
   </div>
 }

@@ -28,14 +28,20 @@ export function useCourseCatalogue() {
 
 export function useCourseRecord(slug) {
   const fallback = findCourse(slug)
-  const [course, setCourse] = useState(() => catalogueCache?.find(item => item.slug === slug) || fallback || null)
-  const [loading, setLoading] = useState(!course)
+  const [result, setResult] = useState(() => ({
+    slug,
+    course: catalogueCache?.find(item => item.slug === slug) || fallback || null,
+    loading: !(catalogueCache?.find(item => item.slug === slug) || fallback),
+  }))
+  const currentFallback = catalogueCache?.find(item => item.slug === slug) || fallback || null
+  const course = result.slug === slug ? result.course : currentFallback
+  const loading = result.slug === slug ? result.loading : !currentFallback
   useEffect(() => {
     const controller = new AbortController()
+    const nextFallback = catalogueCache?.find(item => item.slug === slug) || findCourse(slug) || null
     readJson(`${API_ROOT}/${encodeURIComponent(slug)}`, controller.signal)
-      .then(payload => { if (payload.data) setCourse(payload.data) })
-      .catch(() => {})
-      .finally(() => setLoading(false))
+      .then(payload => setResult({ slug, course: payload.data || nextFallback, loading: false }))
+      .catch(() => { if (!controller.signal.aborted) setResult({ slug, course: nextFallback, loading: false }) })
     return () => controller.abort()
   }, [slug])
   return { course, loading }

@@ -2,7 +2,7 @@ import { afterEach, beforeAll, describe, expect, it, vi } from 'vitest'
 import { cleanup, fireEvent, render, screen, within } from '@testing-library/react'
 import CmsWorkspace from './index.jsx'
 
-vi.mock('../../data/msbmCatalog.js', () => ({ universities: [{ slug: 'test-university', name: 'Test University', location: 'United Kingdom', summary: 'University introduction', about: 'University profile', focus: ['Business'] }], countries: [{ slug: 'united-kingdom', name: 'United Kingdom', currency: 'GBP' }], locations: [], categories: [{ slug: 'masters-degree', name: 'Master’s Degree', description: 'Master’s programmes' }], specializations: [], courses: [{ slug: 'test-course', title: 'Test programme', description: 'Programme introduction', longDescription: 'Course content', university: 'Test University', level: 'Master’s Degree', modules: [['Research methods', 'Academic research']], entry: ['An undergraduate degree'] }] }))
+vi.mock('../../data/msbmCatalog.js', () => ({ universities: [{ slug: 'test-university', name: 'Test University', location: 'United Kingdom', summary: 'University introduction', about: 'University profile', focus: ['Business'] }], countries: [{ slug: 'united-kingdom', name: 'United Kingdom', currency: 'GBP' }], locations: [], categories: [{ slug: 'masters-degree', name: 'Master’s Degree', description: 'Master’s programmes' }], specializations: [], courses: [{ slug: 'test-course', title: 'Test programme', description: 'Programme introduction', longDescription: 'Course content', university: 'Test University', level: 'Master’s Degree', modules: [['Research methods', 'Academic research']], entry: ['An undergraduate degree'], gettingStarted: [{ title: 'Upload documents', description: 'Provide qualifications and references.' }] }] }))
 vi.mock('../../data/msbmContentPages.json', () => ({ default: [] }))
 
 beforeAll(() => {
@@ -12,6 +12,22 @@ beforeAll(() => {
 afterEach(cleanup)
 
 describe('CMS workspace', () => {
+  it('preserves application-step descriptions while editing a programme', () => {
+    render(<CmsWorkspace initialView="programmes" />)
+    fireEvent.click(screen.getByRole('button', { name: 'Edit Test programme' }))
+    let editor = screen.getByRole('dialog')
+    expect(within(editor).getByLabelText('Step 1 title')).toHaveValue('Upload documents')
+    expect(within(editor).getByLabelText('Step 1 description')).toHaveValue('Provide qualifications and references.')
+    fireEvent.change(within(editor).getByLabelText('Step 1 description'), { target: { value: 'Provide degree certificates and references.' } })
+    fireEvent.click(within(editor).getByRole('button', { name: 'Save changes' }))
+    fireEvent.click(screen.getByRole('button', { name: 'Edit Test programme' }))
+    editor = screen.getByRole('dialog')
+    expect(within(editor).getByLabelText('Step 1 description')).toHaveValue('Provide degree certificates and references.')
+    fireEvent.click(within(editor).getByRole('button', { name: 'Preview content' }))
+    expect(within(editor).getByText('Upload documents — Provide degree certificates and references.')).toBeInTheDocument()
+    expect(editor).not.toHaveTextContent('[object Object]')
+  })
+
   it('filters content, renders an empty state and restores the inventory', () => {
     render(<CmsWorkspace initialView="pages" />)
     fireEvent.change(screen.getByRole('searchbox'), { target: { value: 'no matching item' } })

@@ -1,3 +1,5 @@
+import { allProgrammeTitles } from '../services/programmeLinks.js'
+
 export const leadStatuses = ['New enquiry', 'Contacted', 'Qualified', 'Application started', 'Enrolled', 'Closed']
 export const applicationStages = ['Started', 'Documents pending', 'Under review', 'Offer issued', 'Enrolled']
 export const leadSources = ['Website enquiry', 'Programme page', 'Referral', 'Event']
@@ -7,6 +9,7 @@ export const programmeOptions = [
   'DBA in Project Management',
   'Executive MBA in Human Resource Management',
   'Professional Certificate in Business Management',
+  ...allProgrammeTitles.filter(title => !['Masters of Business Administration', 'DBA in Project Management', 'Executive MBA in Human Resource Management', 'Professional Certificate in Business Management'].includes(title)),
 ]
 
 export const initialLeads = [

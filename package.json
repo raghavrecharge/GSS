@@ -6,6 +6,13 @@
   "scripts": {
     "dev": "vite",
     "export:courses": "node scripts/export-course-database.mjs",
+    "course-rag:inventory": "node scripts/course-rag/cli.mjs inventory",
+    "course-rag:run": "node scripts/course-rag/cli.mjs run",
+    "course-rag:query": "node scripts/course-rag/cli.mjs query",
+    "course-rag:review": "node scripts/course-rag/cli.mjs review",
+    "course-rag:gate": "node scripts/course-rag/cli.mjs gate",
+    "course-rag:test": "vitest run scripts/course-rag tests/course-rag",
+    "courses:acceptance": "node scripts/course-rag-verify/catalogue.mjs",
     "build": "vite build && npm run export:courses",
     "preview": "vite preview",
     "lint": "eslint .",

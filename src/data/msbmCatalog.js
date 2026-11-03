@@ -1,6 +1,12 @@
 import verifiedCatalog from './msbmVerifiedCatalog.json'
 import officialCountryCatalog from './msbmCountries.json'
 import officialRegionCatalog from './msbmRegions.json'
+import publishedCourses from './course-rag/publishedCourses.json'
+import sourceImages from './course-rag/sourceImages.json'
+import sourceCourseImages from './course-rag/sourceCourseImages.json'
+import enrichmentBatchB from './course-rag/enrichments/batch-b.json'
+import { applyPublishedRecord, publishedRecordFor } from './course-rag/publication.js'
+import { applyOriginalGssSections, applyRetainedEnrichment, applySharedSourceSections } from './course-rag/sharedContent.js'
 
 const msbmCourses = [
   {
@@ -66,10 +72,43 @@ const msbmCourses = [
     longDescription: 'The Master’s Degree in Continuing Education in Marketing equips professionals with advanced knowledge of modern marketing practice and strategic management. It combines core business disciplines with contemporary marketing tools and digital-performance strategies, building the analytical, leadership and decision-making capability required in dynamic global markets.',
     courseDetails: 'The programme examines marketing within the broader business environment. Socioeconomic and legal context, accounting, finance, human-resource management and business strategy provide the managerial foundation. Specialist study covers marketing communication, search and social performance, affiliate and email strategies, contemporary marketing issues and data-led strategic decisions.',
     accreditation: 'GSS programmes are delivered through relevant academic partners and awarding-body relationships. This programme is presented in partnership with UCAM Catholic University of Murcia; applicants should confirm the current award and documentation with an advisor before enrolment.',
-    progression: 'The curriculum provides a master’s-level continuing-education route and supports progression in marketing, brand, performance, communications and management roles.',
+    progression: undefined,
+    progressionStatus: 'source_absent',
+    progressionReason: 'The official programme page exposes the University Progression heading but does not publish progression content beneath it.',
     workshops: 'Workshops are conducted through live webinars for online students.',
     visa: 'There is no visa requirement for this programme.',
     library: 'Learners receive access to GSS’s complimentary online learning-resource collection, including more than 31,000,000 articles and journals.',
+    libraryMetric: '31M+',
+    libraryMetricLabel: 'articles and journals referenced by the source page',
+    advantages: [
+      ['ph-certificate', 'Accredited degree pathway', 'The source page presents the programme as an accredited online master’s pathway delivered with its academic partner. Confirm the final award documentation before enrolment.'],
+      ['ph-percent', 'Scholarship and payment support', 'The source page advertises scholarship support and an instalment-based payment structure. Eligibility and the current amount require confirmation.'],
+      ['ph-list-checks', 'Assignment-based assessment', 'The source page states that modules are assessed through submitted assignments rather than examinations.'],
+      ['ph-device-mobile', 'Flexible blended study', 'Recorded online learning, live webinars and digital learning resources support study alongside professional commitments.'],
+      ['ph-graduation-cap', 'Graduation opportunity', 'The source page states that successful learners may celebrate graduation on campus. Current arrangements should be confirmed with an adviser.'],
+      ['ph-medal', 'Dual-qualification pathway', 'The source page advertises a master’s degree together with an international postgraduate diploma in a relevant specialisation.'],
+    ],
+    gettingStartedIntro: 'The source page describes a seven-step journey from creating an account through receiving the final programme award.',
+    gettingStarted: [
+      { title: 'Create a free account', description: 'Register on the online learning platform and complete the initial enquiry information.' },
+      { title: 'Upload your documents', description: 'Provide the academic credentials requested through the student portal.' },
+      { title: 'Receive a conditional offer', description: 'The admissions team reviews the application and issues an offer when the requirements are satisfied.' },
+      { title: 'Pay the tuition', description: 'Complete the agreed tuition payment within the stated timeframe to confirm enrolment.' },
+      { title: 'Attend lectures and live webinars', description: 'Use the student portal for recorded learning and join scheduled live webinar classes.' },
+      { title: 'Complete assignments and assessments', description: 'Submit the required assignments and complete applicable quizzes through the portal.' },
+      { title: 'Receive the programme award', description: 'After successful completion, receive the applicable certificate and supporting award documentation.' },
+    ],
+    certificateDetails: [
+      ['ph-certificate', 'Degree certificate', 'The source page states that successful learners receive a degree certificate through the school and partner university. Confirm the exact issuing names before enrolment.'],
+      ['ph-books', 'Applied business modules', 'The programme combines business leadership, management and specialist marketing modules.'],
+      ['ph-briefcase', 'Study while working', 'The blended structure is designed to support learners studying without leaving their country or employment.'],
+    ],
+    testimonialsScope: 'shared-source-page',
+    testimonials: [
+      ['Spartaco G.', 'The learning experience introduced a new approach that could be applied with colleagues.'],
+      ['Ronald E.', 'Online study made it possible to pursue a long-standing learning goal while living far from London.'],
+      ['Vanessa M.', 'The course was interesting, used helpful examples, and explained the ideas clearly.'],
+    ],
     outcomes: [
       'Analyse socioeconomic and legal factors that influence marketing decisions.',
       'Interpret financial and accounting information to support marketing strategy.',
@@ -240,6 +279,8 @@ const verifiedImages = [
   '/assets/img/case-study/cs-7.jpg', '/assets/img/case-study/cs-8.jpg', '/assets/img/gallery/gallery-1.jpg',
 ]
 
+const retainedEnrichmentBySource = new Map((enrichmentBatchB.records || []).map((record) => [record.sourceUrl, record]))
+
 const localCourseSeeds = [...gssCourses, ...msbmCourses]
 const sourceSlug = (url) => url?.split('/').filter(Boolean).at(-1) || ''
 const universitySlugForPartner = (partner = '') => {
@@ -255,22 +296,18 @@ const verifiedCourses = verifiedCatalog.map((source, index) => {
   const slug = verifiedSlugOverrides[officialSlug] || officialSlug
   const local = localCourseSeeds.find((course) => course.slug === slug)
   const university = source.partner || local?.university || 'The Global School of Skills (GSS)'
-  const requiredSectionsChecked = Boolean(
-    source.modules?.length && source.entryRequirements?.length && source.accreditation?.length && source.sectionPresence?.details,
-  )
+  const evidenceVerified = source.ragProvenance?.coverage?.complete === true
   const lessonCount = source.modules?.reduce((total, module) => total + (module.lessons?.length || 0), 0) || 0
-  const moduleSummary = source.modules?.length
-    ? `${source.modules.length} source-listed curriculum sections and ${lessonCount} lesson or resource entries are included below.`
-    : 'The official page does not currently publish a curriculum list.'
 
-  return {
+  const sharedCourse = applySharedSourceSections({
     ...local,
     ...source,
     slug,
     title: source.title || local?.title,
     description: source.description || local?.description || `Official programme information for ${source.title}.`,
     longDescription: source.longDescription || local?.longDescription || source.description,
-    courseDetails: source.courseDetails || local?.courseDetails || moduleSummary,
+    courseDetails: source.courseDetails || local?.courseDetails || '',
+    courseDetailsStatus: source.courseDetails || local?.courseDetails ? 'recorded' : 'pending',
     duration: source.duration || local?.duration || 'Confirm with an advisor',
     mode: source.mode || local?.mode || 'Confirm with an advisor',
     fee: source.fee || local?.fee || 'Request fees',
@@ -284,29 +321,28 @@ const verifiedCourses = verifiedCatalog.map((source, index) => {
     image: local?.image || verifiedImages[index % verifiedImages.length],
     sourceUrl: source.sourceUrl,
     sourceVerified: true,
-    sourceCoverage: requiredSectionsChecked ? 'complete' : 'partial',
+    sourceCoverage: evidenceVerified ? 'complete' : 'partial',
     entry: source.entryRequirements?.length ? source.entryRequirements : local?.entry,
     accreditation: source.accreditation?.join(' ') || local?.accreditation,
     progression: source.progression || local?.progression,
+    progressionStatus: source.progressionStatus || local?.progressionStatus,
+    progressionReason: source.progressionReason || local?.progressionReason,
     workshops: source.workshop || local?.workshops,
     visa: source.visa || local?.visa,
-    library: source.library || local?.library || (source.sectionPresence?.library ? 'The official programme page includes online library and learning-resource access for enrolled learners.' : undefined),
+    library: source.library || local?.library,
     libraryMetric: source.libraryMetric || local?.libraryMetric,
     libraryMetricLabel: source.libraryMetricLabel || local?.libraryMetricLabel,
-    gettingStartedIntro: source.gettingStartedIntro || local?.gettingStartedIntro || (source.sectionPresence?.gettingStarted ? 'Complete the application, document review, offer, payment and enrolment steps through the learner portal.' : undefined),
-    gettingStarted: source.gettingStarted || local?.gettingStarted || (source.sectionPresence?.gettingStarted ? ['Create an account', 'Upload academic documents', 'Receive an admissions decision', 'Complete tuition payment', 'Attend lectures and live webinars', 'Submit assessments', 'Receive the programme award'] : undefined),
-    certificateDetails: source.certificateDetails || local?.certificateDetails || (source.sectionPresence?.certificate ? [['ph-certificate', 'Programme certificate', 'The official source includes a certificate section. Confirm the current award title, issuing institution and transcript format before enrolment.']] : undefined),
-    advantages: source.advantages || local?.advantages || (source.sectionPresence?.about ? [
-      ['ph-laptop', source.mode || 'Flexible study', `${source.mode || 'Flexible'} delivery is recorded on the official programme page.`],
-      ['ph-list-checks', 'Recorded curriculum', `${source.modules?.length || 0} curriculum sections are reproduced from the official listing.`],
-      ['ph-credit-card', 'Published tuition', `The official page lists a total tuition fee of ${source.fee}.`],
-    ] : undefined),
+    gettingStartedIntro: source.gettingStartedIntro || local?.gettingStartedIntro,
+    gettingStarted: source.gettingStarted || local?.gettingStarted,
+    certificateDetails: source.certificateDetails || local?.certificateDetails,
+    advantages: source.advantages || local?.advantages,
     modules: source.modules?.length ? source.modules : local?.modules,
     outcomes: source.outcomes || local?.outcomes,
     testimonials: source.testimonials || local?.testimonials,
     modulesIndicative: false,
     sourceLessonCount: lessonCount,
-  }
+  }, source)
+  return applyRetainedEnrichment(sharedCourse, retainedEnrichmentBySource.get(source.sourceUrl))
 })
 
 function inferSubjects(course) {
@@ -330,10 +366,26 @@ function normaliseUniversity(course) {
 
 const verifiedCourseSlugs = new Set(verifiedCourses.map((course) => course.slug))
 
+const msbmCardImages = {
+  doctorate: sourceImages['https://msbm.org.uk/images/banners/hero-img-3.png'],
+  masters: sourceImages['https://msbm.org.uk/images/banners/hero-img-2.png'],
+  professional: sourceImages['https://msbm.org.uk/images/banners/hero-img-1.png'],
+}
+
+function sourceCardImage(course) {
+  if (sourceCourseImages[course.slug]?.hero) return sourceCourseImages[course.slug].hero
+  if (course.categorySlug === 'doctorate-degree' || /doctor/i.test(course.level || '')) return msbmCardImages.doctorate
+  if (course.categorySlug === 'masters-degree' || /master|postgraduate/i.test(course.level || '')) return msbmCardImages.masters
+  return msbmCardImages.professional
+}
+
 export const courses = [...verifiedCourses, ...localCourseSeeds.filter((course) => !verifiedCourseSlugs.has(course.slug))]
+  .map((course) => applyPublishedRecord(course, publishedRecordFor(publishedCourses, course.slug)))
   .map(normaliseUniversity)
   .map((course) => ({
     ...course,
+    image: sourceCardImage(course) || course.image,
+    sourceImages: sourceCourseImages[course.slug],
     categorySlug: course.categorySlug || (course.level?.startsWith('Bachelor') ? 'bachelors-degree' : 'masters-degree'),
     subjects: inferSubjects(course),
   }))
@@ -412,13 +464,14 @@ function completeCourse(course) {
   if (!course) return course
   const hasRecordedModules = Boolean(course.modules?.length)
   const canShowIndicativeModules = !course.sourceUrl
-  return {
+  const completed = {
     ...course,
     sourceCoverage: course.sourceCoverage || (course.sourceUrl ? 'partial' : 'pending'),
     longDescription: course.longDescription || course.description,
     modules: hasRecordedModules ? course.modules : canShowIndicativeModules ? indicativeModules(course) : [],
     modulesIndicative: !hasRecordedModules && canShowIndicativeModules,
   }
+  return course.sourceUrl ? completed : applyOriginalGssSections(completed)
 }
 
 export const findCourse = (slug) => completeCourse(courses.find((course) => course.slug === slug))
@@ -429,10 +482,16 @@ export const getCountryCourse = (countrySlug, courseSlug) => {
   const course = findCourse(courseSlug)
   if (!country || !course) return undefined
   const pricing = country.pricingByCourse?.[course.slug]
+  const published = publishedRecordFor(publishedCourses, course.slug, countrySlug)
+  if (published) return { ...applyPublishedRecord(course, published), localCountry: country, locallyVerified: true }
   const locallyVerified = Boolean(pricing || country.availableCourseSlugs?.includes(course.slug))
   return {
     ...course,
     ...pricing,
+    sourceCoverage: 'partial',
+    ragProvenance: undefined,
+    sourceScope: countrySlug,
+    ...(course.detailSections ? { detailSections: { ...course.detailSections, tuition: { blocks: [] } } } : {}),
     fee: pricing?.fee || 'Confirm local fee',
     monthly: pricing?.monthly || '',
     localCountry: country,

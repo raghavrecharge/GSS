@@ -1,4 +1,4 @@
-.gss-crm { --crm-blue: var(--gss-blue, #15519d); --crm-accent: var(--gss-accent, #ffad01); --crm-ink: #17191d; --crm-muted: #586274; --crm-border: #dce2e9; --crm-soft: #f5f7fa; --crm-white: #fff; color: var(--crm-ink); font-family: var(--ma-font-1, inherit); font-size: 14px; line-height: 1.5; min-width: 0; }
+.gss-crm { --crm-blue: var(--gss-blue, #000000); --crm-accent: var(--gss-accent, #ffad01); --crm-ink: #17191d; --crm-muted: #586274; --crm-border: #dce2e9; --crm-soft: #f5f7fa; --crm-white: #fff; color: var(--crm-ink); font-family: var(--ma-font-1, inherit); font-size: 14px; line-height: 1.5; min-width: 0; }
 .gss-crm *, .gss-crm *::before, .gss-crm *::after { box-sizing: border-box; }
 .gss-crm h2, .gss-crm h3, .gss-crm h4, .gss-crm p, .gss-crm ul, .gss-crm ol, .gss-crm dl { margin: 0; }
 .gss-crm h2 { font-size: clamp(24px, 2.2vw, 32px); letter-spacing: -.035em; line-height: 1.2; }
@@ -163,7 +163,7 @@
 .gss-crm-compose > button { justify-self: start; }
 .gss-crm-intake-grid { display: grid; grid-template-columns: repeat(3,minmax(0,1fr)); gap: 18px; margin-bottom: 24px; }
 .gss-crm-intake-card { display: grid; gap: 11px; text-align: left; border: 1px solid var(--crm-border); border-radius: 14px; background: var(--crm-white); padding: 24px; color: var(--crm-ink); }
-.gss-crm-intake-card.is-selected { border-color: var(--crm-blue); box-shadow: 0 0 0 2px #15519d20; }
+.gss-crm-intake-card.is-selected { border-color: var(--crm-blue); box-shadow: 0 0 0 2px #00000020; }
 .gss-crm-intake-card > strong { font-size: 22px; }
 .gss-crm-intake-card > span:not(.gss-crm-eyebrow) { font-size: 13px; color: var(--crm-muted); }
 .gss-crm-intake-card meter { width: 100%; accent-color: var(--crm-blue); height: 8px; }

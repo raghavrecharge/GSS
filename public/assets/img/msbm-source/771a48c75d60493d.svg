@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!-- Uploaded to: SVG Repo, www.svgrepo.com, Generator: SVG Repo Mixer Tools -->
+<svg version="1.1" id="Layer_1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" 
+	 viewBox="0 0 512.009 512.009" xml:space="preserve">
+<rect x="252.004" style="fill:#999999;" width="8" height="186.06"/>
+<polygon style="fill:#E21B1B;" points="240.477,67.536 184.101,33.768 240.477,0 "/>
+<rect x="0.005" y="186.06" style="fill:#CCCCCC;" width="511.999" height="325.949"/>
+<rect x="62.085" y="234.396" style="fill:#FFFFFF;" width="100.683" height="98.002"/>
+<g>
+	<rect x="108.426" y="234.396" style="fill:#999999;" width="8" height="98.002"/>
+	<rect x="62.085" y="280.243" style="fill:#999999;" width="100.683" height="8"/>
+</g>
+<g>
+	<rect x="205.663" y="234.396" style="fill:#FFFFFF;" width="100.683" height="98.002"/>
+	<rect x="349.241" y="234.396" style="fill:#FFFFFF;" width="100.683" height="98.002"/>
+</g>
+<polyline points="205.661,512 205.661,396.808 306.349,396.808 306.349,512 "/>
+<g>
+	<rect x="252.004" y="234.396" style="fill:#999999;" width="8" height="98.002"/>
+	<rect x="205.663" y="280.243" style="fill:#999999;" width="100.683" height="8"/>
+	<rect x="395.582" y="234.396" style="fill:#999999;" width="8" height="98.002"/>
+	<rect x="349.241" y="280.243" style="fill:#999999;" width="100.683" height="8"/>
+</g>
+</svg>

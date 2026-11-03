@@ -3,6 +3,7 @@ import { Link, useNavigate, useParams } from 'react-router-dom'
 import { categories, countries, courses, findCountry, findCourse, findLocation, findUniversity, getCountryCourses, getCountryRegions, getLocationCourses, specializations, universities } from '../data/msbmCatalog.js'
 import { useCourseCatalogue } from '../data/courseApi.js'
 import { checkoutUrl } from './checkoutUtils.js'
+import { CourseRichContent, courseSection, hasCourseSection } from './CourseRichContent.jsx'
 
 export function CourseCard({ course, basePath = '/programmes' }) {
   const hasPreviousPrice = /^Was\s+/i.test(course.monthly || '')
@@ -173,22 +174,22 @@ export function CoursePage({ courseOverride }) {
   if (!resolvedCourse) return <MissingRecord />
   const courseData = resolvedCourse
   return <>
-    <section className="msbm-course-hero"><div className="container ma-container-1"><div className="msbm-course-hero__copy"><nav aria-label="Breadcrumb"><Link to={courseData.localLocation ? `/locations/${courseData.localLocation.slug}` : courseData.localCountry ? `/countries/${courseData.localCountry.slug}` : '/programmes'}>{courseData.localLocation?.name || courseData.localCountry?.name || 'Programmes'}</Link><i className="ph ph-caret-right" /><span>{courseData.level}</span></nav><span className="ma-sec-badge">{courseData.localLocation ? `Regional destination: ${courseData.localLocation.name}, ${courseData.localLocation.countryName}` : courseData.localCountry ? `Country destination: ${courseData.localCountry.name}` : courseData.universitySlug ? `In partnership with ${courseData.university}` : `Programme provider: ${courseData.university}`}</span><h1>{courseData.title}</h1><p>{courseData.description}</p><div className="msbm-course-hero__actions"><Link className="ma-pr-btn-1" to={checkoutUrl(courseData)}><span>Buy now</span><i className="ph ph-arrow-right" /></Link><Link className="ma-pr-btn-2" to="/contact"><span>Request information</span></Link></div></div><div className="msbm-course-hero__panel"><h2>Programme at a glance</h2><dl><div><dt>Duration</dt><dd>{courseData.duration}</dd></div><div><dt>Pedagogy</dt><dd>{courseData.mode}</dd></div><div><dt>{courseData.localCountry ? 'Local tuition' : 'Tuition fee'}</dt><dd>{courseData.fee}</dd></div>{courseData.monthly && <div><dt>{/^Was\s+/i.test(courseData.monthly) ? 'Previous fee' : 'Payment plan'}</dt><dd>{courseData.monthly.replace(/^Was\s+/i, '')}</dd></div>}{courseData.credits && <div><dt>Study credits</dt><dd>{courseData.credits}</dd></div>}{courseData.administrativeFee && !courseData.localCountry && <div><dt>Administrative fee</dt><dd>{courseData.administrativeFee}</dd></div>}</dl><Link className="ma-pr-btn-1 msbm-course-hero__panel-button" to={checkoutUrl(courseData)}><span>Continue to checkout</span><i className="ph ph-arrow-right" /></Link></div></div></section>
-    {courseData.longDescription && <CourseSectionNav />}
+    <section className="msbm-course-hero"><div className="container ma-container-1"><div className="msbm-course-hero__copy"><nav aria-label="Breadcrumb"><Link to={courseData.localLocation ? `/locations/${courseData.localLocation.slug}` : courseData.localCountry ? `/countries/${courseData.localCountry.slug}` : '/programmes'}>{courseData.localLocation?.name || courseData.localCountry?.name || 'Programmes'}</Link><i className="ph ph-caret-right" /><span>{courseData.level}</span></nav><span className="ma-sec-badge">{courseData.localLocation ? `Regional destination: ${courseData.localLocation.name}, ${courseData.localLocation.countryName}` : courseData.localCountry ? `Country destination: ${courseData.localCountry.name}` : courseData.universitySlug ? `In partnership with ${courseData.university}` : `Programme provider: ${courseData.university}`}</span><h1>{courseData.title}</h1><p>{courseData.description}</p><div className="msbm-course-hero__actions"><Link className="ma-pr-btn-1" to={checkoutUrl(courseData)}><span>Buy now</span><i className="ph ph-arrow-right" /></Link><Link className="ma-pr-btn-2" to="/contact"><span>Request information</span></Link></div></div><div className="msbm-course-hero__panel">{courseData.sourceImages?.hero && <img className="msbm-course-hero__source-image" src={courseData.sourceImages.hero} alt="" />}{courseData.sourceImages?.partners?.[0] && <img className="msbm-course-hero__partner-image" src={courseData.sourceImages.partners[0]} alt={`${courseData.university} partner`} />}<h2>Programme at a glance</h2><dl><div><dt>Duration</dt><dd>{courseData.duration}</dd></div><div><dt>Pedagogy</dt><dd>{courseData.mode}</dd></div><div><dt>{courseData.localCountry ? 'Local tuition' : 'Tuition fee'}</dt><dd>{courseData.fee}</dd></div>{courseData.monthly && <div><dt>{/^Was\s+/i.test(courseData.monthly) ? 'Previous fee' : 'Payment plan'}</dt><dd>{courseData.monthly.replace(/^Was\s+/i, '')}</dd></div>}{courseData.credits && <div><dt>Study credits</dt><dd>{courseData.credits}</dd></div>}{courseData.administrativeFee && !courseData.localCountry && <div><dt>Administrative fee</dt><dd>{courseData.administrativeFee}</dd></div>}</dl><Link className="ma-pr-btn-1 msbm-course-hero__panel-button" to={checkoutUrl(courseData)}><span>Continue to checkout</span><i className="ph ph-arrow-right" /></Link></div></div></section>
+    <CourseSectionNav />
     {courseData.localCountry && <CountryCourseNotice course={courseData} />}
     <CourseSourceStatus course={courseData} />
     <section className="msbm-course-overview" id="overview"><div className="container ma-container-1"><div><span className="ma-sec-badge">Programme overview</span><h2 className="ma-sec-title-1">Programme information</h2></div><div><p>{courseData.longDescription || courseData.description}</p>{courseData.universitySlug && <Link className="ma-link-1" to={`/universities/${courseData.universitySlug}`}>About {courseData.university} <i className="ph ph-arrow-right" /></Link>}</div></div></section>
-    {courseData.longDescription && <ProgrammeInformation course={courseData} />}
-    {courseData.longDescription && <TuitionPanel course={courseData} />}
-    {courseData.longDescription && <ProgrammeAdvantages course={courseData} />}
-    {courseData.longDescription && <ProgrammeLibrary course={courseData} />}
-    {courseData.outcomes && <CourseOutcomes course={courseData} />}
-    {courseData.longDescription && <LearningJourney course={courseData} />}
+    <ProgrammeInformation course={courseData} />
+    <TuitionPanel course={courseData} />
+    <ProgrammeAdvantages course={courseData} />
+    <ProgrammeLibrary course={courseData} />
+    <CourseOutcomes course={courseData} />
+    <LearningJourney course={courseData} />
     {courseData.entry && <EntryRequirements items={courseData.entry} />}
-    {courseData.modules?.length ? <CourseModules course={courseData} /> : <CourseCurriculumPending />}
-    {courseData.longDescription && <ProgrammeCredentials course={courseData} />}
-    {courseData.longDescription && <CourseTestimonials items={courseData.testimonials} />}
-    {courseData.longDescription && <ProgrammeTestimonials course={courseData} />}
+    {getCourseModules(courseData).length ? <CourseModules course={courseData} /> : <CourseCurriculumPending />}
+    <ProgrammeCredentials course={courseData} />
+    <CourseTestimonials course={courseData} />
+    <ProgrammeTestimonials course={courseData} />
   </>
 }
 
@@ -209,44 +210,47 @@ function CourseSectionNav() {
 }
 
 function ProgrammeInformation({ course }) {
+  const sectionValue = (sectionId) => sectionId === 'universityProgression' && course.progressionStatus === 'source_absent'
+    ? { status: 'source_absent', blocks: [], reason: course.progressionReason }
+    : courseSection(course, sectionId)
   const sections = [
-    ['details', 'Programme details', course.longDescription],
-    ['course-details', 'Course Details', course.courseDetails],
-    ['accreditation', 'Accreditation', course.accreditation],
-    ['university', 'University Progression', course.progression],
-    ['entry', 'Entry Requirements', course.entry?.join(' ')],
-    ['workshop', 'Workshops', course.workshops],
-    ['visa', 'Visa Requirements', course.visa],
+    ['details', 'Programme details', course.longDescription, 'programmeDetails'],
+    ['course-details', 'Course Details', /^\d+ source-listed curriculum sections and \d+ lesson or resource entries/i.test(course.courseDetails || '') ? '' : course.courseDetails, 'courseDetails'],
+    ['accreditation', 'Accreditation', course.accreditation, 'accreditation'],
+    ['university', 'University Progression', course.progression, 'universityProgression'],
+    ['entry', 'Entry Requirements', course.entry, 'entryRequirements'],
+    ['workshop', 'Workshops', course.workshops, 'workshops'],
+    ['visa', 'Visa Requirements', course.visa, 'visa'],
   ]
-  return <section className="msbm-programme-info"><div className="container ma-container-1"><ProgrammeSectionLinks sections={sections} /><div className="msbm-programme-info__content">{sections.map(([id, title, text]) => <article id={id} key={id}><span>{title}</span><h2>{title}</h2>{text ? <p>{text}</p> : <PendingDetail label={title} />}{id === 'accreditation' && text && <Link className="ma-link-1" to="/accreditation">View accreditation and partners <i className="ph ph-arrow-right" /></Link>}</article>)}</div></div></section>
+  return <section className="msbm-programme-info"><div className="container ma-container-1"><ProgrammeSectionLinks sections={sections} /><div className="msbm-programme-info__content">{sections.map(([id, title, text, sectionId]) => <article id={id} key={id}><span>{title}</span><h2>{title}</h2><CourseRichContent section={sectionValue(sectionId)} label={title} fallback={Array.isArray(text) ? text.length > 0 && <ul>{text.map((item, index) => <li key={index}>{item}</li>)}</ul> : text && <p>{text}</p>} />{id === 'accreditation' && text && <Link className="ma-link-1" to="/accreditation">View accreditation and partners <i className="ph ph-arrow-right" /></Link>}</article>)}</div></div></section>
 }
 
 function ProgrammeSectionLinks({ sections }) {
   const links = sections || [['details', 'Programme details'], ['course-details', 'Course Details'], ['accreditation', 'Accreditation'], ['university', 'University Progression'], ['entry', 'Entry Requirements'], ['workshop', 'Workshops'], ['visa', 'Visa Requirements']]
-  return <aside aria-label="Course overview sections">{links.map(([id, title]) => <a href={`#${id}`} key={id}>{title}</a>)}<a href="#modules">Modules</a></aside>
+  return <aside aria-label="Course overview sections">{links.map(([id, title]) => <a href={`#${id}`} key={id}>{title}</a>)}<a href="#outcomes">Learning outcomes</a><a href="#modules">Modules</a></aside>
 }
 
 function TuitionPanel({ course }) {
   const hasPreviousPrice = /^Was\s+/i.test(course.monthly || '')
-  return <section className="msbm-tuition-panel" id="tuition"><div className="container ma-container-1">{course.monthly && <div><span>{hasPreviousPrice ? 'Previous programme fee' : 'Interest-free instalments'}</span><strong>{course.monthly.replace(/^Was\s+/i, '')}</strong><small>{hasPreviousPrice ? 'Shown for price comparison' : `Pay across ${course.paymentMonths || course.duration.toLowerCase()}`}</small></div>}<div className="is-featured"><span>Current programme fee</span><strong>{course.fee}</strong><small>Confirm the current local fee before enrolment</small></div><div><span>Ready to invest in yourself?</span><Link className="ma-pr-btn-1" to={checkoutUrl(course)}><span>Buy now</span><i className="ph ph-arrow-right" /></Link></div></div></section>
+  return <section className="msbm-tuition-panel" id="tuition"><div className="container ma-container-1">{course.monthly && <div><span>{hasPreviousPrice ? 'Previous programme fee' : 'Interest-free instalments'}</span><strong>{course.monthly.replace(/^Was\s+/i, '')}</strong><small>{hasPreviousPrice ? 'Shown for price comparison' : `Pay across ${course.paymentMonths || course.duration?.toLowerCase() || 'the published payment plan'}`}</small></div>}<div className="is-featured"><span>Current programme fee</span><strong>{course.fee || 'Confirm current fee'}</strong><small>Confirm the current local fee before enrolment</small></div><div><span>Ready to invest in yourself?</span><Link className="ma-pr-btn-1" to={checkoutUrl(course)}><span>Buy now</span><i className="ph ph-arrow-right" /></Link></div>{hasCourseSection(course, 'tuition') && <div className="msbm-tuition-detail"><CourseRichContent section={courseSection(course, 'tuition')} label="Tuition" /></div>}</div></section>
 }
 
 function ProgrammeAdvantages({ course }) {
   const items = course.advantages || []
-  return <section className="msbm-advantages" id="about"><div className="container ma-container-1"><div className="msbm-centered-heading"><span className="ma-sec-badge">About this programme</span><h2 className="ma-sec-title-1">Programme experience and support</h2></div>{items.length ? <div className="msbm-advantages__grid">{items.map(([icon, title, description]) => <article key={title}><i className={`ph ${icon}`} /><h3>{title}</h3><p>{description}</p></article>)}</div> : <PendingDetail label="About and learning experience" />}</div></section>
+  return <section className="msbm-advantages" id="about"><div className="container ma-container-1"><div className="msbm-centered-heading"><span className="ma-sec-badge">About this programme</span><h2 className="ma-sec-title-1">Programme experience and support</h2></div><CourseRichContent section={courseSection(course, 'about')} label="About and learning experience" fallback={items.length > 0 && <div className="msbm-advantages__grid">{items.map(([icon, title, description]) => <article key={title}><i className={`ph ${icon}`} /><h3>{title}</h3><p>{description}</p></article>)}</div>} /></div></section>
 }
 
 function ProgrammeLibrary({ course }) {
-  return <section className="msbm-library" id="library"><div className="container ma-container-1"><div className="msbm-library__visual"><i className="ph ph-books" /><span>Online learning resources</span>{course.libraryMetric && <><strong>{course.libraryMetric}</strong><small>{course.libraryMetricLabel}</small></>}</div><div><span className="ma-sec-badge has-dark">Digital library</span><h2 className="ma-sec-title-1">Research beyond the course materials</h2>{course.library ? <p>{course.library}</p> : <PendingDetail label="Library access" />}<Link className="ma-pr-btn-1" to="/contact"><span>Request information</span><i className="ph ph-arrow-right" /></Link></div></div></section>
+  return <section className="msbm-library" id="library"><div className="container ma-container-1"><div className="msbm-library__visual"><i className="ph ph-books" /><span>Online learning resources</span>{course.libraryMetric && <><strong>{course.libraryMetric}</strong><small>{course.libraryMetricLabel}</small></>}</div><div><span className="ma-sec-badge has-dark">Digital library</span><h2 className="ma-sec-title-1">Research beyond the course materials</h2><CourseRichContent section={courseSection(course, 'library')} label="Library access" fallback={course.library && <p>{course.library}</p>} /><Link className="ma-pr-btn-1" to="/contact"><span>Request information</span><i className="ph ph-arrow-right" /></Link></div></div></section>
 }
 
 function CourseOutcomes({ course }) {
-  return <section className="msbm-detail-section msbm-detail-section--dark" id="outcomes"><div className="container ma-container-1"><div><span className="ma-sec-badge has-dark">What you’ll learn</span><h2 className="ma-sec-title-1">{course.outcomesTitle || 'Knowledge and skills for professional practice'}</h2><p>{course.outcomesIntro || 'Apply the programme learning outcomes to evidence-led professional and organisational decisions.'}</p></div><ul>{course.outcomes.map((outcome) => <li key={outcome}><i className="ph ph-check-circle" />{outcome}</li>)}</ul></div></section>
+  return <section className="msbm-detail-section msbm-detail-section--dark" id="outcomes"><div className="container ma-container-1"><div><span className="ma-sec-badge has-dark">What you’ll learn</span><h2 className="ma-sec-title-1">{course.outcomesTitle || 'Programme learning outcomes'}</h2>{course.outcomesIntro && <p>{course.outcomesIntro}</p>}</div><CourseRichContent section={courseSection(course, 'learningOutcomes')} label="Learning outcomes" fallback={course.outcomes?.length > 0 && <ul>{course.outcomes.map((outcome) => <li key={outcome}><i className="ph ph-check-circle" />{outcome}</li>)}</ul>} /></div></section>
 }
 
 function LearningJourney({ course }) {
   const steps = course.gettingStarted || []
-  return <section className="msbm-learning-journey" id="getting-started"><div className="container ma-container-1"><div><span className="ma-sec-badge">How to get started</span><h2 className="ma-sec-title-1">Your application and study journey</h2>{course.gettingStartedIntro ? <p>{course.gettingStartedIntro}</p> : <PendingDetail label="Application steps" />}</div>{steps.length > 0 && <ol>{steps.map((step, index) => { const item = typeof step === 'string' ? { title: step } : step; return <li key={`${index}-${item.title}`}><span>{index + 1}</span><div><strong>{item.title}</strong>{item.description && <p>{item.description}</p>}</div></li> })}</ol>}</div></section>
+  return <section className="msbm-learning-journey" id="getting-started"><div className="container ma-container-1"><div><span className="ma-sec-badge">How to get started</span><h2 className="ma-sec-title-1">Your application and study journey</h2>{course.gettingStartedIntro && <p>{course.gettingStartedIntro}</p>}</div><CourseRichContent section={courseSection(course, 'gettingStarted')} label="Application steps" fallback={steps.length > 0 && <ol>{steps.map((step, index) => { const item = typeof step === 'string' ? { title: step } : step; return <li key={`${index}-${item.title}`}><span>{index + 1}</span><div><strong>{item.title}</strong>{item.description && <p>{item.description}</p>}</div></li> })}</ol>} /></div></section>
 }
 
 function EntryRequirements({ items }) {
@@ -254,21 +258,22 @@ function EntryRequirements({ items }) {
 }
 
 function CourseModules({ course }) {
-  return <section className="msbm-modules" id="modules"><div className="container ma-container-1"><div className="ma-sec-title-wrap"><div className="left-content"><span className="ma-sec-badge">{course.modulesIndicative ? 'Indicative curriculum' : 'Recorded curriculum'}</span><h2 className="ma-sec-title-1">What you’ll <span className="title-mark">learn</span></h2></div><div className="right-content"><p className="ma-p-1">{course.modulesIndicative ? 'These themes are not the official module list. Request the current validated curriculum before enrolment.' : 'Available module titles, descriptions and resource counts are shown below. Unlisted lesson names are not inferred.'}</p></div></div><div className="msbm-module-layout"><ProgrammeSectionLinks /><div className="msbm-module-list">{course.modules.map((module, index) => { const item = normaliseModule(module); return <details key={`${index}-${item.title}`} open={index === 0}><summary><span>{String(index + 1).padStart(2, '0')}</span><strong>{item.title}</strong>{item.meta && <small>{item.meta}</small>}<i className="ph ph-plus" /></summary>{item.description && <p>{item.description}</p>}{item.lessons?.length > 0 && <ul>{item.lessons.map((lesson, lessonIndex) => <li key={`${lessonIndex}-${typeof lesson === 'string' ? lesson : lesson.title}`}><strong>{typeof lesson === 'string' ? lesson : lesson.title}</strong>{typeof lesson === 'object' && lesson.type && <small>{lesson.type}</small>}</li>)}</ul>}</details> })}</div></div></div></section>
+  const additionalNotes = getAdditionalModuleNotes(course)
+  return <section className="msbm-modules" id="modules"><div className="container ma-container-1"><div className="ma-sec-title-wrap"><div className="left-content"><span className="ma-sec-badge">{course.modulesIndicative ? 'Indicative curriculum' : 'Recorded curriculum'}</span><h2 className="ma-sec-title-1">What you’ll <span className="title-mark">learn</span></h2></div><div className="right-content"><p className="ma-p-1">{course.modulesIndicative ? 'These themes are not the official module list. Request the current validated curriculum before enrolment.' : 'Available module titles, descriptions and resource counts are shown below. Unlisted lesson names are not inferred.'}</p></div></div><div className="msbm-module-layout"><ProgrammeSectionLinks /><div className="msbm-module-list">{getCourseModules(course).map((module, index) => { const item = normaliseModule(module); return <details key={`${index}-${item.title}`} open={index === 0}><summary><span>{String(index + 1).padStart(2, '0')}</span><strong>{item.title}</strong>{item.meta && <small>{item.meta}</small>}<i className="ph ph-plus" /></summary>{item.meta && <p className="msbm-module-counts">{item.meta}</p>}{item.description && <p>{item.description}</p>}{item.lessons?.length > 0 && <ul>{item.lessons.map((lesson, lessonIndex) => { const entry = typeof lesson === 'string' ? { title: lesson } : lesson; return <li key={`${lessonIndex}-${entry.title}`}><div><strong>{entry.title}</strong>{entry.description && <p>{entry.description}</p>}</div>{entry.type && <small>{entry.type}</small>}</li> })}</ul>}</details> })}</div>{additionalNotes.length > 0 && <section className="msbm-module-notes" aria-labelledby="additional-module-objectives"><h3 id="additional-module-objectives">Additional module learning objectives</h3><ul>{additionalNotes.map((note, index) => <li key={`${index}-${note}`}>{note}</li>)}</ul></section>}</div></div></section>
 }
 
 function CourseCurriculumPending() {
-  return <section className="msbm-modules" id="modules"><div className="container ma-container-1"><div className="ma-sec-title-wrap"><div className="left-content"><span className="ma-sec-badge">Curriculum status</span><h2 className="ma-sec-title-1">Official module list <span className="title-mark">not published</span></h2></div><div className="right-content"><p className="ma-p-1">The linked official programme page does not currently expose a module curriculum. No replacement syllabus has been inferred.</p></div></div></div></section>
+  return <section className="msbm-modules" id="modules"><div className="container ma-container-1"><div className="ma-sec-title-wrap"><div className="left-content"><span className="ma-sec-badge">Curriculum status</span><h2 className="ma-sec-title-1">Official module list <span className="title-mark">pending verification</span></h2></div><div className="right-content"><p className="ma-p-1">The current official module curriculum has not yet been verified for this programme. Request the current curriculum before enrolment.</p></div></div></div></section>
 }
 
 function ProgrammeCredentials({ course }) {
   const items = course.certificateDetails || []
-  return <section className="msbm-credentials" id="certificate"><div className="container ma-container-1">{items.length ? items.map(([icon, title, text]) => <article key={title}><i className={`ph ${icon}`} /><h3>{title}</h3><p>{text}</p></article>) : <article><i className="ph ph-info" /><h3>Certificate information pending</h3><p>The current award, certificate and transcript details have not yet been source-verified for this programme.</p></article>}</div></section>
+  return <section className="msbm-credentials" id="certificate"><div className="container ma-container-1">{hasCourseSection(course, 'certificate') ? <CourseRichContent section={courseSection(course, 'certificate')} label="Certificate" /> : items.length ? items.map(([icon, title, text]) => <article key={title}><i className={`ph ${icon}`} /><h3>{title}</h3><p>{text}</p></article>) : <article><i className="ph ph-info" /><h3>Certificate information pending</h3><p>The current award, certificate and transcript details have not yet been source-verified for this programme.</p></article>}</div></section>
 }
 
-function CourseTestimonials({ items }) {
-  const reviews = items || []
-  return <section className="msbm-testimonials" id="testimonial"><div className="container ma-container-1"><div className="msbm-centered-heading"><span className="ma-sec-badge has-dark">Learner feedback</span><h2 className="ma-sec-title-1">Source-verified learner stories</h2></div>{reviews.length ? <div>{reviews.map(([name, review]) => <blockquote key={name}><p>“{review}”</p><footer>{name}<span>Programme learner</span></footer></blockquote>)}</div> : <PendingDetail label="Programme testimonials" />}</div></section>
+function CourseTestimonials({ course }) {
+  const reviews = course.testimonials || []
+  return <section className="msbm-testimonials" id="testimonial"><div className="container ma-container-1"><div className="msbm-centered-heading"><span className="ma-sec-badge has-dark">Learner feedback</span><h2 className="ma-sec-title-1">Learner stories</h2></div><CourseRichContent section={courseSection(course, 'testimonials')} label="Programme testimonials" fallback={reviews.length > 0 && <div>{reviews.map(([name, review]) => <blockquote key={name}><p>“{review}”</p><footer>{name}<span>Learner feedback</span></footer></blockquote>)}</div>} /></div></section>
 }
 
 function ProgrammeTestimonials({ course }) {
@@ -278,23 +283,27 @@ function ProgrammeTestimonials({ course }) {
 
 function EmptyCatalogue() { return <div className="msbm-empty"><h2>Programme information is being updated</h2><p>Contact an advisor for the current pathways available through this partner.</p><Link className="ma-pr-btn-1" to="/contact"><span>Speak to an advisor</span></Link></div> }
 function MissingRecord() { return <div className="msbm-empty msbm-empty--page"><h1>We couldn’t find that catalogue page</h1><Link className="ma-pr-btn-1" to="/programmes"><span>Browse programmes</span></Link></div> }
-function PendingDetail({ label }) { return <p><strong>{label} pending source verification.</strong> Request the current official information before making an enrolment decision.</p> }
 function CountryAvailabilityNotice({ country }) { return <div className="msbm-empty"><h2>Local catalogue verification in progress</h2><p>No programme has yet been individually verified for availability and pricing in {country.name}. Contact an advisor for the current local catalogue.</p><Link className="ma-pr-btn-1" to="/contact"><span>Confirm local availability</span></Link></div> }
-const verifiedModuleDescriptions = {
-  'STRATEGIC MANAGEMENT': 'Develop critical-thinking skills to evaluate and implement strategic frameworks that support organisational growth and resilience.',
-  'STRATEGIC LEADERSHIP': 'Assess and implement leadership strategies that drive innovation and foster long-term organisational success in dynamic markets.',
-  'STRATEGIC HUMAN RESOURCE MANAGEMENT': 'Analyse human-resource strategies that align workforce management with organisational goals and enhance employee engagement.',
-  'STRATEGIC FINANCIAL MANAGEMENT': 'Apply financial tools to optimise investment decisions, manage risk and support long-term financial stability.',
-  'STRATEGIC MARKETING': 'Create marketing strategies that use market trends, customer insight and innovative approaches to achieve competitive advantage.',
-  'ADVANCED BUSINESS RESEARCH METHODS': 'Use advanced research methodologies to address complex business problems and support evidence-based decision-making.',
-  'BUSINESS MANAGEMENT': 'Build a comprehensive understanding of planning, organising, leading and controlling organisational resources in dynamic business environments.',
-  'ORGANISATIONAL THEORY': 'Explore the frameworks that shape organisational design and examine how structure, culture and systems affect performance.',
-  'ORGANISATIONAL BEHAVIOUR': 'Examine the psychological and social factors that influence individuals and groups, including leadership, communication and conflict resolution.',
-  'INNOVATION AND ENTREPRENEURSHIP': 'Explore idea generation, market analysis and business-development frameworks for launching and managing innovative ventures.',
-  'THESIS IN EXECUTIVE MASTER OF BUSINESS ADMINISTRATION': 'Conduct in-depth research on a strategic business topic and apply advanced management concepts to a real organisational challenge.',
+function getCourseModules(course) {
+  const section = courseSection(course, 'modules')
+  return section?.modules || section?.blocks?.filter((block) => block.type === 'module').map((block) => block.module).filter(Boolean) || course.modules || []
+}
+function getAdditionalModuleNotes(course) {
+  const section = courseSection(course, 'modules')
+  const rendered = getCourseModules(course).map((module) => {
+    const item = normaliseModule(module)
+    return [item.title, item.description, ...(item.lessons || []).flatMap((lesson) => {
+      const entry = typeof lesson === 'string' ? { title: lesson } : lesson
+      return [entry.title, entry.description]
+    })].filter(Boolean).join(' ').replace(/\s+/g, ' ').trim().toLowerCase()
+  }).join(' ')
+  return (section?.blocks || [])
+    .filter((block) => block.type === 'li' && block.text)
+    .map((block) => block.text.replace(/\s+/g, ' ').trim())
+    .filter((text, index, all) => text && !rendered.includes(text.toLowerCase()) && all.indexOf(text) === index)
 }
 function normaliseModule(module) {
   if (Array.isArray(module)) return { title: module[0], description: module[1], meta: module[2], lessons: module[3] || [] }
   const counts = [module.lectures ? `${module.lectures} lecture${module.lectures === 1 ? '' : 's'}` : '', module.quizzes ? `${module.quizzes} quiz${module.quizzes === 1 ? '' : 'zes'}` : ''].filter(Boolean).join(' · ')
-  return { ...module, description: module.description || module.summary || verifiedModuleDescriptions[module.title], meta: module.meta || counts, lessons: module.lessons || [] }
+  return { ...module, description: module.description || module.summary, meta: module.meta || counts, lessons: module.lessons || [] }
 }
