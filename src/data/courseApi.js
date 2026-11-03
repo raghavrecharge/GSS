@@ -26,6 +26,19 @@ export function useCourseCatalogue() {
   return { courses, source }
 }
 
+// Light index entries carry card data only; full records (verified catalogue, database payloads,
+// static detail files) always include entry requirements, a curriculum or course details.
+const hasFullDetail = (course) => Boolean(course?.entry?.length || course?.modules?.length || course?.courseDetails)
+
+// Programmes outside the bundled verified set ship as a light index entry plus a static
+// detail file under /data/programmes/<slug>.json. Merge that file in when the record
+// is still light (database unavailable, or the catalogue listing only returned summaries).
+export async function loadStaticDetail(course, signal) {
+  if (!course?.detailPath || hasFullDetail(course)) return course
+  const detail = await readJson(course.detailPath, signal)
+  return { ...course, ...detail }
+}
+
 export function useCourseRecord(slug) {
   const fallback = findCourse(slug)
   const [result, setResult] = useState(() => ({
@@ -40,8 +53,13 @@ export function useCourseRecord(slug) {
     const controller = new AbortController()
     const nextFallback = catalogueCache?.find(item => item.slug === slug) || findCourse(slug) || null
     readJson(`${API_ROOT}/${encodeURIComponent(slug)}`, controller.signal)
-      .then(payload => setResult({ slug, course: payload.data || nextFallback, loading: false }))
-      .catch(() => { if (!controller.signal.aborted) setResult({ slug, course: nextFallback, loading: false }) })
+      .then(payload => payload.data || null)
+      .catch(() => null)
+      .then(async (record) => {
+        let resolved = record || nextFallback
+        try { resolved = await loadStaticDetail(resolved, controller.signal) } catch { /* keep the light record */ }
+        if (!controller.signal.aborted) setResult({ slug, course: resolved, loading: false })
+      })
     return () => controller.abort()
   }, [slug])
   return { course, loading }

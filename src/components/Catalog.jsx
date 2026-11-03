@@ -35,8 +35,17 @@ export function CourseCard({ course, basePath = '/programmes' }) {
   )
 }
 
+const GRID_PAGE_SIZE = 48
+
 export function CourseGrid({ items = courses, basePath = '/programmes' }) {
-  return <div className="msbm-course-grid">{items.map((course) => <CourseCard key={course.slug} course={course} basePath={basePath} />)}</div>
+  const [visible, setVisible] = useState(GRID_PAGE_SIZE)
+  const [pagedItems, setPagedItems] = useState(items)
+  if (pagedItems !== items) { setPagedItems(items); setVisible(GRID_PAGE_SIZE) }
+  const shown = items.length > GRID_PAGE_SIZE ? items.slice(0, visible) : items
+  return <>
+    <div className="msbm-course-grid">{shown.map((course) => <CourseCard key={course.slug} course={course} basePath={basePath} />)}</div>
+    {shown.length < items.length && <div className="msbm-course-grid__more"><p aria-live="polite">Showing {shown.length} of {items.length} programmes</p><button type="button" className="ma-pr-btn-2" onClick={() => setVisible((count) => count + GRID_PAGE_SIZE)}><span>Load more programmes</span><i className="ph ph-arrow-down" aria-hidden="true" /></button></div>}
+  </>
 }
 
 export function PopularCourses() {
@@ -61,7 +70,22 @@ export function PageIntro({ eyebrow, title, description, parent = 'Home' }) {
 
 export function ProgrammesPage() {
   const { courses: catalogueCourses, source } = useCourseCatalogue()
-  return <><PageIntro eyebrow="Programmes" title="Find the right programme for your ambition" description="Browse flexible degree programmes, executive education, diplomas and professional courses." /><BrowseLinks /><section className="msbm-catalog-section"><div className="container ma-container-1" data-catalogue-source={source}><CourseGrid items={catalogueCourses} /></div></section></>
+  const [query, setQuery] = useState('')
+  const [categorySlug, setCategorySlug] = useState('')
+  const deferredQuery = useDeferredValue(query)
+  const filtered = useMemo(() => {
+    const needle = deferredQuery.trim().toLowerCase()
+    return catalogueCourses.filter((course) => (!categorySlug || course.categorySlug === categorySlug)
+      && (!needle || `${course.title} ${course.description} ${course.university}`.toLowerCase().includes(needle)))
+  }, [catalogueCourses, deferredQuery, categorySlug])
+  return <><PageIntro eyebrow="Programmes" title="Find the right programme for your ambition" description="Browse flexible degree programmes, executive education, diplomas and professional courses." /><BrowseLinks /><section className="msbm-catalog-section"><div className="container ma-container-1" data-catalogue-source={source}>
+    <form className="msbm-catalogue-filters" role="search" onSubmit={(event) => event.preventDefault()}>
+      <div><label htmlFor="programme-search">Search programmes</label><input id="programme-search" type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Search by title, subject or partner" autoComplete="off" /></div>
+      <div><label htmlFor="programme-category">Category</label><select id="programme-category" value={categorySlug} onChange={(event) => setCategorySlug(event.target.value)}><option value="">All categories</option>{categories.map((category) => <option value={category.slug} key={category.slug}>{category.name}</option>)}</select></div>
+      <p aria-live="polite">{filtered.length === 1 ? '1 programme' : `${filtered.length} programmes`}</p>
+    </form>
+    {filtered.length ? <CourseGrid items={filtered} /> : <EmptyCatalogue />}
+  </div></section></>
 }
 
 function BrowseLinks() {

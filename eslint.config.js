@@ -4,9 +4,16 @@ import reactHooks from 'eslint-plugin-react-hooks'
 import reactRefresh from 'eslint-plugin-react-refresh'
 
 export default [
-  { ignores: ['dist', 'src/content/generated/**'] },
+  { ignores: ['dist', 'artifacts/**', 'src/content/generated/**'] },
   js.configs.recommended,
   reactHooks.configs.flat.recommended,
+  {
+    files: ['scripts/**/*.mjs'],
+    rules: { 'no-redeclare': ['error', { builtinGlobals: false }] },
+    languageOptions: {
+      globals: { ...globals.node, ...globals.browser },
+    },
+  },
   {
     files: ['scripts/**/*.cjs'],
     languageOptions: {
