@@ -1,0 +1,779 @@
+[
+  {
+    "accreditation": "All GSS courses are accredited by the relevant partners and awarding bodies. Please refer to GSS accreditation in about us for more details.",
+    "adminFee": "£ 1,750",
+    "categorySlug": "masters-degree",
+    "description": "The EMBA equips professionals with the tools to navigate dynamic markets and foster competitive advantage. Through strategic frameworks and leadership development, participants will enhance their ability to inspire teams, optimize resources, and implement effective organizational practices. The program emphasizes innovation, financial acumen, and data-driven solutions to address complex business challenges. Additionally, participants will refine their understanding of human behavior and organizational structures to drive operational efficiency and collaboration.",
+    "longDescription": "The Executive Master of Business Administration equips professionals with the tools to navigate dynamic markets and foster competitive advantage. Through strategic frameworks and leadership development, participants enhance their ability to inspire teams, optimise resources and implement effective organisational practices. The programme emphasises innovation, financial acumen and data-driven solutions to address complex business challenges. Participants also refine their understanding of human behaviour and organisational structures to drive operational efficiency and collaboration. The curriculum consists of at least 72 ECTS credits of postgraduate study in a modular format: 10 required modules worth 60 ECTS credits plus a final thesis or dissertation worth 12 ECTS credits, or two additional 6-credit modules focused on a specific field or industry of management.",
+    "courseDetails": "This programme integrates strategic management, leadership, financial planning and marketing to foster organisational excellence. Participants explore organisational theory, behavioural insights and entrepreneurial innovation. Combining practical and theoretical approaches, the EMBA prepares leaders to adapt to global challenges and create impactful solutions. Graduates are equipped to lead teams, manage resources and drive sustainable growth.",
+    "outcomes": [
+      "Assess and implement strategic frameworks that ensure organisational competitiveness and adaptability in changing markets.",
+      "Develop leadership approaches that foster innovation, align team efforts and drive long-term organisational success.",
+      "Analyse human-resource policies and practices to foster employee engagement and align people with organisational goals.",
+      "Apply strategic financial-planning techniques to optimise investment and manage organisational resources.",
+      "Design effective marketing strategies that leverage market trends and consumer insights to build competitive advantage.",
+      "Use advanced research techniques to investigate business challenges and create data-informed solutions.",
+      "Analyse and implement core management principles to enhance organisational performance and competitiveness.",
+      "Evaluate organisational structures and processes to improve efficiency and adaptability.",
+      "Analyse human behaviour within organisations to foster teamwork, motivation and a positive work environment.",
+      "Develop creative and entrepreneurial strategies that drive innovation and sustainable business ventures."
+    ],
+    "progression": "The official programme listing does not publish a separate university-progression route for this EMBA. Applicants should confirm any current progression or top-up arrangement with a GSS programme adviser before enrolment.",
+    "library": "Enrolled learners receive 24/7 access to the online learning-resource collection, including millions of articles and journals that support independent study and research beyond the core course materials.",
+    "libraryMetric": "31,000,000+",
+    "libraryMetricLabel": "articles and journals",
+    "gettingStartedIntro": "The programme follows a seven-step admissions and study journey, from creating your learner account through receiving the final award.",
+    "gettingStarted": [
+      {
+        "title": "Create a free account",
+        "description": "Register on the online learning platform and complete the initial enquiry form."
+      },
+      {
+        "title": "Upload your documents",
+        "description": "Provide the academic credentials and supporting evidence requested for admission."
+      },
+      {
+        "title": "Receive a conditional offer",
+        "description": "The admissions team reviews the application and confirms the conditions of enrolment."
+      },
+      {
+        "title": "Make your tuition payment",
+        "description": "Pay the tuition within the stated time frame using the selected payment option."
+      },
+      {
+        "title": "Attend lectures and live webinars",
+        "description": "Access lectures through the student portal and join scheduled webinar classes."
+      },
+      {
+        "title": "Complete assignments and assessments",
+        "description": "Submit quizzes and assignment work through the student portal."
+      },
+      {
+        "title": "Receive your degree",
+        "description": "Complete the academic requirements and receive the programme award and supporting certification."
+      }
+    ],
+    "certificateDetails": [
+      [
+        "ph-certificate",
+        "Receive your degree",
+        "Receive the programme award and supporting certificate after successfully completing the academic requirements."
+      ],
+      [
+        "ph-briefcase",
+        "Learn practical business modules",
+        "Apply strategic leadership, financial, marketing and people-management knowledge to organisational challenges."
+      ],
+      [
+        "ph-laptop",
+        "Study while you work",
+        "Complete the blended programme without necessarily leaving your job or relocating from your home country."
+      ]
+    ],
+    "advantages": [
+      [
+        "ph-seal-check",
+        "Accredited degree pathway",
+        "Study an accredited online EMBA through the GSS academic partnership."
+      ],
+      [
+        "ph-wallet",
+        "Flexible fees",
+        "Use the published instalment structure and confirm available financial support with an adviser."
+      ],
+      [
+        "ph-list-checks",
+        "Assignment-based learning",
+        "Modules are assessed through submitted assignments and other recorded assessments."
+      ],
+      [
+        "ph-credit-card",
+        "Easy payment structure",
+        "Arrange payment across the published 18-month instalment period."
+      ],
+      [
+        "ph-student",
+        "Graduation opportunity",
+        "Eligible graduates may request current information about available graduation arrangements."
+      ],
+      [
+        "ph-medal",
+        "Dual-qualification pathway",
+        "The source describes a degree pathway supported by a postgraduate diploma in strategic management and leadership."
+      ]
+    ],
+    "testimonials": [
+      [
+        "José P.",
+        "Very simple and helpful."
+      ],
+      [
+        "Awil I.",
+        "I’m happy to complete this course with GSS. The programme added value to my knowledge and career."
+      ],
+      [
+        "Tatenda Z.",
+        "It’s very helpful and important in understanding stress-related information in the workplace."
+      ]
+    ],
+    "duration": "18 Months",
+    "entryRequirements": [
+      "You are required to hold at minimum a recognised bachelor’s degree with a minimum overall score of 55% (GPA 2.0 on a 4.0 point scale) or higher.",
+      "In some instances, you may also require relevant work experience and/or research experience. If applicable, you may demonstrate this through the submission of a CV, portfolio, and/or a personal statement.",
+      "English-language proficiency must be demonstrated through one of the accepted tests unless an exemption applies.",
+      "IELTS: overall score of 5.5 or higher.",
+      "TOEFL: iBT 58+, PBT 490+ or CBT 167+.",
+      "TOEIC: overall score of 555 or higher.",
+      "PTE: overall score of 50 or higher.",
+      "Duolingo English Test: overall score of 90 or higher.",
+      "The English test may be waived for native English speakers, applicants whose high-school or IB education was completed in English, applicants whose undergraduate or graduate study was completed in English, or applicants with two years of work experience in an organisation where English is the primary language of communication."
+    ],
+    "fee": "£ 3,150",
+    "mode": "Blended",
+    "modules": [
+      {
+        "lectures": 8,
+        "lessons": [
+          {
+            "title": "Navigating the GSS Study Portal",
+            "type": "Video"
+          },
+          {
+            "title": "Course Structure and Guidelines",
+            "type": "Video"
+          },
+          {
+            "title": "Interacting with Lectures/Learning Components",
+            "type": "Video"
+          },
+          {
+            "title": "VIDEO - How to Avoid Plagiarism in Your Writing",
+            "type": "Video"
+          },
+          {
+            "title": "Harvard Referencing Style Guide",
+            "type": "Video"
+          },
+          {
+            "title": "How to Summarise - Assignment Guide",
+            "type": "Download"
+          },
+          {
+            "title": "Summarising, Paraphrasing, Quotation for your Assignment",
+            "type": "Download"
+          },
+          {
+            "title": "Official Title Page",
+            "type": "Download"
+          }
+        ],
+        "quizzes": 0,
+        "summary": "",
+        "title": "ASSIGNMENT & STUDY GUIDELINES"
+      },
+      {
+        "lectures": 18,
+        "lessons": [
+          {
+            "title": "CASE STUDY - Strategic Management Approach by TESCO",
+            "type": "Video"
+          },
+          {
+            "title": "Analysing Business Environment and its Impact on Strategic Decision Making",
+            "type": "Lecture"
+          },
+          {
+            "title": "Understanding the External Business Environment Dynamics",
+            "type": "Lecture"
+          },
+          {
+            "title": "Understanding The Internal Business Environment Dynamics",
+            "type": "Lecture"
+          },
+          {
+            "title": "CASE STUDY - Staying ahead in a competitive environment",
+            "type": "Download"
+          },
+          {
+            "title": "CASE STUDY - McDonald's strategic partnership for innovation as competitive advantage",
+            "type": "Video"
+          },
+          {
+            "title": "Understanding Market Situational Analysis and Organisational Position Measurement",
+            "type": "Lecture"
+          },
+          {
+            "title": "Analysing The Effects Of Exiting Plans On Organisation",
+            "type": "Lecture"
+          },
+          {
+            "title": "Understanding Mandatory Competency & Competitive Advantage of An Organisation",
+            "type": "Lecture"
+          },
+          {
+            "title": "Understanding The Relationship Between Corporate, Business & Operational Strategies",
+            "type": "Lecture"
+          },
+          {
+            "title": "Understanding Strategic Models & Tools",
+            "type": "Lecture"
+          },
+          {
+            "title": "Analysing and deciding on the strategic options",
+            "type": "Lecture"
+          },
+          {
+            "title": "Developing Appropriate Vision, Mission & Strategic Goals For An Organisation",
+            "type": "Lecture"
+          },
+          {
+            "title": "Developing An Agreed Strategy Plan For New Action Plan",
+            "type": "Lecture"
+          },
+          {
+            "title": "Proposing an Effective Structure For Building Efficient Relationships With Stakeholders",
+            "type": "Lecture"
+          },
+          {
+            "title": "CASE STUDY - Ethics and CSR at Honda",
+            "type": "Download"
+          },
+          {
+            "title": "Understanding organisational strategic change management",
+            "type": "Lecture"
+          },
+          {
+            "title": "Implementing Strategic Plan",
+            "type": "Lecture"
+          },
+          {
+            "title": "Strategic Management",
+            "type": "Quiz"
+          }
+        ],
+        "quizzes": 1,
+        "summary": "",
+        "title": "STRATEGIC MANAGEMENT"
+      },
+      {
+        "lectures": 4,
+        "lessons": [
+          {
+            "title": "Understanding the Principles, Concepts, and Approaches to Leadership",
+            "type": "Lecture"
+          },
+          {
+            "title": "Understanding Leadership Influences: Individual, Team and The Organisation",
+            "type": "Lecture"
+          },
+          {
+            "title": "Leadership and organisational performance",
+            "type": "Lecture"
+          },
+          {
+            "title": "Ethical Decision Making And Organisational Value",
+            "type": "Lecture"
+          },
+          {
+            "title": "Strategic Leadership",
+            "type": "Quiz"
+          }
+        ],
+        "quizzes": 1,
+        "summary": "",
+        "title": "STRATEGIC LEADERSHIP"
+      },
+      {
+        "lectures": 20,
+        "lessons": [
+          {
+            "title": "VIDEO - Human Resource Management Today - An Overview",
+            "type": "Video"
+          },
+          {
+            "title": "Understanding the role of human resource management",
+            "type": "Lecture"
+          },
+          {
+            "title": "Role of Human Resource Management Strategy in an Organisation",
+            "type": "Lecture"
+          },
+          {
+            "title": "Contributions of HRM",
+            "type": "Lecture"
+          },
+          {
+            "title": "Business Dynamics Concerning The Human Resource Strategy",
+            "type": "Lecture"
+          },
+          {
+            "title": "Case Study - Real-time, authentic employee voice feedback",
+            "type": "Video"
+          },
+          {
+            "title": "Determining Human Resource Requirements",
+            "type": "Lecture"
+          },
+          {
+            "title": "Fundamentals Of Human Resource Plan",
+            "type": "Lecture"
+          },
+          {
+            "title": "Legal And Ethical Requirements Of Human Resource Policies",
+            "type": "Lecture"
+          },
+          {
+            "title": "Human Resource Management And Organisational Strategy, Structure And Culture",
+            "type": "Lecture"
+          },
+          {
+            "title": "Effective Monitoring Of Human Resource Management Activities",
+            "type": "Lecture"
+          },
+          {
+            "title": "People Development and Human Resource Management",
+            "type": "Lecture"
+          },
+          {
+            "title": "Case Study - Answering the Phone (Training and Development)",
+            "type": "Download"
+          },
+          {
+            "title": "Developing Human Resource Management, Recruitment and Selection",
+            "type": "Lecture"
+          },
+          {
+            "title": "Case Study: Solution for Recruiting Hard-to-Fill Positions",
+            "type": "Video"
+          },
+          {
+            "title": "Employee Retention Concepts, Tools and Strategies",
+            "type": "Lecture"
+          },
+          {
+            "title": "Organisational Theory Underpinning Human Resource Management",
+            "type": "Lecture"
+          },
+          {
+            "title": "Leadership Practices In An Organisational Context",
+            "type": "Lecture"
+          },
+          {
+            "title": "Strategic Leadership And Organisational Development",
+            "type": "Lecture"
+          },
+          {
+            "title": "Exploring Purpose Of Leadership And Evaluating Human Resource Strategy",
+            "type": "Lecture"
+          },
+          {
+            "title": "Strategic Human Resource Management",
+            "type": "Quiz"
+          }
+        ],
+        "quizzes": 1,
+        "summary": "",
+        "title": "STRATEGIC HUMAN RESOURCE MANAGEMENT"
+      },
+      {
+        "lectures": 12,
+        "lessons": [
+          {
+            "title": "Understanding cost system and its classification",
+            "type": "Lecture"
+          },
+          {
+            "title": "Concepts and Tools of Cost Accounting",
+            "type": "Lecture"
+          },
+          {
+            "title": "CASE STUDY - Activity based costing in Xu Ji Electric Co. Ltd",
+            "type": "Download"
+          },
+          {
+            "title": "Understanding the Concept and Classification of Sources of Funds",
+            "type": "Lecture"
+          },
+          {
+            "title": "CASE STUDY - Global Fund Raising Strategies",
+            "type": "Video"
+          },
+          {
+            "title": "Understanding The Financial Performance Analysis",
+            "type": "Lecture"
+          },
+          {
+            "title": "CASE STUDY - Financial Analysis Reporting",
+            "type": "Download"
+          },
+          {
+            "title": "Understanding the Financial Ratios and its Various Types",
+            "type": "Lecture"
+          },
+          {
+            "title": "Understanding The Budgetary Concepts and Approaches",
+            "type": "Lecture"
+          },
+          {
+            "title": "CASE STUDY - How Maritz Accomplished a 40% IT Budget Reduction",
+            "type": "Video"
+          },
+          {
+            "title": "Understanding the Working Capital Management",
+            "type": "Lecture"
+          },
+          {
+            "title": "Understanding the Investment Appraisal Techniques",
+            "type": "Lecture"
+          },
+          {
+            "title": "Strategic Financial Management",
+            "type": "Quiz"
+          }
+        ],
+        "quizzes": 1,
+        "summary": "",
+        "title": "STRATEGIC FINANCIAL MANAGEMENT"
+      },
+      {
+        "lectures": 18,
+        "lessons": [
+          {
+            "title": "CASE STUDY - Strategic Management Approach by TESCO",
+            "type": "Video"
+          },
+          {
+            "title": "Analysing Business Environment and its Impact on Strategic Decision Making",
+            "type": "Lecture"
+          },
+          {
+            "title": "Understanding the External Business Environment Dynamics",
+            "type": "Lecture"
+          },
+          {
+            "title": "Understanding The Internal Business Environment Dynamics",
+            "type": "Lecture"
+          },
+          {
+            "title": "CASE STUDY - Staying ahead in a competitive environment",
+            "type": "Download"
+          },
+          {
+            "title": "CASE STUDY - McDonald's strategic partnership for innovation as competitive advantage",
+            "type": "Video"
+          },
+          {
+            "title": "Understanding Market Situational Analysis and Organisational Position Measurement",
+            "type": "Lecture"
+          },
+          {
+            "title": "Analysing The Effects Of Exiting Plans On Organisation",
+            "type": "Lecture"
+          },
+          {
+            "title": "Understanding Mandatory Competency & Competitive Advantage of An Organisation",
+            "type": "Lecture"
+          },
+          {
+            "title": "Understanding The Relationship Between Corporate, Business & Operational Strategies",
+            "type": "Lecture"
+          },
+          {
+            "title": "Understanding Strategic Models & Tools",
+            "type": "Lecture"
+          },
+          {
+            "title": "Analysing and deciding on the strategic options",
+            "type": "Lecture"
+          },
+          {
+            "title": "Developing Appropriate Vision, Mission & Strategic Goals For An Organisation",
+            "type": "Lecture"
+          },
+          {
+            "title": "Developing An Agreed Strategy Plan For New Action Plan",
+            "type": "Lecture"
+          },
+          {
+            "title": "Proposing an Effective Structure For Building Efficient Relationships With Stakeholders",
+            "type": "Lecture"
+          },
+          {
+            "title": "CASE STUDY - Ethics and CSR at Honda",
+            "type": "Download"
+          },
+          {
+            "title": "Understanding organisational strategic change management",
+            "type": "Lecture"
+          },
+          {
+            "title": "Implementing Strategic Plan",
+            "type": "Lecture"
+          },
+          {
+            "title": "Strategic Management",
+            "type": "Quiz"
+          }
+        ],
+        "quizzes": 1,
+        "summary": "",
+        "title": "STRATEGIC MARKETING"
+      },
+      {
+        "lectures": 14,
+        "lessons": [
+          {
+            "title": "Research Philosophies and Principles",
+            "type": "Lecture"
+          },
+          {
+            "title": "VIDEO - Overview of the Research Onion",
+            "type": "Video"
+          },
+          {
+            "title": "Selecting a Research Topic",
+            "type": "Lecture"
+          },
+          {
+            "title": "Searching and Reviewing Literature",
+            "type": "Lecture"
+          },
+          {
+            "title": "VIDEO - How to write a Literature Review",
+            "type": "Video"
+          },
+          {
+            "title": "Developing conceptual Framework",
+            "type": "Lecture"
+          },
+          {
+            "title": "PDF - How to create a Conceptual Framework",
+            "type": "Download"
+          },
+          {
+            "title": "Research Strategy and Design",
+            "type": "Lecture"
+          },
+          {
+            "title": "Research Methods I",
+            "type": "Lecture"
+          },
+          {
+            "title": "Research Methods II",
+            "type": "Lecture"
+          },
+          {
+            "title": "PDF - How Observation is Used As a Research Method",
+            "type": "Download"
+          },
+          {
+            "title": "Research Methods: Data Analysis",
+            "type": "Lecture"
+          },
+          {
+            "title": "Research Proposal and Writing Up",
+            "type": "Lecture"
+          },
+          {
+            "title": "Research Ethics",
+            "type": "Lecture"
+          },
+          {
+            "title": "Advanced Business Research Methods",
+            "type": "Quiz"
+          }
+        ],
+        "quizzes": 1,
+        "summary": "",
+        "title": "ADVANCED BUSINESS RESEARCH METHODS"
+      },
+      {
+        "lectures": 5,
+        "lessons": [
+          {
+            "title": "Understanding Entrepreneurship and Business Structure",
+            "type": "Lecture"
+          },
+          {
+            "title": "Understanding Business Functions 1",
+            "type": "Lecture"
+          },
+          {
+            "title": "Understanding Business Functions 2",
+            "type": "Lecture"
+          },
+          {
+            "title": "Understanding Business Environment and Relationships",
+            "type": "Lecture"
+          },
+          {
+            "title": "Planning for and Operating a Business",
+            "type": "Lecture"
+          },
+          {
+            "title": "Business Management",
+            "type": "Quiz"
+          }
+        ],
+        "quizzes": 1,
+        "summary": "",
+        "title": "BUSINESS MANAGEMENT"
+      },
+      {
+        "lectures": 5,
+        "lessons": [
+          {
+            "title": "Organisational Frameworks and Perspectives",
+            "type": "Lecture"
+          },
+          {
+            "title": "Organisational Structure and Design",
+            "type": "Lecture"
+          },
+          {
+            "title": "Corporate Work Environment",
+            "type": "Lecture"
+          },
+          {
+            "title": "Organisational Power and Politics Framework",
+            "type": "Lecture"
+          },
+          {
+            "title": "Organisational Behaviour Culture & Values",
+            "type": "Lecture"
+          },
+          {
+            "title": "Organizational Theory",
+            "type": "Quiz"
+          }
+        ],
+        "quizzes": 1,
+        "summary": "",
+        "title": "ORGANISATIONAL THEORY"
+      },
+      {
+        "lectures": 5,
+        "lessons": [
+          {
+            "title": "Understanding Leadership Processes",
+            "type": "Lecture"
+          },
+          {
+            "title": "Understanding Organisational Structure",
+            "type": "Lecture"
+          },
+          {
+            "title": "Dynamics of Teams and Groups in an Organisation",
+            "type": "Lecture"
+          },
+          {
+            "title": "Organisational Context and Contemporary Organisational Behaviour",
+            "type": "Lecture"
+          },
+          {
+            "title": "Dynamics of Individual Behaviour in an Organisation",
+            "type": "Lecture"
+          },
+          {
+            "title": "Organizational Behaviour",
+            "type": "Quiz"
+          }
+        ],
+        "quizzes": 1,
+        "summary": "",
+        "title": "ORGANISATIONAL BEHAVIOUR"
+      },
+      {
+        "lectures": 5,
+        "lessons": [
+          {
+            "title": "International Entrepreneurial Opportunities",
+            "type": "Lecture"
+          },
+          {
+            "title": "Nature and Importance of Entrepreneurship",
+            "type": "Lecture"
+          },
+          {
+            "title": "Creating and Starting the Venture",
+            "type": "Lecture"
+          },
+          {
+            "title": "Innovation Management",
+            "type": "Lecture"
+          },
+          {
+            "title": "Generating and Implementing Business Ideas",
+            "type": "Lecture"
+          },
+          {
+            "title": "Innovation and Entrepreneurship",
+            "type": "Quiz"
+          }
+        ],
+        "quizzes": 1,
+        "summary": "",
+        "title": "INNOVATION AND ENTREPRENEURSHIP"
+      },
+      {
+        "lectures": 0,
+        "lessons": [],
+        "quizzes": 0,
+        "summary": "",
+        "title": "THESIS IN EXECUTIVE MASTER OF BUSINESS ADMINISTRATION"
+      }
+    ],
+    "monthly": "£ 175/mo",
+    "partner": "Azteca University",
+    "paymentSchedule": "",
+    "sectionPresence": {
+      "about": true,
+      "accreditation": true,
+      "certificate": true,
+      "courseDetails": true,
+      "details": true,
+      "entry": true,
+      "gettingStarted": true,
+      "library": true,
+      "modules": true,
+      "overview": true,
+      "testimonials": true,
+      "tuition": true,
+      "university": true,
+      "visa": true,
+      "workshop": true
+    },
+    "sourceUrl": "https://msbm.org.uk/programme/executive-master-of-business-administration-4",
+    "seedRevision": "2026-11-01-executive-mba-full",
+    "title": "Executive Master Of Business Administration",
+    "visa": "There is no Visa requirement for this programme.",
+    "workshop": "Workshops are conducted through live webinars for online students.",
+    "sourceCardText": "Loading... Azteca University Executive Master Of Business Administration Empower leaders with strategic, managerial, and innovative skills to drive organizational success. 18 Months Blended £ 3,150 £ 175/mo var datalayer_param_1519 = [{'name': 'Executive Master Of Business Administration', 'id': 'AUEMBA', 'price': '3150', 'brand': 'Business Management, Personal Development, Finance And Accounting, Sales And Marketing, Leadership And Entrepreneurship, Human Resources, Business Research', 'category': 'Master\\'s Degree', 'variant': 'Advanced', 'list': 'Home Page', 'position': 1, 'dimension1': '18 Months', 'dimension2': 'Blended'}];",
+    "slug": "executive-master-of-business-administration-4",
+    "paymentMonths": "18 Months",
+    "administrativeFee": "£ 1,750",
+    "level": "Master’s Degree",
+    "university": "Azteca University",
+    "universitySlug": "azteca-university",
+    "image": "/assets/img/case-study/cs-2.jpg",
+    "sourceVerified": true,
+    "sourceCoverage": "complete",
+    "entry": [
+      "You are required to hold at minimum a recognised bachelor’s degree with a minimum overall score of 55% (GPA 2.0 on a 4.0 point scale) or higher.",
+      "In some instances, you may also require relevant work experience and/or research experience. If applicable, you may demonstrate this through the submission of a CV, portfolio, and/or a personal statement.",
+      "English-language proficiency must be demonstrated through one of the accepted tests unless an exemption applies.",
+      "IELTS: overall score of 5.5 or higher.",
+      "TOEFL: iBT 58+, PBT 490+ or CBT 167+.",
+      "TOEIC: overall score of 555 or higher.",
+      "PTE: overall score of 50 or higher.",
+      "Duolingo English Test: overall score of 90 or higher.",
+      "The English test may be waived for native English speakers, applicants whose high-school or IB education was completed in English, applicants whose undergraduate or graduate study was completed in English, or applicants with two years of work experience in an organisation where English is the primary language of communication."
+    ],
+    "workshops": "Workshops are conducted through live webinars for online students.",
+    "modulesIndicative": false,
+    "sourceLessonCount": 124,
+    "subjects": [
+      "business-management"
+    ]
+  }
+]
